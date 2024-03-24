@@ -1,0 +1,8 @@
+[Desktop Entry]
+_Name=Wegwijs
+Exec=wegwijs %U
+Icon=assets/wegwijs.svg
+Terminal=false
+Type=Application
+X-Lomiri-Touch=true
+X-Ubuntu-Splash-Color=#111111

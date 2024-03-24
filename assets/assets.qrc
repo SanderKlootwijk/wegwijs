@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/assets">
+        <file>wegwijs.svg</file>
+    </qresource>
+</RCC>

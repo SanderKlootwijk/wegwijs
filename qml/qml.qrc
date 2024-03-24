@@ -1,0 +1,28 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Main.qml</file>
+        <file>pages/AboutPage.qml</file>
+        <file>pages/FuelPage.qml</file>
+        <file>pages/MainPage.qml</file>
+        <file>pages/ResultPage.qml</file>
+        <file>pages/SearchPage.qml</file>
+        <file>pages/SettingsPage.qml</file>
+        <file>pages/TrafficPage.qml</file>
+        <file>components/FeedListModel.qml</file>
+        <file>components/FuelShape.qml</file>
+        <file>components/FuelStationItem.qml</file>
+        <file>components/Location.qml</file>
+        <file>components/TrafficItem.qml</file>
+        <file>webview/index.html</file>
+        <file>webview/style.css</file>
+        <file>js/script.js</file>
+        <file>img/0.svg</file>
+        <file>img/1.png</file>
+        <file>img/1.svg</file>
+        <file>img/2.svg</file>
+        <file>img/3.svg</file>
+        <file>img/4.png</file>
+        <file>img/7.png</file>
+        <file>img/wegwijs.svg</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,223 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the wegwijs.sanderklootwijk package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: wegwijs.sanderklootwijk\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-03-24 15:14+0000\n"
+"PO-Revision-Date: 2024-03-24 17:53+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: ../qml/pages/AboutPage.qml:26 ../qml/pages/MainPage.qml:46
+msgid "About"
+msgstr "Over"
+
+#: ../qml/pages/AboutPage.qml:81 ../qml/pages/FuelPage.qml:30
+#: ../qml/pages/MainPage.qml:30 ../qml/pages/TrafficPage.qml:31
+#: wegwijs.desktop.in.h:1
+msgid "Wegwijs"
+msgstr "Wegwijs"
+
+#: ../qml/pages/AboutPage.qml:86
+msgid "Version"
+msgstr "Versie"
+
+#: ../qml/pages/AboutPage.qml:102
+msgid "Source code"
+msgstr "Broncode"
+
+#: ../qml/pages/AboutPage.qml:103
+msgid "Report issues"
+msgstr "Meld problemen"
+
+#: ../qml/pages/AboutPage.qml:129
+msgid "API usage"
+msgstr "API gebruik"
+
+#: ../qml/pages/AboutPage.qml:142
+msgid "Fuel prices by Tankplanner"
+msgstr "Brandstofprijzen door Tankplanner"
+
+#: ../qml/pages/AboutPage.qml:143
+msgid "Traffic information by Rijkswaterstaat"
+msgstr "Verkeersinformatie door Rijkswaterstaat"
+
+#: ../qml/pages/AboutPage.qml:144
+msgid "Address coordinates by Geocoding"
+msgstr "Adres coördinaten door Geocoding"
+
+#: ../qml/pages/FuelPage.qml:52
+msgid "Distance"
+msgstr "Afstand"
+
+#: ../qml/pages/FuelPage.qml:52
+msgid "Price"
+msgstr "Prijs"
+
+#: ../qml/pages/FuelPage.qml:71 ../qml/pages/MainPage.qml:234
+msgid "Search"
+msgstr "Zoeken"
+
+#: ../qml/pages/FuelPage.qml:105
+msgid "No nearby fuel stations found"
+msgstr "Geen nabijgelegen tankstations gevonden"
+
+#: ../qml/pages/FuelPage.qml:105
+msgid "Search for another location or expand the search radius in the settings"
+msgstr ""
+"Zoek naar een andere locatie of breid de zoekafstand uit in de instellingen"
+
+#: ../qml/pages/MainPage.qml:39 ../qml/pages/SettingsPage.qml:31
+msgid "Settings"
+msgstr "Instellingen"
+
+#: ../qml/pages/MainPage.qml:125
+msgid "You're all set!"
+msgstr "Je bent helemaal klaar!"
+
+#: ../qml/pages/MainPage.qml:128
+msgid "Welcome to Wegwijs!"
+msgstr "Welkom bij Wegwijs!"
+
+#: ../qml/pages/MainPage.qml:143
+msgid "Please note: Wegwijs currently only supports the Netherlands"
+msgstr "Let op: Wegwijs ondersteunt momenteel alleen Nederland"
+
+#: ../qml/pages/MainPage.qml:143
+msgid ""
+"With Wegwijs, you're always informed about the current traffic conditions "
+"and can easily find nearby fuel prices"
+msgstr ""
+"Met Wegwijs ben je altijd op de hoogte van de huidige verkeerssituatie en "
+"kun je eenvoudig brandstofprijzen in de buurt vinden"
+
+#: ../qml/pages/MainPage.qml:155
+msgid "Select a type of fuel below to begin:"
+msgstr "Selecteer hieronder een brandstoftype om te beginnen:"
+
+#: ../qml/pages/MainPage.qml:200
+msgid "Now choose a location to find nearby fuel prices:"
+msgstr "Kies nu een locatie om brandstofprijzen in de buurt te vinden:"
+
+#: ../qml/pages/MainPage.qml:212
+msgid ""
+"Wegwijs is ready for use, further settings can be found in the menu at the "
+"top right of the screen"
+msgstr ""
+"Wegwijs is klaar voor gebruik, verdere instellingen zijn te vinden in het "
+"menu rechtsboven in beeld"
+
+#: ../qml/pages/MainPage.qml:274
+msgid "Previous"
+msgstr "Vorige"
+
+#: ../qml/pages/MainPage.qml:286
+msgid "Next"
+msgstr "Volgende"
+
+#: ../qml/pages/MainPage.qml:308
+msgid "Close"
+msgstr "Sluiten"
+
+#: ../qml/pages/MainPage.qml:363
+msgid "Connect to the internet to set up Wegwijs"
+msgstr "Maak verbinding met internet om Wegwijs in te stellen"
+
+#: ../qml/pages/MainPage.qml:363
+msgid "Connect to the internet to use Wegwijs"
+msgstr "Maak verbinding met internet om Wegwijs te gebruiken"
+
+#: ../qml/pages/MainPage.qml:363
+msgid "You are currently offline"
+msgstr "Je bent momenteel offline"
+
+#: ../qml/pages/MainPage.qml:482 ../qml/pages/MainPage.qml:575
+msgid "Loading"
+msgstr "Laden"
+
+#: ../qml/pages/MainPage.qml:485 ../qml/pages/MainPage.qml:491
+msgid "traffic jams"
+msgstr "files"
+
+#: ../qml/pages/MainPage.qml:488
+msgid "traffic jam"
+msgstr "file"
+
+#: ../qml/pages/ResultPage.qml:119
+msgid "Navigate"
+msgstr "Navigeren"
+
+#: ../qml/pages/SearchPage.qml:45
+msgid "Search for a location"
+msgstr "Zoek naar een locatie"
+
+#: ../qml/pages/SearchPage.qml:110
+msgid "No locations found"
+msgstr "Geen locaties gevonden"
+
+#: ../qml/pages/SettingsPage.qml:36 ../qml/pages/TrafficPage.qml:36
+msgid "Back"
+msgstr "Terug"
+
+#: ../qml/pages/SettingsPage.qml:87
+msgid "Theme"
+msgstr "Thema"
+
+#: ../qml/pages/SettingsPage.qml:103
+msgid "System"
+msgstr "Systeem"
+
+#: ../qml/pages/SettingsPage.qml:128
+msgid "Search radius in km (as the crow flies)"
+msgstr "Zoekafstand in km (hemelsbreed)"
+
+#: ../qml/pages/SettingsPage.qml:172
+msgid "Fuel type"
+msgstr "Brandstoftype"
+
+#: ../qml/pages/TrafficPage.qml:32
+msgid "Traffic Conditions"
+msgstr "Verkeerssituatie"
+
+#: ../qml/pages/TrafficPage.qml:254
+msgid "Select traffic jams, road closures, or roadworks from the options above"
+msgstr ""
+"Selecteer files, afsluitingen, of wegwerkzaamheden uit de opties hierboven"
+
+#: ../qml/pages/TrafficPage.qml:258
+msgid "No traffic jams found"
+msgstr "Geen files gevonden"
+
+#: ../qml/pages/TrafficPage.qml:261
+msgid "No road closures found"
+msgstr "Geen afsluitingen gevonden"
+
+#: ../qml/pages/TrafficPage.qml:264
+msgid "No roadworks found"
+msgstr "Geen wegwerkzaamheden gevonden"
+
+#: ../qml/pages/TrafficPage.qml:267
+msgid "No traffic jams or road closures found"
+msgstr "Geen files of afsluitingen gevonden"
+
+#: ../qml/pages/TrafficPage.qml:270
+msgid "No traffic jams or roadworks found"
+msgstr "Geen files of wegwerkzaam"
+
+#: ../qml/pages/TrafficPage.qml:273
+msgid "No road closures or roadworks found"
+msgstr "Geen afsluitingen of wegwerkzaamheden gevonden"
+
+#: ../qml/pages/TrafficPage.qml:276
+msgid "No traffic jams, road closures or roadworks found"
+msgstr "Geen files, afsluitingen of wegwerkzaamheden gevonden"

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed, 2023-07-21)"
+   sodipodi:docname="B7.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="0.4609375"
+     inkscape:cx="256"
+     inkscape:cy="254.91525"
+     inkscape:window-width="1512"
+     inkscape:window-height="916"
+     inkscape:window-x="0"
+     inkscape:window-y="38"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Laag 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g1"
+       transform="translate(-72.999954,257)">
+      <rect
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:13.0336;stroke-dasharray:none;stroke-opacity:1"
+         id="rect1"
+         width="498.96637"
+         height="498.96637"
+         x="79.516769"
+         y="-250.48318"
+         ry="85.181152" />
+      <text
+         xml:space="preserve"
+         style="font-size:224.183px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:14.0114;stroke-dasharray:none;stroke-opacity:1"
+         x="191.12752"
+         y="76.791389"
+         id="text1-2-7"><tspan
+           sodipodi:role="line"
+           id="tspan1-4-2"
+           x="191.12752"
+           y="76.791389"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:224.183px;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;stroke-width:14.0114">B7</tspan></text>
+    </g>
+  </g>
+</svg>
