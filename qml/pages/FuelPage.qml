@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2023  Sander Klootwijk
+* Copyright (C) 2024  Sander Klootwijk
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@ Page {
     id: fuelPage
 
     property alias fuelListView: fuelListView
+    property alias fuelSections: fuelSections
 
     header: PageHeader {
         id: fuelPageHeader
@@ -40,14 +41,21 @@ Page {
             else if (settings.fuelType == 3) {
                 "LPG"
             }
+            else if (settings.fuelType == 4) {
+                i18n.tr("Electric")
+            }
         }
 
         extension: Sections {
+            id: fuelSections
+
             anchors {
                 left: parent.left
                 leftMargin: units.gu(2)
                 bottom: parent.bottom
             }
+
+            enabled: settings.fuelType == 4 ? false : true
             model: [i18n.tr("Price"), i18n.tr("Distance")]
             onSelectedIndexChanged: {
                 if (selectedIndex == 0) {
@@ -62,6 +70,10 @@ Page {
                     fuelListModel.quick_sort()
                     fuelListView.model = fuelListModel
                 }
+            }
+
+            Component.onCompleted: {
+                settings.fuelType == 4 ? fuelSections.selectedIndex = 1 : fuelSections.selectedIndex = 0
             }
         }
 

@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2023  Sander Klootwijk
+* Copyright (C) 2024  Sander Klootwijk
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -62,6 +62,8 @@ MainView {
 
     // To use the Geocoding key API for the search function, insert a key below
     property string geocodeKey: ""
+    // To use the Open Charge Map API, insert a key below
+    property string openchargemapKey: ""
     property string trafficSource: "https://api.rwsverkeersinfo.nl/api/traffic/"
     property string fuelSource: {
         if (settings.fuelType == 0) {
@@ -76,11 +78,14 @@ MainView {
         else if (settings.fuelType == 3) {
             "https://www.tankplanner.nl/api/v1/price/lpg/"
         }
+        else if (settings.fuelType == 4) {
+            "https://api.openchargemap.io/v3/poi?key=" + openchargemapKey
+        }
     }
 
     property int numberOfJams: -1
     property int totalLengthOfJams: -1
-    property int numberOfRoadworks: -1
+    property int numberOfRoadWorks: -1
     property var obstructionTypes: [1, 4, 7]
     
     property string locationSource
@@ -93,7 +98,7 @@ MainView {
     property bool fuelLoading: false
     property bool searchLoading: false
 
-    property string version: "1.0.0"
+    property string version: "1.1.0"
     property int firstRunSlide: 0
 
     Settings {
@@ -298,28 +303,107 @@ MainView {
     // Get the current fuel prices and information from the API
     function getFuelPrices() {
         root.fuelLoading = true;
-        var request = new XMLHttpRequest;
+        var request = new XMLHttpRequest();
+        var currentLatitude = settings.currentLatitude;
+        var currentLongitude = settings.currentLongitude;
+        var searchRadius = settings.searchRadius;
+        var fuelType = settings.fuelType;
+        var fuelSource = root.fuelSource;
+
+        if (fuelType === 4) {
+            fuelSource += `&latitude=${currentLatitude}&longitude=${currentLongitude}&distance=${searchRadius}&distanceunit=km`;
+        }
+
         request.open("GET", fuelSource);
         request.onreadystatechange = function() {
             if (request.readyState == XMLHttpRequest.DONE) {
                 if (request.status && request.status === 200) {
                     var list = JSON.parse(request.responseText);
                     fuelListModel.clear();
-                    for (var i in list)
-                        if (calcCrow(settings.currentLatitude, settings.currentLongitude, list[i].gps[0], list[i].gps[1]) < settings.searchRadius) {
-                            fuelListModel.append({ "organization": list[i].organization, "address": list[i].address, "town": list[i].town, "latitude": list[i].gps[0], "longitude": list[i].gps[1], "price": list[i].price, "distance": Math.round(calcCrow(settings.currentLatitude, settings.currentLongitude, list[i].gps[0], list[i].gps[1]) * 10) / 10 });
+
+                    if (fuelType === 4) {
+                        for (var i = 0; i < list.length; i++) {
+                            var chargingStation = list[i];
+
+                            var address = chargingStation.AddressInfo.Title;
+                            var organization = chargingStation.OperatorInfo ? chargingStation.OperatorInfo.Title : i18n.tr("Charging station");
+                            var points = chargingStation.NumberOfPoints;
+                            var highestpower = getHighestPowerKW(chargingStation.Connections);
+                            var town = chargingStation.AddressInfo.Town;
+                            var latitude = chargingStation.AddressInfo.Latitude;
+                            var longitude = chargingStation.AddressInfo.Longitude;
+                            var price = chargingStation.UsageCost;
+                            var distance = chargingStation.AddressInfo.Distance;
+                            var connections = [];
+
+                            for (var j = 0; j < chargingStation.Connections.length; j++) {
+                                var connection = chargingStation.Connections[j];
+
+                                var data = {
+                                    "connectiontypeid": connection.ConnectionTypeID,
+                                    "connectiontypetitle": connection.ConnectionType.Title,
+                                    "power": connection.PowerKW !== null ? connection.PowerKW : 0,
+                                    "quantity": connection.Quantity !== null ? connection.Quantity : 1
+                                };
+
+                                connections.push(data);
+                            }
+
+                            fuelListModel.append({
+                                "address": address,
+                                "organization": organization.replace(/\(Unknown Operator\)/g, i18n.tr("Charging station")),
+                                "points": points,
+                                "connections": connections,
+                                "highestpower": highestpower,
+                                "town": town,
+                                "latitude": latitude,
+                                "longitude": longitude,
+                                "price": price,
+                                "distance": distance.toFixed(1)
+                            });
                         }
+                    } else {
+                        for (var k in list) {
+                            if (calcCrow(currentLatitude, currentLongitude, list[k].gps[0], list[k].gps[1]) < searchRadius) {
+                                fuelListModel.append({
+                                    "address": list[k].address,
+                                    "organization": list[k].organization,
+                                    "points": 0,
+                                    "connections": [],
+                                    "highestpower": 0,
+                                    "town": list[k].town,
+                                    "latitude": list[k].gps[0],
+                                    "longitude": list[k].gps[1],
+                                    "price": list[k].price.toString(),
+                                    "distance": (Math.round(calcCrow(settings.currentLatitude, settings.currentLongitude, list[k].gps[0], list[k].gps[1]) * 10) / 10).toString()
+                                });
+                            }
+                        }
+                    }
+                } else {
+                    console.log("HTTP:", request.status, request.statusText);
                 }
-                else {
-                    console.log("HTTP:", request.status, request.statusText)
-                }
-                fuelListModel.quick_sort()
-                fuelPage.fuelListView.positionViewAtBeginning()
+                fuelListModel.quick_sort();
+                fuelPage.fuelListView.positionViewAtBeginning();
                 root.fuelLoading = false;
-                findLowestPrice()
+                findLowestPrice();
             }
-        }
+        };
         request.send();
+    }
+
+
+    // Get highest PowerKW from a charging station
+    function getHighestPowerKW(connections) {
+        let highestPowerKW = 0;
+
+        connections.forEach(connection => {
+            if (connection.PowerKW > highestPowerKW) {
+                highestPowerKW = connection.PowerKW;
+            }
+        });
+
+        return highestPowerKW;
     }
 
     // Sort fuel prices by lowest price
@@ -353,7 +437,7 @@ MainView {
 
                     root.numberOfJams = JSON.parse(request.responseText).numberOfJams;
                     root.totalLengthOfJams = JSON.parse(request.responseText).totalLengthOfJams / 1000;
-                    root.numberOfRoadworks = JSON.parse(request.responseText).numberOfRoadworks;
+                    root.numberOfRoadWorks = JSON.parse(request.responseText).numberOfRoadWorks;
                 } else {
                     console.log("HTTP:", request.status, request.statusText);
                 }

@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2023  Sander Klootwijk
+* Copyright (C) 2024  Sander Klootwijk
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -34,7 +34,7 @@ LomiriShape {
         }
 
         color: "#FFFFFF"
-        textSize: Label.Small
+        textSize: text.length > 7 ? Label.XSmall : Label.Small
         font.bold: true
         
         text: {
@@ -49,6 +49,9 @@ LomiriShape {
             }
             else if (fuelType == 3) {
                 "LPG"
+            }
+            else if (fuelType == 4) {
+                i18n.tr("Electric")
             }
         }
     }
@@ -85,6 +88,9 @@ LomiriShape {
         }
         else if (fuelType == 3) {
             "#057535"
+        }
+        else if (fuelType == 4) {
+            "#00bc4b"
         }
     }
 }

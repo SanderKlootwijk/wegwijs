@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2023  Sander Klootwijk
+* Copyright (C) 2024  Sander Klootwijk
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -146,6 +146,7 @@ Page {
 
                     model: [
                     { name: i18n.tr("Fuel prices by Tankplanner"), url: "https://www.tankplanner.nl/"},
+                    { name: i18n.tr("Charging stations by Open Charge Map"), url: "https://openchargemap.org/"},
                     { name: i18n.tr("Traffic information by Rijkswaterstaat"), url: "https://www.rwsverkeersinfo.nl"},
                     { name: i18n.tr("Address coordinates by Geocoding"), url: "https://geocode.maps.co"}
                     ]

@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2023  Sander Klootwijk
+* Copyright (C) 2024  Sander Klootwijk
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -72,7 +72,7 @@ ListItem {
         horizontalAlignment: Text.AlignRight
         elide: Text.ElideLeft
         
-        text: "€" + price
+        text: settings.fuelType == 4 ? highestpower + " kW" : "€" + price
     }
 
     Icon {
@@ -88,7 +88,7 @@ ListItem {
             right: parent.right
             rightMargin: units.gu(2)
         }
-    }
+    } 
 
     onClicked: {
         resultPage.qtObject.latitude = latitude
@@ -98,8 +98,9 @@ ListItem {
         
         resultPage.resultPageHeader.title = organization
         resultPage.resultPageHeader.subtitle = town
-        resultPage.fuelpriceLabel.text = "<b>" + fuelPageHeader.subtitle + "</b>: €" + price
+        resultPage.fuelpriceLabel.text = "€" + price
         resultPage.adressLabel.text = address + ", " + town
+        settings.fuelType == 4 ? resultPage.connectionsData = connections : resultPage.connectionsData = null
         
         fuelPage.pageStack.addPageToNextColumn(fuelPage, resultPage)
     }

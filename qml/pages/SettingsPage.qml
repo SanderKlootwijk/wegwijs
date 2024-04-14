@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2023  Sander Klootwijk
+* Copyright (C) 2024  Sander Klootwijk
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -37,6 +37,7 @@ Page {
                 onTriggered: {
                     themeOptionSelector.currentlyExpanded = false
                     fuelTypeOptionSelector.currentlyExpanded = false
+                    settings.fuelType == 4 ? fuelPage.fuelSections.selectedIndex = 1 : fuelPage.fuelSections.selectedIndex = 0
                     adaptivePageLayout.removePages(settingsPage)
                 }
             }
@@ -185,7 +186,7 @@ Page {
                         topMargin: units.gu(2)
                     }
 
-                    model: ["Euro 95 (E10)", "Euro 98 (E5)", "Diesel (B7)", "LPG"]
+                    model: ["Euro 95 (E10)", "Euro 98 (E5)", "Diesel (B7)", "LPG", i18n.tr("Electric")]
 
                     onSelectedIndexChanged: {
                         settings.fuelType = selectedIndex

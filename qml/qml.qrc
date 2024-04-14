@@ -8,7 +8,7 @@
         <file>pages/SearchPage.qml</file>
         <file>pages/SettingsPage.qml</file>
         <file>pages/TrafficPage.qml</file>
-        <file>components/FeedListModel.qml</file>
+        <file>components/ConnectionItem.qml</file>
         <file>components/FuelShape.qml</file>
         <file>components/FuelStationItem.qml</file>
         <file>components/Location.qml</file>
@@ -22,7 +22,14 @@
         <file>img/2.svg</file>
         <file>img/3.svg</file>
         <file>img/4.png</file>
+        <file>img/4.svg</file>
         <file>img/7.png</file>
+        <file>img/connection-2.svg</file>
+        <file>img/connection-25.svg</file>
+        <file>img/connection-27.svg</file>
+        <file>img/connection-30.svg</file>
+        <file>img/connection-33.svg</file>
+        <file>img/connection-1036.svg</file>
         <file>img/wegwijs.svg</file>
     </qresource>
 </RCC>

@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2023  Sander Klootwijk
+* Copyright (C) 2024  Sander Klootwijk
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -172,7 +172,7 @@ Page {
 
                     visible: root.firstRunSlide == 1
 
-                    model: ["Euro 95 (E10)", "Euro 98 (E5)", "Diesel (B7)", "LPG"]
+                    model: ["Euro 95 (E10)", "Euro 98 (E5)", "Diesel (B7)", "LPG", i18n.tr("Electric")]
 
                     onSelectedIndexChanged: {
                         settings.fuelType = selectedIndex
@@ -304,12 +304,13 @@ Page {
 
                     visible: root.firstRunSlide == 3
                     
-                    text: i18n.tr("Close")
+                    text: i18n.tr("Done")
 
                     color: theme.palette.normal.positive
 
                     onClicked: {
                         settings.firstRun = false
+                        settings.fuelType == 4 ? fuelPage.fuelSections.selectedIndex = 1 : fuelPage.fuelSections.selectedIndex = 0
                         getTrafficData()
                         getFuelPrices()
                     }
@@ -535,6 +536,7 @@ Page {
                 onClicked: {
                     getFuelPrices()
                     mainPage.pageStack.addPageToCurrentColumn(mainPage, fuelPage)
+                    settings.fuelType == 4 ? fuelPage.fuelSections.selectedIndex = 1 : fuelPage.fuelSections.selectedIndex = 0
                 }
 
                 FuelShape {
@@ -571,7 +573,24 @@ Page {
                             top: parent.top
                         }
 
-                        text: root.lowestPriceStation == -1 || root.fuelLoading == true ? i18n.tr("Loading") + "..." : lowestPriceStation
+                        text: {
+                            if (root.lowestPriceStation == -1 || root.fuelLoading == true) {
+                                i18n.tr("Loading") + "..."
+                            }
+                            else {
+                                if (settings.fuelType == 4) {
+                                    if (fuelListModel.count == 1) {
+                                        fuelListModel.count + " " + i18n.tr("charging station")
+                                    }
+                                    else {
+                                        fuelListModel.count + " " + i18n.tr("charging stations")
+                                    }
+                                }
+                                else {
+                                    root.lowestPriceStation
+                                }
+                            }
+                        }
 
                         elide: Text.ElideRight
                         font.bold: true
@@ -587,7 +606,19 @@ Page {
                             bottom: parent.bottom
                         }
 
-                        text: root.lowestPrice == -1 || root.fuelLoading == true ? "" : "€" + root.lowestPrice
+                        text: {
+                            if (root.lowestPriceStation == -1 || root.fuelLoading == true) {
+                                ""
+                            }
+                            else {
+                                if (settings.fuelType == 4) {
+                                    i18n.tr("in a %1 km radius").arg(settings.searchRadius)
+                                }
+                                else {
+                                    "€" + root.lowestPrice
+                                }
+                            }
+                        }
 
                         elide: Text.ElideRight
                     }
