@@ -43,8 +43,10 @@ ListItem {
     onClicked: {
         settings.currentLatitude = latitude
         settings.currentLongitude = longitude
+        console.log(typeof latitude);
+        console.log(typeof longitude);
 
-        getFuelPrices()
+        root.fuelProvider.getFuelPrices()
 
         adaptivePageLayout.removePages(searchPage)
         

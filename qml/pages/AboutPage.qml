@@ -131,7 +131,7 @@ Page {
                     leftMargin: units.gu(2)
                 }
                 
-                text: i18n.tr("API usage")
+                text: i18n.tr("API usage") + ":"
                 color: theme.palette.normal.backgroundSecondaryText
                 font.bold: true
             }
@@ -145,10 +145,12 @@ Page {
                     }
 
                     model: [
-                    { name: i18n.tr("Fuel prices by Tankplanner"), url: "https://www.tankplanner.nl/"},
-                    { name: i18n.tr("Charging stations by Open Charge Map"), url: "https://openchargemap.org/"},
-                    { name: i18n.tr("Traffic information by Rijkswaterstaat"), url: "https://www.rwsverkeersinfo.nl"},
-                    { name: i18n.tr("Address coordinates by Geocoding"), url: "https://geocode.maps.co"}
+                        { name: "ANWB", url: "https://www.anwb.nl"},
+                        { name: "Geocoding", url: "https://geocode.maps.co"},
+                        { name: "Open Charge Map", url: "https://openchargemap.org/"},
+                        { name: "Rijkswaterstaat", url: "https://www.rwsverkeersinfo.nl"},
+                        // Tankplanner.nl currently seems to be broken
+                        //{ name: i18n.tr("Fuel prices by Tankplanner"), url: "https://www.tankplanner.nl/"}
                     ]
 
                     delegate: ListItem {

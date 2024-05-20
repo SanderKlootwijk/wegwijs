@@ -174,10 +174,7 @@ Page {
 
                     model: ["Euro 95 (E10)", "Euro 98 (E5)", "Diesel (B7)", "LPG", i18n.tr("Electric")]
 
-                    onSelectedIndexChanged: {
-                        settings.fuelType = selectedIndex
-                        console.log(settings.fuelType)
-                    }
+                    onSelectedIndexChanged: settings.fuelType = selectedIndex
 
                     expanded: true
 
@@ -311,8 +308,8 @@ Page {
                     onClicked: {
                         settings.firstRun = false
                         settings.fuelType == 4 ? fuelPage.fuelSections.selectedIndex = 1 : fuelPage.fuelSections.selectedIndex = 0
-                        getTrafficData()
-                        getFuelPrices()
+                        root.trafficProvider.getTrafficData()
+                        root.fuelProvider.getFuelPrices()
                     }
                 }
 
@@ -414,7 +411,7 @@ Page {
                 height: units.gu(9)
 
                 onClicked: {
-                    getTrafficData()
+                    root.trafficProvider.getTrafficData()
                     mainPage.pageStack.addPageToCurrentColumn(mainPage, trafficPage)
                 }
 
@@ -437,7 +434,7 @@ Page {
 
                         anchors.centerIn: parent
 
-                        source: "../img/4.png"
+                        source: "../img/jams.png"
 
                         fillMode: Image.PreserveAspectFit
                     }
@@ -478,17 +475,17 @@ Page {
                         }
 
                         text: {
-                            if (root.numberOfJams === -1 || root.trafficLoading == true) {
+                            if (root.trafficProvider.numberOfJams == -1 || root.trafficProvider.loading == true) {
                                 i18n.tr("Loading") + "..."
                             }
-                            else if (root.numberOfJams == 0) {
-                                root.numberOfJams + " " + i18n.tr("traffic jams")
+                            else if (root.trafficProvider.numberOfJams == 0) {
+                                root.trafficProvider.numberOfJams + " " + i18n.tr("traffic jams")
                             }
-                            else if (root.numberOfJams == 1) {
-                                root.numberOfJams + " " + i18n.tr("traffic jam")
+                            else if (root.trafficProvider.numberOfJams == 1) {
+                                root.trafficProvider.numberOfJams + " " + i18n.tr("traffic jam")
                             }
                             else {
-                                root.numberOfJams + " " + i18n.tr("traffic jams")
+                                root.trafficProvider.numberOfJams + " " + i18n.tr("traffic jams")
                             }
                         }
 
@@ -506,7 +503,7 @@ Page {
                             bottom: parent.bottom
                         }
 
-                        text: root.totalLengthOfJams == -1 || root.trafficLoading == true ? "" : root.totalLengthOfJams + " " + "km"
+                        text: root.trafficProvider.totalLengthOfJams == -1 || root.trafficProvider.loading == true ? "" : root.trafficProvider.totalLengthOfJams + " " + "km"
 
                         elide: Text.ElideRight
                     }
@@ -534,7 +531,7 @@ Page {
                 height: units.gu(9)
 
                 onClicked: {
-                    getFuelPrices()
+                    root.fuelProvider.getFuelPrices()
                     mainPage.pageStack.addPageToCurrentColumn(mainPage, fuelPage)
                     settings.fuelType == 4 ? fuelPage.fuelSections.selectedIndex = 1 : fuelPage.fuelSections.selectedIndex = 0
                 }
@@ -574,7 +571,7 @@ Page {
                         }
 
                         text: {
-                            if (root.lowestPriceStation == -1 || root.fuelLoading == true) {
+                            if (root.fuelProvider.loading == true) {
                                 i18n.tr("Loading") + "..."
                             }
                             else {
@@ -586,8 +583,11 @@ Page {
                                         fuelListModel.count + " " + i18n.tr("charging stations")
                                     }
                                 }
+                                else if (root.fuelProvider.lowestPriceStation == -1 ) {
+                                    i18n.tr("No fuel stations found")
+                                }
                                 else {
-                                    root.lowestPriceStation
+                                    root.fuelProvider.lowestPriceStation
                                 }
                             }
                         }
@@ -607,7 +607,7 @@ Page {
                         }
 
                         text: {
-                            if (root.lowestPriceStation == -1 || root.fuelLoading == true) {
+                            if (root.fuelProvider.lowestPriceStation == -1 || root.fuelProvider.loading == true) {
                                 ""
                             }
                             else {
@@ -615,7 +615,7 @@ Page {
                                     i18n.tr("in a %1 km radius").arg(settings.searchRadius)
                                 }
                                 else {
-                                    "€" + root.lowestPrice
+                                    "€" + root.fuelProvider.lowestPrice
                                 }
                             }
                         }

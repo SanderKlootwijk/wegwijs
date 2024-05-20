@@ -96,6 +96,7 @@ ListItem {
 
         resultPage.webEngineView.reload()
         
+        resultPage.infoFlickable.expanded = false
         resultPage.resultPageHeader.title = organization
         resultPage.resultPageHeader.subtitle = town
         resultPage.fuelpriceLabel.text = "€" + price

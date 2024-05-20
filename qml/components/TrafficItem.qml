@@ -64,7 +64,7 @@ ListItem {
         LomiriShape {
             id: roadShape
             height: units.gu(3)
-            width: units.gu(5.5)
+            width: roadNumber.length > 4 ? roadLabel.contentWidth + units.gu(1.25) : units.gu(5.5)
 
             anchors {
                 left: parent.left
@@ -73,7 +73,7 @@ ListItem {
                 topMargin: units.gu(1)
             }
 
-            backgroundColor: getRoadColor(roadNumber)
+            backgroundColor: roadColor
 
             aspect: LomiriShape.Flat
 
@@ -101,15 +101,15 @@ ListItem {
             spacing: units.gu(2.5)
 
             Item {
-                id: obstructionType4Item
+                id: jamsItem
 
                 height: units.gu(3)
-                width: obstructionType4Image.width + obstructionType4Label.contentWidth + units.gu(1)
+                width: jamsImage.width + jamsLabel.contentWidth + units.gu(1)
 
-                visible: obstructionType4Count > 0
+                visible: root.trafficProvider.hasJams ? jamsCount > 0 : false
 
                 Image {
-                    id: obstructionType4Image
+                    id: jamsImage
                     
                     height: units.gu(2.5)
 
@@ -118,43 +118,43 @@ ListItem {
                         verticalCenter: parent.verticalCenter
                     }
 
-                    source: "../img/4.png"
+                    source: "../img/jams.png"
 
                     fillMode: Image.PreserveAspectFit
                 }
 
                 Label {
-                    id: obstructionType4Label
+                    id: jamsLabel
 
                     anchors {
                         right: parent.right
                         verticalCenter: parent.verticalCenter
                     }
 
-                    text: obstructionType4Count
+                    text: root.trafficProvider.hasJams ? jamsCount : ""
 
                     font.bold: true
                 }
 
                 ColorOverlay {
-                    anchors.fill: obstructionType4Image
+                    anchors.fill: jamsImage
 
-                    source: obstructionType4Image
+                    source: jamsImage
 
                     color: theme.palette.normal.foregroundText
                 }
             }
 
             Item {
-                id: obstructionType7Item
+                id: closuresItem
 
                 height: units.gu(3)
-                width: obstructionType7Image.width + obstructionType7Label.contentWidth + units.gu(1)
+                width: closuresImage.width + closuresLabel.contentWidth + units.gu(1)
 
-                visible: obstructionType7Count > 0
+                visible: root.trafficProvider.hasClosures ? closuresCount > 0 : false
 
                 Image {
-                    id: obstructionType7Image
+                    id: closuresImage
                     
                     height: units.gu(2.5)
 
@@ -163,43 +163,43 @@ ListItem {
                         verticalCenter: parent.verticalCenter
                     }
 
-                    source: "../img/7.png"
+                    source: "../img/closures.png"
 
                     fillMode: Image.PreserveAspectFit
                 }
 
                 Label {
-                    id: obstructionType7Label
+                    id: closuresLabel
 
                     anchors {
                         right: parent.right
                         verticalCenter: parent.verticalCenter
                     }
 
-                    text: obstructionType7Count
+                    text: root.trafficProvider.hasClosures ? closuresCount : ""
 
                     font.bold: true
                 }
 
                 ColorOverlay {
-                    anchors.fill: obstructionType7Image
+                    anchors.fill: closuresImage
 
-                    source: obstructionType7Image
+                    source: closuresImage
 
                     color: theme.palette.normal.foregroundText
                 }
             }
 
             Item {
-                id: obstructionType1Item
+                id: roadworksItem
 
                 height: units.gu(3)
-                width: obstructionType1Image.width + obstructionType1Label.contentWidth + units.gu(0.75)
+                width: roadworksImage.width + roadworksLabel.contentWidth + units.gu(0.75)
 
-                visible: obstructionType1Count > 0
+                visible: root.trafficProvider.hasRoadworks ? roadworksCount > 0 : false
 
                 Image {
-                    id: obstructionType1Image
+                    id: roadworksImage
                     
                     height: units.gu(2.5)
 
@@ -208,28 +208,73 @@ ListItem {
                         verticalCenter: parent.verticalCenter
                     }
 
-                    source: "../img/1.png"
+                    source: "../img/roadworks.png"
 
                     fillMode: Image.PreserveAspectFit
                 }
 
                 Label {
-                    id: obstructionType1Label
+                    id: roadworksLabel
 
                     anchors {
                         right: parent.right
                         verticalCenter: parent.verticalCenter
                     }
 
-                    text: obstructionType1Count
+                    text: root.trafficProvider.hasRoadworks ? roadworksCount : ""
 
                     font.bold: true
                 }
 
                 ColorOverlay {
-                    anchors.fill: obstructionType1Image
+                    anchors.fill: roadworksImage
 
-                    source: obstructionType1Image
+                    source: roadworksImage
+
+                    color: theme.palette.normal.foregroundText
+                }
+            }
+
+            Item {
+                id: speedcamerasItem
+
+                height: units.gu(3)
+                width: speedcamerasImage.width + speedcamerasLabel.contentWidth + units.gu(0.75)
+
+                visible: root.trafficProvider.hasSpeedcameras ? speedcamerasCount > 0 : false
+
+                Image {
+                    id: speedcamerasImage
+                    
+                    height: units.gu(2.5)
+
+                    anchors {
+                        left: parent.left
+                        verticalCenter: parent.verticalCenter
+                    }
+
+                    source: "../img/speedcameras.png"
+
+                    fillMode: Image.PreserveAspectFit
+                }
+
+                Label {
+                    id: speedcamerasLabel
+
+                    anchors {
+                        right: parent.right
+                        verticalCenter: parent.verticalCenter
+                    }
+
+                    text: root.trafficProvider.hasSpeedcameras ? speedcamerasCount : ""
+
+                    font.bold: true
+                }
+
+                ColorOverlay {
+                    anchors.fill: speedcamerasImage
+
+                    source: speedcamerasImage
 
                     color: theme.palette.normal.foregroundText
                 }
@@ -286,7 +331,7 @@ ListItem {
 
             delegate: ListItem {
                 width: parent.width
-                height: units.gu(2.5) + titleLabel.contentHeight + descriptionLabel.contentHeight
+                height: information.length > 0 ? units.gu(2.5) + titleLabel.contentHeight + descriptionLabel.contentHeight + informationShape.height + units.gu(1.25) : units.gu(2.5) + titleLabel.contentHeight + descriptionLabel.contentHeight
 
                 MouseArea {
                     z: 1
@@ -339,9 +384,8 @@ ListItem {
                         topMargin: units.gu(1)
                     }
                             
-                    text: directionText
+                    text: direction
 
-                    //elide: Text.ElideRight
                     wrapMode: Text.WordWrap
 
                     font.bold: true
@@ -358,22 +402,7 @@ ListItem {
                         top: titleLabel.bottom
                     }
                     
-                    text: {
-                        if (obstructionType == 4) {
-                            title + ". " + locationText
-                        }
-                        else if (obstructionType == 1) {
-                            if (description.length > 1) {
-                                title + ". " + description + "<br><br>" + timeEnd + "."
-                            }
-                            else {
-                                title + ". " + locationText + "<br><br>" + timeEnd + "."
-                            }
-                        }
-                        else if (obstructionType == 7) {
-                            title + cause + ". " + locationText
-                        }
-                    }
+                    text: description
 
                     wrapMode: Text.WordWrap
                     textFormat: Text.StyledText
@@ -381,16 +410,40 @@ ListItem {
                 }
 
                 LomiriShape {
-                    id: delayShape
-                    height: units.gu(2)
-                    width: {
-                        if (delay > 0) {
-                            delayLabel.contentWidth + units.gu(1)
-                        }
-                        else {
-                            0
-                        }
+                    id: informationShape
+
+                    height: information.length > 0 ? units.gu(2): 0
+                    width: information.length > 0 ? informationLabel.contentWidth + units.gu(1) : 0
+                    
+                    anchors {
+                        left: iconItem.right
+                        leftMargin: units.gu(1)
+                        top: descriptionLabel.bottom
+                        topMargin: units.gu(1.25)
                     }
+
+                    backgroundColor: informationColor
+
+                    aspect: LomiriShape.Flat
+
+                    Label {
+                        id: informationLabel
+
+                        anchors {
+                            centerIn: parent
+                        }
+
+                        font.bold: true
+                                    
+                        text: information
+                    }
+                }
+
+                LomiriShape {
+                    id: delayShape
+
+                    height: units.gu(2)
+                    width: delay > 0 ? delayLabel.contentWidth + units.gu(1) : 0
 
                     anchors {
                         left: titleLabel.right
@@ -429,20 +482,13 @@ ListItem {
                             }
                         }
                     }
-
                 }
 
                 LomiriShape {
                     id: timeShape
+
                     height: units.gu(2)
-                    width: {
-                        if (delay > 0) {
-                            timeLabel.contentWidth + units.gu(1)
-                        }
-                        else {
-                            0
-                        }
-                    }
+                    width: delay > 0 ? timeLabel.contentWidth + units.gu(1) : 0
 
                     anchors {
                         left: delayShape.right
@@ -464,16 +510,8 @@ ListItem {
 
                         font.bold: true
                                     
-                        text: {
-                            if (delay > 0) {
-                                length + " km"
-                            }
-                            else {
-                                ""
-                            }
-                        }
+                        text: delay > 0 ? length + " km" : ""
                     }
-
                 }
             }
         }

@@ -20,6 +20,8 @@ import Lomiri.Connectivity 1.0
 import QtQuick.Layouts 1.3
 import Qt.labs.settings 1.0
 import QtPositioning 5.2
+import "providers/traffic"
+import "providers/fuel"
 import "components"
 import "pages"
 
@@ -29,22 +31,8 @@ MainView {
     applicationName: 'wegwijs.sanderklootwijk'
     automaticOrientation: true
 
-    theme.name: {
-        switch (settings.theme) {
-        case 0:
-            ""
-            break
-        case 1:
-            "Ubuntu.Components.Themes.Ambiance"
-            break
-        case 2:
-            "Ubuntu.Components.Themes.SuruDark"
-            break
-        default:
-            ""
-        }
-    }
-
+    width: units.gu(45)
+    height: units.gu(75)
 
     anchors {
         fill: parent
@@ -57,48 +45,65 @@ MainView {
         }
     }
 
-    width: units.gu(45)
-    height: units.gu(75)
+    theme.name: {
+        switch (settings.theme) {
+            case 0: return "";
+            case 1: return "Ubuntu.Components.Themes.Ambiance";
+            case 2: return "Ubuntu.Components.Themes.SuruDark";
+            default: return "";
+        }
+    }
+
+    property var trafficProviders: [
+        {name: "anwb", id: anwb, label: "ANWB", country: i18n.tr("Netherlands")},
+        {name: "rijkswaterstaat", id: rijkswaterstaat, label: "Rijkswaterstaat", country: i18n.tr("Netherlands")}
+    ]
+
+    property var defaultTrafficProvider: anwb
+
+    property var trafficProvider: {
+        for(let i = 0; i < trafficProviders.length; i++) {
+            if (trafficProviders[i].name === settings.trafficProvider) {
+                return trafficProviders[i].id;
+            }
+        }
+
+        return defaultTrafficProvider;
+    }
+
+    property var fuelProviders: [
+        {name: "anwb_openchargemap", id: anwb_openchargemap, label: "ANWB, Open Charge Map", country: i18n.tr("Netherlands")}
+        // Tankplanner.nl currently seems to be broken
+        //{name: "tankplanner_openchargemap", id: tankplanner_openchargemap, label: "Tankplanner, Open Charge Map", country: i18n.tr("Netherlands")}
+    ]
+
+    property var defaultFuelProvider: anwb_openchargemap
+
+    property var fuelProvider: {
+        for(let i = 0; i < fuelProviders.length; i++) {
+            if (fuelProviders[i].name === settings.fuelProvider) {
+                return fuelProviders[i].id;
+            }
+        }
+
+        return defaultFuelProvider;
+    }
 
     // To use the Geocoding key API for the search function, insert a key below
     property string geocodeKey: ""
     // To use the Open Charge Map API, insert a key below
     property string openchargemapKey: ""
-    property string trafficSource: "https://api.rwsverkeersinfo.nl/api/traffic/"
-    property string fuelSource: {
-        if (settings.fuelType == 0) {
-            "https://www.tankplanner.nl/api/v1/price/euro95/"
-        }
-        else if (settings.fuelType == 1) {
-            "https://www.tankplanner.nl/api/v1/price/euro98/"
-        }
-        else if (settings.fuelType == 2) {
-            "https://www.tankplanner.nl/api/v1/price/diesel/"
-        }
-        else if (settings.fuelType == 3) {
-            "https://www.tankplanner.nl/api/v1/price/lpg/"
-        }
-        else if (settings.fuelType == 4) {
-            "https://api.openchargemap.io/v3/poi?key=" + openchargemapKey
-        }
-    }
-
-    property int numberOfJams: -1
-    property int totalLengthOfJams: -1
-    property int numberOfRoadWorks: -1
-    property var obstructionTypes: [1, 4, 7]
+    // To use the ANWB API, insert a key below
+    property string anwbKey: ""
+    property string anwbKeyBackup: ""
     
     property string locationSource
     property string tempLatitude
     property string tempLongitude
-    property var lowestPrice: -1
-    property var lowestPriceStation: -1
     
-    property bool trafficLoading: false
-    property bool fuelLoading: false
     property bool searchLoading: false
 
-    property string version: "1.1.0"
+    property string version: "1.2.0"
     property int firstRunSlide: 0
 
     Settings {
@@ -108,17 +113,27 @@ MainView {
 
         property int fuelType: 0
         property int searchRadius: 4
-        property var currentLatitude
-        property var currentLongitude
+        property double currentLatitude: 0
+        property double currentLongitude: 0
 
-        property bool obstructionType1: false
-        property bool obstructionType4: true
-        property bool obstructionType7: true
+        property string trafficProvider: "anwb"
+        property string fuelProvider: "anwb_openchargemap"
+        
+        property bool showJams: true
+        property bool showClosures: true
+        property bool showRoadworks: false
+        property bool showSpeedcameras: true
         
         property bool firstRun: true
 
+        Component.onCompleted: {
+            if (settings.currentLatitude !== 0) {
+                settings.firstRun = false
+            }
+        }
+
         onSearchRadiusChanged: {
-            getFuelPrices()
+            root.fuelProvider.getFuelPrices()
         }
 
         onFuelTypeChanged: {
@@ -133,8 +148,8 @@ MainView {
         
         onStatusChanged: {
             if (Connectivity.status == NetworkingStatus.Online) {
-                getFuelPrices()
-                getTrafficData()
+                root.trafficProvider.getTrafficData()
+                root.fuelProvider.getFuelPrices()
             }
         }
     }
@@ -169,6 +184,8 @@ MainView {
             }
         ]
     }
+
+    // ListModels, for fuel and for traffic conditions
 
     ListModel {
         id: fuelListModel
@@ -221,6 +238,8 @@ MainView {
     ListModel {
         id: trafficListModel
     }
+
+    // Pages
 
     MainPage {
         id: mainPage
@@ -278,9 +297,46 @@ MainView {
         anchors.fill: parent
     }
 
+    FuelProviderSettingsPage {
+        id: fuelProviderSettingsPage
+
+        visible: false
+
+        anchors.fill: parent
+    }
+
+    TrafficProviderSettingsPage {
+        id: trafficProviderSettingsPage
+
+        visible: false
+
+        anchors.fill: parent
+    }
+
+    // Traffic providers
+
+    Anwb {
+        id: anwb
+    }
+
+    Rijkswaterstaat {
+        id: rijkswaterstaat
+    }
+    
+    // Fuel providers
+
+    AnwbOpenchargemap {
+        id: anwb_openchargemap
+    }
+
+    TankplannerOpenchargemap {
+        id: tankplanner_openchargemap
+    }
+
+    // Functions
+
     // Takes latitude and longitude of two locations and returns the distance between them as the crow flies (in km)
-    function calcCrow(lat1, lon1, lat2, lon2) 
-    {
+    function calcCrow(lat1, lon1, lat2, lon2) {
         var R = 6371; // km
         var dLat = toRad(lat2-lat1);
         var dLon = toRad(lon2-lon1);
@@ -295,316 +351,15 @@ MainView {
     }
 
     // Converts numeric degrees to radians
-    function toRad(Value) 
-    {
+    function toRad(Value) {
         return Value * Math.PI / 180;
-    }
-
-    // Get the current fuel prices and information from the API
-    function getFuelPrices() {
-        root.fuelLoading = true;
-        var request = new XMLHttpRequest();
-        var currentLatitude = settings.currentLatitude;
-        var currentLongitude = settings.currentLongitude;
-        var searchRadius = settings.searchRadius;
-        var fuelType = settings.fuelType;
-        var fuelSource = root.fuelSource;
-
-        if (fuelType === 4) {
-            fuelSource += `&latitude=${currentLatitude}&longitude=${currentLongitude}&distance=${searchRadius}&distanceunit=km`;
-        }
-
-        request.open("GET", fuelSource);
-        request.onreadystatechange = function() {
-            if (request.readyState == XMLHttpRequest.DONE) {
-                if (request.status && request.status === 200) {
-                    var list = JSON.parse(request.responseText);
-                    fuelListModel.clear();
-
-                    if (fuelType === 4) {
-                        for (var i = 0; i < list.length; i++) {
-                            var chargingStation = list[i];
-
-                            var address = chargingStation.AddressInfo.Title;
-                            var organization = chargingStation.OperatorInfo ? chargingStation.OperatorInfo.Title : i18n.tr("Charging station");
-                            var points = chargingStation.NumberOfPoints;
-                            var highestpower = getHighestPowerKW(chargingStation.Connections);
-                            var town = chargingStation.AddressInfo.Town;
-                            var latitude = chargingStation.AddressInfo.Latitude;
-                            var longitude = chargingStation.AddressInfo.Longitude;
-                            var price = chargingStation.UsageCost;
-                            var distance = chargingStation.AddressInfo.Distance;
-                            var connections = [];
-
-                            for (var j = 0; j < chargingStation.Connections.length; j++) {
-                                var connection = chargingStation.Connections[j];
-
-                                var data = {
-                                    "connectiontypeid": connection.ConnectionTypeID,
-                                    "connectiontypetitle": connection.ConnectionType.Title,
-                                    "power": connection.PowerKW !== null ? connection.PowerKW : 0,
-                                    "quantity": connection.Quantity !== null ? connection.Quantity : 1
-                                };
-
-                                connections.push(data);
-                            }
-
-                            fuelListModel.append({
-                                "address": address,
-                                "organization": organization.replace(/\(Unknown Operator\)/g, i18n.tr("Charging station")),
-                                "points": points,
-                                "connections": connections,
-                                "highestpower": highestpower,
-                                "town": town,
-                                "latitude": latitude,
-                                "longitude": longitude,
-                                "price": price,
-                                "distance": distance.toFixed(1)
-                            });
-                        }
-                    } else {
-                        for (var k in list) {
-                            if (calcCrow(currentLatitude, currentLongitude, list[k].gps[0], list[k].gps[1]) < searchRadius) {
-                                fuelListModel.append({
-                                    "address": list[k].address,
-                                    "organization": list[k].organization,
-                                    "points": 0,
-                                    "connections": [],
-                                    "highestpower": 0,
-                                    "town": list[k].town,
-                                    "latitude": list[k].gps[0],
-                                    "longitude": list[k].gps[1],
-                                    "price": list[k].price.toString(),
-                                    "distance": (Math.round(calcCrow(settings.currentLatitude, settings.currentLongitude, list[k].gps[0], list[k].gps[1]) * 10) / 10).toString()
-                                });
-                            }
-                        }
-                    }
-                } else {
-                    console.log("HTTP:", request.status, request.statusText);
-                }
-                fuelListModel.quick_sort();
-                fuelPage.fuelListView.positionViewAtBeginning();
-                root.fuelLoading = false;
-                findLowestPrice();
-            }
-        };
-        request.send();
-    }
-
-
-    // Get highest PowerKW from a charging station
-    function getHighestPowerKW(connections) {
-        let highestPowerKW = 0;
-
-        connections.forEach(connection => {
-            if (connection.PowerKW > highestPowerKW) {
-                highestPowerKW = connection.PowerKW;
-            }
-        });
-
-        return highestPowerKW;
-    }
-
-    // Sort fuel prices by lowest price
-    function findLowestPrice() {
-        if (fuelListModel.count === 0) {
-            return null;
-        }
-
-        var minItem = fuelListModel.get(0);
-
-        for (var i = 1; i < fuelListModel.count; ++i) {
-            var currentItem = fuelListModel.get(i);
-            if (currentItem.price < minItem.price) {
-                minItem = currentItem;
-            }
-        }
-
-        root.lowestPrice = minItem.price;
-        root.lowestPriceStation = minItem.organization + " " + minItem.town;
-    }
-
-    // Get traffic data from the API
-    function getTrafficData() {
-        root.trafficLoading = true;
-        var request = new XMLHttpRequest();
-        request.open("GET", trafficSource);
-        request.onreadystatechange = function() {
-            if (request.readyState === XMLHttpRequest.DONE) {
-                if (request.status === 200) {
-                    handleTrafficData(JSON.parse(request.responseText).obstructions);
-
-                    root.numberOfJams = JSON.parse(request.responseText).numberOfJams;
-                    root.totalLengthOfJams = JSON.parse(request.responseText).totalLengthOfJams / 1000;
-                    root.numberOfRoadWorks = JSON.parse(request.responseText).numberOfRoadWorks;
-                } else {
-                    console.log("HTTP:", request.status, request.statusText);
-                }
-                trafficPage.trafficListView.positionViewAtBeginning();
-                root.trafficLoading = false;
-            }
-        };
-        request.send();
-    }
-
-    function handleTrafficData(obstructions) {
-        var roadData = {};
-
-        // Organize obstructions by road number
-        for (var i = 0; i < obstructions.length; i++) {
-            var obstruction = obstructions[i];
-            if (root.obstructionTypes.includes(obstruction.obstructionType)) {
-                if (!roadData[obstruction.roadNumber]) {
-                    roadData[obstruction.roadNumber] = {
-                        obstructions: [],
-                        obstructionType1Count: 0,
-                        obstructionType4Count: 0,
-                        obstructionType7Count: 0
-                    };
-                }
-                roadData[obstruction.roadNumber].obstructions.push(obstruction);
-                // Increment the count for the respective obstruction type
-                if (obstruction.obstructionType === 1) {
-                    roadData[obstruction.roadNumber].obstructionType1Count++;
-                } else if (obstruction.obstructionType === 4) {
-                    roadData[obstruction.roadNumber].obstructionType4Count++;
-                } else if (obstruction.obstructionType === 7) {
-                    roadData[obstruction.roadNumber].obstructionType7Count++;
-                }
-            }
-        }
-
-        trafficListModel.clear();
-
-        // Iterate over each road number and handle its obstructions
-        for (var roadNumber in roadData) {
-            var roadObstructions = roadData[roadNumber].obstructions;
-            var roadList = {
-                roadNumber: roadNumber,
-                attributes: [],
-                obstructionType1Count: roadData[roadNumber].obstructionType1Count,
-                obstructionType4Count: roadData[roadNumber].obstructionType4Count,
-                obstructionType7Count: roadData[roadNumber].obstructionType7Count
-            };
-
-            // Sort obstructions by obstructionType (4 first, then 7, and lastly 1)
-            roadObstructions.sort(function(a, b) {
-                if (a.obstructionType === 4) {
-                    return -1;
-                } else if (b.obstructionType === 4) {
-                    return 1;
-                } else if (a.obstructionType === 7) {
-                    return -1;
-                } else if (b.obstructionType === 7) {
-                    return 1;
-                } else {
-                    return a.obstructionType - b.obstructionType;
-                }
-            });
-
-            // Handle obstructions for the current road
-            for (var j = 0; j < roadObstructions.length; j++) {
-                var obstruction = roadObstructions[j];
-                var lengthInKm = obstruction.length / 1000;
-                
-                const causeReplacements = [
-                    { pattern: /Ongeval\(len\)/, replacement: " door een ongeval" },
-                    { pattern: /Wegwerkzaamheden/, replacement: " door wegwerkzaamheden" },
-                    { pattern: /Bergingswerkzaamheden/, replacement: " door bergingswerkzaamheden" },
-                    { pattern: /Ongevalsonderzoek/, replacement: " door een ongevalsonderzoek" },
-                    { pattern: /Wegdek in slechte toestand/, replacement: " door slecht wegdek" },
-                    { pattern: /Technische storing/, replacement: " door een technische storing" },
-                    { pattern: /Defect voertuig/, replacement: " door een defect voertuig" },
-                    { pattern: /Defecte vrachtwagen/, replacement: " door een defecte vrachtwagen" },
-                    { pattern: /Ongeval met vrachtwagen/, replacement: " door een ongeval met een vrachtwagen" },
-                    { pattern: /Opruimwerkzaamheden/, replacement: " door opruimwerkzaamheden" },
-                    { pattern: /Te hoog voertuig/, replacement: " door een te hoog voertuig" },
-                    { pattern: /Spoedreparatie/, replacement: " door een spoedreparatie" },
-                    { pattern: /Gekantelde vrachtwagen/, replacement: " door een gekantelde vrachtwagen" },
-                    { pattern: /Omgewaaide bo\(o\)m\(en\)/, replacement: " door omgewaaide bomen" },
-                    { pattern: /Water op de weg/, replacement: " door water op de weg" },
-                    { pattern: /Olie op het wegdek/, replacement: " door olie op het wegdek" },
-                    { pattern: /Brand in de buurt van de weg/, replacement: " door brand in de buurt van de weg" },
-                    { pattern: /Schade aan wegmeubilair/, replacement: " door schade aan wegmeubilair" },
-                    { pattern: /Schade aan tunnel/, replacement: " door schade aan tunnel" },
-                    { pattern: /Demonstratie/, replacement: " door een demonstratie" }
-                ];
-
-                var cause = (obstruction.obstructionType === 7) ? causeReplacements.reduce((acc, { pattern, replacement }) => acc.replace(pattern, replacement), obstruction.cause) : "";
-
-                if (cause === obstruction.cause) {
-                    cause = ". " + cause;
-                }
-
-                var data = {
-                    "obstructionType": obstruction.obstructionType,
-                    "title": obstruction.title.replace(/Verbindingsweg afgesloten op verbindingsweg/, "Verbindingsweg afgesloten"),
-                    "directionText": obstruction.directionText.replace(/Knooppunt/g, "knp.").replace(/ - /, " ➜ "),
-                    "locationText": obstruction.locationText,
-                    "delay": (obstruction.obstructionType === 4) ? obstruction.delay : 0,
-                    "length": (obstruction.obstructionType === 1) ? "0" : lengthInKm.toFixed(1),
-                    "cause": cause,
-                    "description": (obstruction.obstructionType === 1) ? obstruction.description : "",
-                    "timeEnd": (obstruction.obstructionType === 1) ? formatDate(obstruction.timeEnd) : ""
-                };
-
-                roadList.attributes.push(data);
-            }
-
-            trafficListModel.append(roadList);
-        }
-    }
-
-    // Get color for roadShape
-    function getRoadColor(text) {
-        const match = text.match(/[AN]\d+/);
-
-        if (match) {
-            const roadType = match[0][0]; // Get the first character (A or N)
-            return roadType === 'A' ? "#FF4500" : roadType === 'N' ? "#FFB400" : null;
-        }
-
-        return null;
-    }
-    
-    // Format date to a readable string
-    function formatDate(inputDateStr) {
-        const inputDateUTC = new Date(inputDateStr + 'Z'); // 'Z' indicates UTC
-
-        const localOffset = 60; // Offset for UTC+1 in minutes
-        const inputDate = new Date(inputDateUTC.getTime() + localOffset * 60 * 1000);
-
-        const currentDate = new Date(); // Current date in local time
-
-        // Calculate two months from the current date
-        const twoMonthsFromNow = new Date(currentDate);
-        twoMonthsFromNow.setMonth(twoMonthsFromNow.getMonth() + 2);
-
-        const isMoreThanTwoMonthsInFuture = inputDate > twoMonthsFromNow;
-
-        const months = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
-
-        const dayOfMonth = inputDate.getUTCDate();
-        const month = months[inputDate.getUTCMonth()];
-        const year = inputDate.getUTCFullYear();
-        
-        if (isMoreThanTwoMonthsInFuture) {
-            const outputDateStr = `Periode: tot ${dayOfMonth} ${month} ${year}`;
-            return outputDateStr;
-        } else {
-            const hours = inputDate.getUTCHours();
-            const minutes = ('0' + inputDate.getUTCMinutes()).slice(-2);
-            const outputDateStr = `Periode: tot ${dayOfMonth} ${month} ${year} ${hours}:${minutes} uur`;
-            return outputDateStr;
-        }
     }
 
     // Get locations after a search result
     function getLocations() {
         root.searchLoading = true;
-        root.lowestPriceStation = -1
-        root.lowestPrice = -1
+        root.fuelProvider.lowestPriceStation = -1
+        root.fuelProvider.lowestPrice = -1
         
         var request = new XMLHttpRequest();
         var retries = 3; // Number of retries

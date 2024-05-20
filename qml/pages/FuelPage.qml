@@ -29,20 +29,13 @@ Page {
         id: fuelPageHeader
         title: i18n.tr("Wegwijs")
         subtitle: {
-            if (settings.fuelType == 0) {
-                "Euro 95 (E10)"
-            }
-            else if (settings.fuelType == 1) {
-                "Euro 98 (E5)"
-            }
-            else if (settings.fuelType == 2) {
-                "Diesel (B7)"
-            }
-            else if (settings.fuelType == 3) {
-                "LPG"
-            }
-            else if (settings.fuelType == 4) {
-                i18n.tr("Electric")
+            switch (settings.fuelType) {
+                case 0: return "Euro 95 (E10)";
+                case 1: return "Euro 98 (E5)";
+                case 2: return "Diesel (B7)";
+                case 3: return "LPG";
+                case 4: return i18n.tr("Electric");
+                default: return "";
             }
         }
 
@@ -97,7 +90,7 @@ Page {
     ActivityIndicator {
         id: loadingIndicator
         running: true
-        visible: root.fuelLoading
+        visible: root.fuelProvider.loading
 
         anchors.centerIn: parent
     }
@@ -113,7 +106,19 @@ Page {
             horizontalCenter: parent.horizontalCenter
         }
 
-        text: fuelListModel.count == 0 ? i18n.tr("No nearby fuel stations found") + "\n\n" + i18n.tr("Search for another location or expand the search radius in the settings") : ""
+        text: {
+            if (fuelListModel.count == 0) {
+                if (settings.fuelType == 4) {
+                    i18n.tr("No nearby charging stations found") + "\n\n" + i18n.tr("Search for another location or expand the search radius in the settings")
+                }
+                else {
+                    i18n.tr("No nearby fuel stations found") + "\n\n" + i18n.tr("Search for another location or expand the search radius in the settings")
+                }
+            }
+            else {
+                ""
+            }
+        }
 
         wrapMode: Text.WordWrap
         horizontalAlignment: Text.AlignHCenter
@@ -122,7 +127,7 @@ Page {
     ListView {
         id: fuelListView
 
-        visible: !root.fuelLoading
+        visible: !root.fuelProvider.loading
 
         anchors {
             fill: parent
@@ -135,6 +140,6 @@ Page {
     }
 
     Component.onCompleted: {
-        getFuelPrices()
+        root.fuelProvider.getFuelPrices()
     }
 }

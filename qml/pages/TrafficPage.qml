@@ -63,140 +63,139 @@ Page {
                 width: units.gu(6)
                 height: units.gu(6)
 
+                visible: root.trafficProvider.hasJams
+
                 Image {
-                    id: icon4Image
+                    id: jamsImage
                     
                     height: units.gu(3)
 
                     anchors.centerIn: parent
 
-                    source: "../img/4.png"
+                    source: "../img/jams.png"
 
                     fillMode: Image.PreserveAspectFit
                 }
 
                 ColorOverlay {
-                    anchors.fill: icon4Image
+                    anchors.fill: jamsImage
 
-                    source: icon4Image
+                    source: jamsImage
 
-                    color: settings.obstructionType4 ? theme.palette.normal.foregroundText : theme.palette.normal.base
+                    color: settings.showJams ? theme.palette.normal.foregroundText : theme.palette.normal.base
                 }
                 
                 onClicked: {  
                     trafficListView.expandedIndex = -1
 
-                    settings.obstructionType4 ? settings.obstructionType4 = false : settings.obstructionType4 = true
+                    settings.showJams ? settings.showJams = false : settings.showJams = true
                     
-                    var newObstructionTypes = []
-
-                    if (settings.obstructionType1) {
-                        newObstructionTypes.push(1)
-                    }
-                    if (settings.obstructionType4) {
-                        newObstructionTypes.push(4)
-                    }
-                    if (settings.obstructionType7) {
-                        newObstructionTypes.push(7)
-                    }
-
-                    root.obstructionTypes = newObstructionTypes
-
-                    getTrafficData()
+                    root.trafficProvider.getTrafficData()
                 }
             }
 
             MouseArea {
                 width: units.gu(6)
                 height: units.gu(6)
+
+                visible: root.trafficProvider.hasClosures
                 
                 Image {
-                    id: icon7Image
+                    id: closuresImage
                     
                     height: units.gu(3)
 
                     anchors.centerIn: parent
 
-                    source: "../img/7.png"
+                    source: "../img/closures.png"
 
                     fillMode: Image.PreserveAspectFit
                 }
 
                 ColorOverlay {
-                    anchors.fill: icon7Image
+                    anchors.fill: closuresImage
 
-                    source: icon7Image
+                    source: closuresImage
 
-                    color: settings.obstructionType7 ? theme.palette.normal.foregroundText : theme.palette.normal.base
+                    color: settings.showClosures ? theme.palette.normal.foregroundText : theme.palette.normal.base
                 }
                 
                 onClicked: {
                     trafficListView.expandedIndex = -1
 
-                    settings.obstructionType7 ? settings.obstructionType7 = false : settings.obstructionType7 = true
+                    settings.showClosures ? settings.showClosures = false : settings.showClosures = true
                     
-                    var newObstructionTypes = []
-
-                    if (settings.obstructionType1) {
-                        newObstructionTypes.push(1)
-                    }
-                    if (settings.obstructionType4) {
-                        newObstructionTypes.push(4)
-                    }
-                    if (settings.obstructionType7) {
-                        newObstructionTypes.push(7)
-                    }
-
-                    root.obstructionTypes = newObstructionTypes
-
-                    getTrafficData()
+                    root.trafficProvider.getTrafficData()
                 }
             }
 
             MouseArea {
                 width: units.gu(6)
                 height: units.gu(6)
+
+                visible: root.trafficProvider.hasRoadworks
                 
                 Image {
-                    id: icon1Image
+                    id: roadworksImage
                     
                     height: units.gu(3)
 
                     anchors.centerIn: parent
 
-                    source: "../img/1.png"
+                    source: "../img/roadworks.png"
 
                     fillMode: Image.PreserveAspectFit
                 }
 
                 ColorOverlay {
-                    anchors.fill: icon1Image
+                    anchors.fill: roadworksImage
 
-                    source: icon1Image
+                    source: roadworksImage
 
-                    color: settings.obstructionType1 ? theme.palette.normal.foregroundText : theme.palette.normal.base
+                    color: settings.showRoadworks ? theme.palette.normal.foregroundText : theme.palette.normal.base
                 }
                 
                 onClicked: {
                     trafficListView.expandedIndex = -1
 
-                    settings.obstructionType1 ? settings.obstructionType1 = false : settings.obstructionType1 = true
+                    settings.showRoadworks ? settings.showRoadworks = false : settings.showRoadworks = true
                     
-                    var newObstructionTypes = []
+                    root.trafficProvider.getTrafficData()
+                }
+            }
 
-                    if (settings.obstructionType1) {
-                        newObstructionTypes.push(1)
-                    }
-                    if (settings.obstructionType4) {
-                        newObstructionTypes.push(4)
-                    }
-                    if (settings.obstructionType7) {
-                        newObstructionTypes.push(7)
-                    }
+            MouseArea {
+                width: units.gu(6)
+                height: units.gu(6)
 
-                    root.obstructionTypes = newObstructionTypes
+                visible: root.trafficProvider.hasSpeedcameras
+                
+                Image {
+                    id: speedcamerasImage
+                    
+                    height: units.gu(3)
 
-                    getTrafficData()
+                    anchors.centerIn: parent
+
+                    source: "../img/speedcameras.png"
+
+                    fillMode: Image.PreserveAspectFit
+                }
+
+                ColorOverlay {
+                    anchors.fill: speedcamerasImage
+
+                    source: speedcamerasImage
+
+                    color: settings.showSpeedcameras ? theme.palette.normal.foregroundText : theme.palette.normal.base
+                }
+                
+                onClicked: {
+                    trafficListView.expandedIndex = -1
+
+                    settings.showSpeedcameras ? settings.showSpeedcameras = false : settings.showSpeedcameras = true
+                    
+                    root.trafficProvider.getTrafficData()
                 }
             }
         }
@@ -231,7 +230,7 @@ Page {
         ActivityIndicator {
             id: loadingIndicator
             running: true
-            visible: root.trafficLoading
+            visible: root.trafficProvider.loading
 
             anchors {
                 centerIn: parent
@@ -250,34 +249,11 @@ Page {
             }
 
             text: {
-                if (!settings.obstructionType1 && !settings.obstructionType4 && !settings.obstructionType7) {
-                    i18n.tr("Select traffic jams, road closures, or roadworks from the options above")
+                if (!settings.showRoadworks && !settings.showJams && !settings.showClosures && !settings.showSpeedcameras) {
+                    i18n.tr("Select options above to show reports")
                 }
                 else if (trafficListModel.count == 0) {
-                    if (settings.obstructionType4 && !settings.obstructionType7 && !settings.obstructionType1) {
-                        i18n.tr("No traffic jams found")
-                    }
-                    else if (!settings.obstructionType4 && settings.obstructionType7 && !settings.obstructionType1) {
-                        i18n.tr("No road closures found")
-                    }
-                    else if (!settings.obstructionType4 && !settings.obstructionType7 && settings.obstructionType1) {
-                        i18n.tr("No roadworks found")
-                    }
-                    else if (settings.obstructionType4 && settings.obstructionType7 && !settings.obstructionType1) {
-                        i18n.tr("No traffic jams or road closures found")
-                    }
-                    else if (settings.obstructionType4 && !settings.obstructionType7 && settings.obstructionType1) {
-                        i18n.tr("No traffic jams or roadworks found")
-                    }
-                    else if (!settings.obstructionType4 && settings.obstructionType7 && settings.obstructionType1) {
-                        i18n.tr("No road closures or roadworks found")
-                    }
-                    else if (settings.obstructionType4 && settings.obstructionType7 && settings.obstructionType1) {
-                        i18n.tr("No traffic jams, road closures or roadworks found")
-                    }
-                    else {
-                        ""
-                    }
+                    i18n.tr("No reports found")
                 }
                 else {
                     ""
@@ -303,21 +279,5 @@ Page {
         }
     }
 
-    Component.onCompleted: {
-        var newObstructionTypes = []
-
-        if (settings.obstructionType1) {
-            newObstructionTypes.push(1)
-        }
-        if (settings.obstructionType4) {
-            newObstructionTypes.push(4)
-        }
-        if (settings.obstructionType7) {
-            newObstructionTypes.push(7)
-        }
-
-        root.obstructionTypes = newObstructionTypes
-
-        getTrafficData()
-    }
+    Component.onCompleted: root.trafficProvider.getTrafficData()
 }

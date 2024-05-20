@@ -69,26 +69,36 @@ Page {
             width: settingsPage.width
 
             ListItem {
-                id: themeListItem
+                id: themeTitle
 
-                height: themeLabel.height + themeOptionSelector.height + units.gu(6)
+                height: units.gu(6.25)
+
+                divider.colorFrom: theme.palette.normal.background
+                divider.colorTo: theme.palette.normal.background
 
                 Label {
-                    id: themeLabel
-                    
+                    id: themeTitleLabel
                     width: parent.width - units.gu(4)
 
                     anchors {
-                        top: parent.top
-                        topMargin: units.gu(2)
+                        bottom: parent.bottom
+                        bottomMargin: units.gu(1.25)
                         left: parent.left
                         leftMargin: units.gu(2)
                     }
                     
-                    text: i18n.tr("Theme")
+                    text: i18n.tr("Theme") + ":"
 
+                    color: theme.palette.normal.backgroundSecondaryText
+                    font.bold: true
                     elide: Text.ElideRight
                 }
+            }
+
+            ListItem {
+                id: themeListItem
+
+                height: themeOptionSelector.height + units.gu(4)
 
                 OptionSelector {
                     id: themeOptionSelector
@@ -97,7 +107,7 @@ Page {
 
                     anchors {
                         horizontalCenter: parent.horizontalCenter
-                        top: themeLabel.bottom
+                        top: parent.top
                         topMargin: units.gu(2)
                     }
 
@@ -107,6 +117,33 @@ Page {
 
                     Component.onCompleted: selectedIndex = settings.theme
                 }   
+            }
+
+            ListItem {
+                id: fuelTitle
+
+                height: units.gu(6.25)
+
+                divider.colorFrom: theme.palette.normal.background
+                divider.colorTo: theme.palette.normal.background
+
+                Label {
+                    id: fuelTitleLabel
+                    width: parent.width - units.gu(4)
+
+                    anchors {
+                        bottom: parent.bottom
+                        bottomMargin: units.gu(1.25)
+                        left: parent.left
+                        leftMargin: units.gu(2)
+                    }
+                    
+                    text: i18n.tr("Fuel") + ":"
+
+                    color: theme.palette.normal.backgroundSecondaryText
+                    font.bold: true
+                    elide: Text.ElideRight
+                }
             }
 
             ListItem {
@@ -190,11 +227,148 @@ Page {
 
                     onSelectedIndexChanged: {
                         settings.fuelType = selectedIndex
-                        getFuelPrices()
+                        root.fuelProvider.getFuelPrices()
                     }
 
                     Component.onCompleted: selectedIndex = settings.fuelType
                 }   
+            }
+
+            ListItem {
+                id: providersTitle
+
+                height: units.gu(6.25)
+
+                divider.colorFrom: theme.palette.normal.background
+                divider.colorTo: theme.palette.normal.background
+
+                Label {
+                    id: providersTitleLabel
+                    width: parent.width - units.gu(4)
+
+                    anchors {
+                        bottom: parent.bottom
+                        bottomMargin: units.gu(1.25)
+                        left: parent.left
+                        leftMargin: units.gu(2)
+                    }
+                    
+                    text: i18n.tr("Providers") + ":"
+
+                    color: theme.palette.normal.backgroundSecondaryText
+                    font.bold: true
+                    elide: Text.ElideRight
+                }
+            }
+
+            ListItem {
+                id: fuelProviderListItem
+
+                height: units.gu(6)
+
+                onClicked: settingsPage.pageStack.addPageToCurrentColumn(settingsPage, fuelProviderSettingsPage)
+
+                Label {
+                    width: parent.width - fuelProviderLabel.contentWidth - units.gu(8)
+
+                    anchors {
+                        verticalCenter: parent.verticalCenter
+                        left: parent.left
+                        leftMargin: units.gu(2)
+                    }
+                    
+                    text: i18n.tr("Fuel")
+
+                    elide: Text.ElideRight
+                }
+
+                Label {
+                    id: fuelProviderLabel
+
+                    anchors {
+                        verticalCenter: parent.verticalCenter
+                        right: fuelNextIcon.left
+                        rightMargin: units.gu(1)
+                    }
+                    
+                    text: {
+                        for(let i = 0; i < fuelProviders.length; i++) {
+                            if (fuelProviders[i].name === settings.fuelProvider) {
+                                return fuelProviders[i].country
+                            }
+                        }
+                    }
+                }
+
+                Icon {
+                    id: fuelNextIcon
+
+                    height: units.gu(2)
+                    width: units.gu(2)
+
+                    name: 'next'
+                    
+                    anchors {
+                        verticalCenter: fuelProviderLabel.verticalCenter
+                        right: parent.right
+                        rightMargin: units.gu(2)    
+                    }
+                }
+            }
+
+            ListItem {
+                id: trafficProviderListItem
+
+                height: units.gu(6)
+
+                onClicked: settingsPage.pageStack.addPageToCurrentColumn(settingsPage, trafficProviderSettingsPage)
+
+                Label {
+                    width: parent.width - trafficProviderLabel.contentWidth - units.gu(8)
+
+                    anchors {
+                        verticalCenter: parent.verticalCenter
+                        left: parent.left
+                        leftMargin: units.gu(2)
+                    }
+                    
+                    text: i18n.tr("Traffic")
+
+                    elide: Text.ElideRight
+                }
+
+                Label {
+                    id: trafficProviderLabel
+
+                    anchors {
+                        verticalCenter: parent.verticalCenter
+                        right: trafficNextIcon.left
+                        rightMargin: units.gu(1)
+                    }
+                    
+                    text: {
+                        for(let i = 0; i < trafficProviders.length; i++) {
+                            if (trafficProviders[i].name === settings.trafficProvider) {
+                                return trafficProviders[i].country
+                            }
+                        }
+                    }
+                }
+
+                Icon {
+                    id: trafficNextIcon
+
+                    height: units.gu(2)
+                    width: units.gu(2)
+
+                    name: 'next'
+                    
+                    anchors {
+                        verticalCenter: trafficProviderLabel.verticalCenter
+                        right: parent.right
+                        rightMargin: units.gu(2)    
+                    }
+                }
             }
         }
     }

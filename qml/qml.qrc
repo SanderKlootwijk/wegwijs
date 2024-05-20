@@ -3,33 +3,42 @@
         <file>Main.qml</file>
         <file>pages/AboutPage.qml</file>
         <file>pages/FuelPage.qml</file>
+        <file>pages/FuelProviderSettingsPage.qml</file>
         <file>pages/MainPage.qml</file>
         <file>pages/ResultPage.qml</file>
         <file>pages/SearchPage.qml</file>
         <file>pages/SettingsPage.qml</file>
         <file>pages/TrafficPage.qml</file>
+        <file>pages/TrafficProviderSettingsPage.qml</file>
+        <file>providers/traffic/Anwb.qml</file>
+        <file>providers/traffic/Rijkswaterstaat.qml</file>
+        <file>providers/fuel/AnwbOpenchargemap.qml</file>
+        <file>providers/fuel/TankplannerOpenchargemap.qml</file>
         <file>components/ConnectionItem.qml</file>
+        <file>components/FuelProviderItem.qml</file>
         <file>components/FuelShape.qml</file>
         <file>components/FuelStationItem.qml</file>
         <file>components/Location.qml</file>
         <file>components/TrafficItem.qml</file>
+        <file>components/TrafficProviderItem.qml</file>
         <file>webview/index.html</file>
         <file>webview/style.css</file>
         <file>js/script.js</file>
         <file>img/0.svg</file>
-        <file>img/1.png</file>
         <file>img/1.svg</file>
         <file>img/2.svg</file>
         <file>img/3.svg</file>
-        <file>img/4.png</file>
         <file>img/4.svg</file>
-        <file>img/7.png</file>
+        <file>img/closures.png</file>
         <file>img/connection-2.svg</file>
         <file>img/connection-25.svg</file>
         <file>img/connection-27.svg</file>
         <file>img/connection-30.svg</file>
         <file>img/connection-33.svg</file>
         <file>img/connection-1036.svg</file>
+        <file>img/jams.png</file>
+        <file>img/roadworks.png</file>
+        <file>img/speedcameras.png</file>
         <file>img/wegwijs.svg</file>
     </qresource>
 </RCC>

@@ -30,6 +30,7 @@ Page {
     property alias webEngineView: webEngineView
     property alias fuelpriceLabel: fuelpriceLabel
     property alias adressLabel: adressLabel
+    property alias infoFlickable: infoFlickable
     property var connectionsData
 
     Component.onCompleted: {
@@ -69,7 +70,7 @@ Page {
     Flickable {
         id: infoFlickable
 
-        z: 1
+        z: 2
 
         property bool expanded: false
 
@@ -110,6 +111,8 @@ Page {
             }
 
             ListItem {
+                z: 1
+
                 id: fuelPriceItem
                 
                 width: parent.width
@@ -117,11 +120,7 @@ Page {
 
                 visible: settings.fuelType != 4
 
-                anchors {
-                    top: adressItem.bottom
-                    topMargin: units.gu(2)
-                    horizontalCenter: parent.horizontalCenter
-                }
+                anchors.horizontalCenter: parent.horizontalCenter
 
                 Image {
                     id: fuelTypeImage
@@ -187,7 +186,15 @@ Page {
     }
 
     Rectangle {
-        z:1
+        z: 1
+
+        anchors.fill: infoFlickable
+
+        color: theme.palette.normal.background
+    }
+
+    Rectangle {
+        z: 1
 
         width: parent.width
         height: units.dp(1)
