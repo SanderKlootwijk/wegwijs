@@ -447,7 +447,7 @@ ListItem {
 
                     anchors {
                         left: titleLabel.right
-                        leftMargin: -(titleLabel.width - titleLabel.contentWidth) + units.gu(0.5)
+                        leftMargin: titleLabel.contentWidth > 0 ? -(titleLabel.width - titleLabel.contentWidth) + units.gu(0.5) : -(titleLabel.width - titleLabel.contentWidth)
                         top: titleLabel.top
                         topMargin: units.gu(0.15)
                     }

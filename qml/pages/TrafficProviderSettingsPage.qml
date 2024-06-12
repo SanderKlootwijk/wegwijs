@@ -39,8 +39,6 @@ Page {
 
     Scrollbar {
         z: 1
-        id: scrollTrafficProviderSettings
-
         flickableItem: flickTrafficProviderSettings
         align: Qt.AlignTrailing
     }
@@ -53,11 +51,11 @@ Page {
             topMargin: trafficProviderSettingsPageHeader.height
         }
 
-        contentWidth: columnTrafficProviderSettings.width
-        contentHeight: columnTrafficProviderSettings.height
+        contentWidth: trafficProviderSettingsColumn.width
+        contentHeight: trafficProviderSettingsColumn.height
 
         Column {
-            id: columnTrafficProviderSettings
+            id: trafficProviderSettingsColumn
 
             width: trafficProviderSettingsPage.width
 

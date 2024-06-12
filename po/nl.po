@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wegwijs.sanderklootwijk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-19 21:38+0000\n"
-"PO-Revision-Date: 2024-05-19 23:40+0200\n"
+"POT-Creation-Date: 2024-06-12 15:21+0000\n"
+"PO-Revision-Date: 2024-06-12 17:23+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -31,8 +31,8 @@ msgid "charging points"
 msgstr "laadpunten"
 
 #: ../qml/components/FuelShape.qml:54 ../qml/pages/FuelPage.qml:37
-#: ../qml/pages/MainPage.qml:175 ../qml/pages/ResultPage.qml:166
-#: ../qml/pages/SettingsPage.qml:226
+#: ../qml/pages/MainPage.qml:175 ../qml/pages/ResultPage.qml:172
+#: ../qml/pages/SettingsPage.qml:179
 msgid "Electric"
 msgstr "Elektrisch"
 
@@ -62,6 +62,28 @@ msgstr "Meld problemen"
 msgid "API usage"
 msgstr "API gebruik"
 
+#: ../qml/pages/FilterPage.qml:43 ../qml/pages/FuelPage.qml:82
+msgid "Filters"
+msgstr "Filters"
+
+#: ../qml/pages/FilterPage.qml:48 ../qml/pages/FuelProviderSettingsPage.qml:34
+#: ../qml/pages/SettingsPage.qml:36 ../qml/pages/TrafficPage.qml:36
+#: ../qml/pages/TrafficProviderSettingsPage.qml:34
+msgid "Back"
+msgstr "Terug"
+
+#: ../qml/pages/FilterPage.qml:100
+msgid "Search radius (as the crow flies)"
+msgstr "Zoekafstand (hemelsbreed)"
+
+#: ../qml/pages/FilterPage.qml:199
+msgid "Kilowatt Range"
+msgstr "Kilowattbereik"
+
+#: ../qml/pages/FilterPage.qml:454
+msgid "Connection Types:"
+msgstr "Aansluitingen:"
+
 #: ../qml/pages/FuelPage.qml:52
 msgid "Distance"
 msgstr "Afstand"
@@ -74,29 +96,35 @@ msgstr "Prijs"
 msgid "Search"
 msgstr "Zoeken"
 
-#: ../qml/pages/FuelPage.qml:112
+#: ../qml/pages/FuelPage.qml:118
 msgid "No nearby charging stations found"
 msgstr "Geen nabijgelegen laadpunten gevonden"
 
-#: ../qml/pages/FuelPage.qml:112 ../qml/pages/FuelPage.qml:115
-msgid "Search for another location or expand the search radius in the settings"
-msgstr ""
-"Zoek naar een andere locatie of breid de zoekafstand uit in de instellingen"
+#: ../qml/pages/FuelPage.qml:118 ../qml/pages/FuelPage.qml:121
+msgid "Try another location or adjust your filters"
+msgstr "Probeer een andere locatie of pas de filters aan"
 
-#: ../qml/pages/FuelPage.qml:115
+#: ../qml/pages/FuelPage.qml:121
 msgid "No nearby fuel stations found"
 msgstr "Geen nabijgelegen tankstations gevonden"
 
 #: ../qml/pages/FuelProviderSettingsPage.qml:29
-#: ../qml/pages/SettingsPage.qml:141 ../qml/pages/SettingsPage.qml:280
+#: ../qml/pages/SettingsPage.qml:139 ../qml/pages/SettingsPage.qml:233
 msgid "Fuel"
 msgstr "Brandstof"
 
-#: ../qml/pages/FuelProviderSettingsPage.qml:34
-#: ../qml/pages/SettingsPage.qml:36 ../qml/pages/TrafficPage.qml:36
-#: ../qml/pages/TrafficProviderSettingsPage.qml:34
-msgid "Back"
-msgstr "Terug"
+#: ../qml/pages/GpsPage.qml:33 ../qml/pages/SearchPage.qml:176
+msgid "Current location"
+msgstr "Huidige locatie"
+
+#: ../qml/pages/GpsPage.qml:41 ../qml/pages/GpsPage.qml:77
+#: ../qml/pages/GpsPage.qml:116
+msgid "Waiting for GPS signal..."
+msgstr "Wachten op GPS-signaal..."
+
+#: ../qml/pages/GpsPage.qml:130
+msgid "This could take a while..."
+msgstr "Dit kan even duren..."
 
 #: ../qml/pages/MainPage.qml:38 ../qml/pages/SettingsPage.qml:31
 msgid "Settings"
@@ -162,39 +190,39 @@ msgstr "Maak verbinding met internet om Wegwijs te gebruiken"
 msgid "You are currently offline"
 msgstr "Je bent momenteel offline"
 
-#: ../qml/pages/MainPage.qml:479 ../qml/pages/MainPage.qml:575
+#: ../qml/pages/MainPage.qml:476 ../qml/pages/MainPage.qml:572
 msgid "Loading"
 msgstr "Laden"
 
-#: ../qml/pages/MainPage.qml:482 ../qml/pages/MainPage.qml:488
+#: ../qml/pages/MainPage.qml:479 ../qml/pages/MainPage.qml:485
 msgid "traffic jams"
 msgstr "files"
 
-#: ../qml/pages/MainPage.qml:485
+#: ../qml/pages/MainPage.qml:482
 msgid "traffic jam"
 msgstr "file"
 
-#: ../qml/pages/MainPage.qml:580
+#: ../qml/pages/MainPage.qml:577
 msgid "charging station"
 msgstr "laadpunt"
 
-#: ../qml/pages/MainPage.qml:583
+#: ../qml/pages/MainPage.qml:580
 msgid "charging stations"
 msgstr "laadpunten"
 
-#: ../qml/pages/MainPage.qml:587
+#: ../qml/pages/MainPage.qml:584
 msgid "No fuel stations found"
 msgstr "Geen tankstations gevonden"
 
-#: ../qml/pages/MainPage.qml:615
+#: ../qml/pages/MainPage.qml:612
 msgid "in a %1 km radius"
 msgstr "in een straal van %1 km"
 
-#: ../qml/pages/ResultPage.qml:334
+#: ../qml/pages/ResultPage.qml:348
 msgid "Navigate"
 msgstr "Navigeren"
 
-#: ../qml/pages/SearchPage.qml:45
+#: ../qml/pages/SearchPage.qml:46
 msgid "Search for a location"
 msgstr "Zoek naar een locatie"
 
@@ -202,27 +230,23 @@ msgstr "Zoek naar een locatie"
 msgid "No locations found"
 msgstr "Geen locaties gevonden"
 
-#: ../qml/pages/SettingsPage.qml:90
+#: ../qml/pages/SettingsPage.qml:88
 msgid "Theme"
 msgstr "Thema"
 
-#: ../qml/pages/SettingsPage.qml:114
+#: ../qml/pages/SettingsPage.qml:112
 msgid "System"
 msgstr "Systeem"
 
-#: ../qml/pages/SettingsPage.qml:166
-msgid "Search radius in km (as the crow flies)"
-msgstr "Zoekafstand in km (hemelsbreed)"
-
-#: ../qml/pages/SettingsPage.qml:210
+#: ../qml/pages/SettingsPage.qml:163
 msgid "Fuel type"
 msgstr "Brandstoftype"
 
-#: ../qml/pages/SettingsPage.qml:256
+#: ../qml/pages/SettingsPage.qml:209
 msgid "Providers"
 msgstr "Informatieverstrekkers"
 
-#: ../qml/pages/SettingsPage.qml:335
+#: ../qml/pages/SettingsPage.qml:288
 #: ../qml/pages/TrafficProviderSettingsPage.qml:29
 msgid "Traffic"
 msgstr "Verkeer"
@@ -231,58 +255,15 @@ msgstr "Verkeer"
 msgid "Traffic Conditions"
 msgstr "Verkeerssituatie"
 
-#: ../qml/pages/TrafficPage.qml:253
+#: ../qml/pages/TrafficPage.qml:252
 msgid "Select options above to show reports"
 msgstr "Selecteer opties hierboven om meldingen te zien"
 
-#: ../qml/pages/TrafficPage.qml:256
+#: ../qml/pages/TrafficPage.qml:255
 msgid "No reports found"
 msgstr "Geen meldingen gevonden"
 
-#: ../qml/providers/fuel/AnwbOpenchargemap.qml:94
-#: ../qml/providers/fuel/AnwbOpenchargemap.qml:119
-#: ../qml/providers/fuel/TankplannerOpenchargemap.qml:66
-#: ../qml/providers/fuel/TankplannerOpenchargemap.qml:91
+#: ../qml/providers/fuel/AnwbOpenchargemap.qml:97
+#: ../qml/providers/fuel/AnwbOpenchargemap.qml:122
 msgid "Charging station"
 msgstr "Laadpunt"
-
-#~ msgid "Traffic Provider"
-#~ msgstr "Verkeersinformatieverstrekker"
-
-#~ msgid "Fuel prices by Tankplanner"
-#~ msgstr "Brandstofprijzen door Tankplanner"
-
-#~ msgid "Charging stations by Open Charge Map"
-#~ msgstr "Laadpunten door Open Charge Map"
-
-#~ msgid "Traffic information by Rijkswaterstaat"
-#~ msgstr "Verkeersinformatie door Rijkswaterstaat"
-
-#~ msgid "Address coordinates by Geocoding"
-#~ msgstr "Adres coördinaten door Geocoding"
-
-#~ msgid ""
-#~ "Select traffic jams, road closures, or roadworks from the options above"
-#~ msgstr ""
-#~ "Selecteer files, afsluitingen, of wegwerkzaamheden uit de opties hierboven"
-
-#~ msgid "No traffic jams found"
-#~ msgstr "Geen files gevonden"
-
-#~ msgid "No road closures found"
-#~ msgstr "Geen afsluitingen gevonden"
-
-#~ msgid "No traffic jams or road closures found"
-#~ msgstr "Geen files of afsluitingen gevonden"
-
-#~ msgid "No traffic jams or roadworks found"
-#~ msgstr "Geen files of wegwerkzaam"
-
-#~ msgid "No road closures or roadworks found"
-#~ msgstr "Geen afsluitingen of wegwerkzaamheden gevonden"
-
-#~ msgid "No traffic jams, road closures or roadworks found"
-#~ msgstr "Geen files, afsluitingen of wegwerkzaamheden gevonden"
-
-#~ msgid "Close"
-#~ msgstr "Sluiten"

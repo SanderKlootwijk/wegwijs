@@ -20,16 +20,33 @@ import QtQuick.Layouts 1.3
 
 ListItem {
     id: locationItem
-
+    
+    width: parent.width
     height: locationName.implicitHeight + units.gu(5)
+
+    Icon {
+        id: locationIcon
+
+        height: units.gu(2.5)
+        width: units.gu(2.5)
+
+        name: 'location'
+        color: theme.palette.normal.foregroundText
+        
+        anchors {
+            verticalCenter: parent.verticalCenter
+            left: parent.left
+            leftMargin: units.gu(2)
+        }
+    }
 
     Label {
         id: locationName
         
-        width: parent.width - units.gu(4)
+        width: parent.width - locationIcon.width - units.gu(6)
         
         anchors {
-            left: parent.left
+            left: locationIcon.right
             leftMargin: units.gu(2)
             top: parent.top
             topMargin: units.gu(2.5)
@@ -38,23 +55,25 @@ ListItem {
         text: name
 
         wrapMode: Text.WordWrap
+        elide: Text.ElideRight
+        maximumLineCount: 2
     }
 
     onClicked: {
         settings.currentLatitude = latitude
         settings.currentLongitude = longitude
-        console.log(typeof latitude);
-        console.log(typeof longitude);
 
         root.fuelProvider.getFuelPrices()
 
         adaptivePageLayout.removePages(searchPage)
         
         searchField.text = null
-        locationListModel.clear()
-        searchPage.searchExecuted = false
+        searchField.searchExecuted = false
+        
         if (settings.firstRun) {
             root.firstRunSlide = 3
         }
+        
+        locationListModel.clear()
     }
 }

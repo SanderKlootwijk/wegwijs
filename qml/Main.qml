@@ -73,8 +73,6 @@ MainView {
 
     property var fuelProviders: [
         {name: "anwb_openchargemap", id: anwb_openchargemap, label: "ANWB, Open Charge Map", country: i18n.tr("Netherlands")}
-        // Tankplanner.nl currently seems to be broken
-        //{name: "tankplanner_openchargemap", id: tankplanner_openchargemap, label: "Tankplanner, Open Charge Map", country: i18n.tr("Netherlands")}
     ]
 
     property var defaultFuelProvider: anwb_openchargemap
@@ -103,7 +101,7 @@ MainView {
     
     property bool searchLoading: false
 
-    property string version: "1.2.0"
+    property string version: "1.3.0"
     property int firstRunSlide: 0
 
     Settings {
@@ -115,6 +113,10 @@ MainView {
         property int searchRadius: 4
         property double currentLatitude: 0
         property double currentLongitude: 0
+
+        property var minimumKw: 0
+        property var maximumKw: 350
+        property variant connectionTypes: [[1],[25, 1036],[2],[32],[33],[27],[8, 30]]
 
         property string trafficProvider: "anwb"
         property string fuelProvider: "anwb_openchargemap"
@@ -130,10 +132,6 @@ MainView {
             if (settings.currentLatitude !== 0) {
                 settings.firstRun = false
             }
-        }
-
-        onSearchRadiusChanged: {
-            root.fuelProvider.getFuelPrices()
         }
 
         onFuelTypeChanged: {
@@ -257,6 +255,22 @@ MainView {
         anchors.fill: parent
     }
 
+    GpsPage {
+        id: gpsPage
+
+        visible: false
+        
+        anchors.fill: parent
+    }
+
+    FilterPage {
+        id: filterPage
+
+        visible: false
+        
+        anchors.fill: parent
+    }
+
     SettingsPage {
         id: settingsPage
 
@@ -327,10 +341,6 @@ MainView {
 
     AnwbOpenchargemap {
         id: anwb_openchargemap
-    }
-
-    TankplannerOpenchargemap {
-        id: tankplanner_openchargemap
     }
 
     // Functions

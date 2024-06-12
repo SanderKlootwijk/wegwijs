@@ -24,7 +24,6 @@ Page {
 
     property alias locationListModel: locationListModel
     property alias searchField: searchField
-    property bool searchExecuted: false
 
     header: searchPageHeader
 
@@ -33,6 +32,8 @@ Page {
 
         contents: TextField {
             id: searchField
+
+            property bool searchExecuted: false
 
             width: Math.min(parent.width)
             
@@ -48,7 +49,7 @@ Page {
             onAccepted: {
                 locationSource = "https://geocode.maps.co/search?q=" + searchField.text + "&api_key=" + root.geocodeKey
                 getLocations()
-                searchPage.searchExecuted = true
+                searchExecuted = true
             }
         }
 
@@ -59,7 +60,7 @@ Page {
                 onTriggered: {
                     adaptivePageLayout.removePages(searchPage)
                     searchField.text = null
-                    searchPage.searchExecuted = false
+                    searchField.searchExecuted = false
                     locationListModel.clear()
                 }
             }
@@ -71,7 +72,7 @@ Page {
                     if (!root.searchLoading) {
                         locationSource = "https://geocode.maps.co/search?q=" + searchField.text + "&api_key=" + root.geocodeKey
                         getLocations()
-                        searchPage.searchExecuted = true
+                        searchField.searchExecuted = true
                     }
                 }
             }
@@ -80,14 +81,13 @@ Page {
 
     Scrollbar {
         z: 1
-        flickableItem: locationListView
+        flickableItem: searchFlickable
         align: Qt.AlignTrailing
     }
 
     ActivityIndicator {
         id: loadingIndicator
-        running: true
-        visible: root.searchLoading
+        running: root.searchLoading
 
         anchors {
             centerIn: parent
@@ -97,16 +97,16 @@ Page {
     Label {
         width: parent.width - units.gu(8)
 
-        visible: !loadingIndicator.visible
+        visible: !loadingIndicator.running
 
         anchors {
             top: searchPageHeader.bottom
-            topMargin: units.gu(5)
+            topMargin: units.gu(13)
             horizontalCenter: parent.horizontalCenter
         }
 
         text: {
-            if (locationListModel.count == 0 && searchPage.searchExecuted) {
+            if (locationListModel.count == 0 && searchField.searchExecuted) {
                 i18n.tr("No locations found")
             }
             else {
@@ -122,17 +122,80 @@ Page {
         id: locationListModel
     }
 
-    ListView {
-        id: locationListView
-
-        visible: !root.searchLoading
-
-        model: locationListModel
-        delegate: Location {}
+    Flickable {
+        id: searchFlickable
 
         anchors {
             fill: parent
             topMargin: searchPageHeader.height
+        }
+        
+        contentHeight: searchColumn.height
+
+        Column {
+            id: searchColumn
+            
+            width: parent.width
+
+            ListItem {
+                id: gpsItem
+
+                width: parent.width
+                height: gpsLabel.implicitHeight + units.gu(5)
+
+                visible: !root.searchLoading
+
+                Icon {
+                    id: gpsIcon
+
+                    height: units.gu(2.5)
+                    width: units.gu(2.5)
+
+                    name: 'gps'
+                    color: theme.palette.normal.foregroundText
+                    
+                    anchors {
+                        verticalCenter: parent.verticalCenter
+                        left: parent.left
+                        leftMargin: units.gu(2)
+                    }
+                }
+
+                Label {
+                    id: gpsLabel
+                    
+                    width: parent.width - gpsIcon.width - units.gu(6)
+                    
+                    anchors {
+                        left: gpsIcon.right
+                        leftMargin: units.gu(2)
+                        top: parent.top
+                        topMargin: units.gu(2.5)
+                    }
+                    
+                    text: i18n.tr("Current location")
+
+                    elide: Text.ElideRight
+                }
+
+                onClicked: {
+                    searchPage.pageStack.addPageToCurrentColumn(searchPage, gpsPage)
+                    gpsPage.gpsLabelTimer.start()
+                    gpsPage.positionSource.active = true
+                }
+            }
+
+            Repeater {
+                id: locationListView
+
+                width: parent.width
+
+                visible: !root.searchLoading
+
+                model: locationListModel
+
+                delegate: Location {}
+            }
         }
     }
 }

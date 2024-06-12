@@ -2,7 +2,7 @@
 
 Please note: Wegwijs currently only supports the Netherlands.
 
-With Wegwijs, you're always informed about the current traffic conditions and can easily find nearby fuel prices.
+With Wegwijs, you're always informed about the current traffic conditions and can easily find nearby fuel prices and charging stations.
 
 ## License
 

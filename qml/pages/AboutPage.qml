@@ -34,10 +34,10 @@ Page {
             topMargin: aboutPageHeader.height
         }
         
-        contentHeight: aboutCloumn.height
+        contentHeight: aboutColumn.height
 
         Column {
-            id: aboutCloumn
+            id: aboutColumn
             
             width: parent.width
             
@@ -148,9 +148,7 @@ Page {
                         { name: "ANWB", url: "https://www.anwb.nl"},
                         { name: "Geocoding", url: "https://geocode.maps.co"},
                         { name: "Open Charge Map", url: "https://openchargemap.org/"},
-                        { name: "Rijkswaterstaat", url: "https://www.rwsverkeersinfo.nl"},
-                        // Tankplanner.nl currently seems to be broken
-                        //{ name: i18n.tr("Fuel prices by Tankplanner"), url: "https://www.tankplanner.nl/"}
+                        { name: "Rijkswaterstaat", url: "https://www.rwsverkeersinfo.nl"}
                     ]
 
                     delegate: ListItem {

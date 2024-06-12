@@ -365,10 +365,7 @@ Page {
 
     Scrollbar {
         z: 1
-        id: mainScrollbar
-        
         visible: mainFlickable.visible
-
         flickableItem: mainFlickable
         align: Qt.AlignTrailing
     }

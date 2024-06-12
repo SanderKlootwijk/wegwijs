@@ -229,8 +229,7 @@ Page {
 
         ActivityIndicator {
             id: loadingIndicator
-            running: true
-            visible: root.trafficProvider.loading
+            running: root.trafficProvider.loading
 
             anchors {
                 centerIn: parent
@@ -240,7 +239,7 @@ Page {
         Label {
             width: parent.width - units.gu(8)
 
-            visible: !loadingIndicator.visible
+            visible: !loadingIndicator.running
 
             anchors {
                 top: parent.top
@@ -267,7 +266,7 @@ Page {
         ListView {
             id: trafficListView
 
-            visible: !loadingIndicator.visible
+            visible: !loadingIndicator.running
 
             property int expandedIndex: -1
 

@@ -55,6 +55,9 @@ Item {
         var currentLatitude = settings.currentLatitude;
         var currentLongitude = settings.currentLongitude;
         var searchRadius = settings.searchRadius;
+        var minimumKw = settings.minimumKw;
+        var maximumKw = settings.maximumKw;
+        var connectionTypes = settings.connectionTypes;
         var fuelSourceUrl = fuelSource;
         var apiKey = isRetry ? root.anwbKeyBackup : root.anwbKey;
 
@@ -65,7 +68,7 @@ Item {
         var bounds = calculateBounds(currentLatitude, currentLongitude, searchRadius);
 
         if (fuelType === "electric") {
-            fuelSourceUrl += `&latitude=${currentLatitude}&longitude=${currentLongitude}&distance=${searchRadius}&distanceunit=km`;
+            fuelSourceUrl += `&latitude=${currentLatitude}&longitude=${currentLongitude}&distance=${searchRadius}&distanceunit=km&minpowerkw=${minimumKw}&maxpowerkw=${maximumKw}&connectiontypeid=${connectionTypes}`;
         } else {
             fuelSourceUrl += `&bounds=${bounds}&apikey=${apiKey}`;
         }

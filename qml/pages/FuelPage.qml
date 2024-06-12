@@ -77,6 +77,13 @@ Page {
                 onTriggered: {
                     fuelPage.pageStack.addPageToCurrentColumn(fuelPage, searchPage)
                 }
+            },
+            Action {
+                text: i18n.tr("Filters")
+                iconName: "filters"
+                onTriggered: {
+                    fuelPage.pageStack.addPageToCurrentColumn(fuelPage, filterPage)
+                }
             }
         ]
     }
@@ -89,8 +96,7 @@ Page {
 
     ActivityIndicator {
         id: loadingIndicator
-        running: true
-        visible: root.fuelProvider.loading
+        running: root.fuelProvider.loading
 
         anchors.centerIn: parent
     }
@@ -98,7 +104,7 @@ Page {
     Label {
         width: parent.width - units.gu(8)
 
-        visible: !loadingIndicator.visible
+        visible: !loadingIndicator.running
 
         anchors {
             top: fuelPageHeader.bottom
@@ -109,10 +115,10 @@ Page {
         text: {
             if (fuelListModel.count == 0) {
                 if (settings.fuelType == 4) {
-                    i18n.tr("No nearby charging stations found") + "\n\n" + i18n.tr("Search for another location or expand the search radius in the settings")
+                    i18n.tr("No nearby charging stations found") + "\n\n" + i18n.tr("Try another location or adjust your filters")
                 }
                 else {
-                    i18n.tr("No nearby fuel stations found") + "\n\n" + i18n.tr("Search for another location or expand the search radius in the settings")
+                    i18n.tr("No nearby fuel stations found") + "\n\n" + i18n.tr("Try another location or adjust your filters")
                 }
             }
             else {

@@ -2,7 +2,9 @@
     "policy_groups": [
         "networking",
         "connectivity",
-        "webview"
+        "webview",
+        "location",
+        "keep-display-on"
     ],
     "policy_version": 20.04
 }

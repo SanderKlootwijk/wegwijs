@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wegwijs.sanderklootwijk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-20 14:35+0000\n"
+"POT-Creation-Date: 2024-06-12 15:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,8 +30,8 @@ msgid "charging points"
 msgstr ""
 
 #: ../qml/components/FuelShape.qml:54 ../qml/pages/FuelPage.qml:37
-#: ../qml/pages/MainPage.qml:175 ../qml/pages/ResultPage.qml:166
-#: ../qml/pages/SettingsPage.qml:226
+#: ../qml/pages/MainPage.qml:175 ../qml/pages/ResultPage.qml:172
+#: ../qml/pages/SettingsPage.qml:179
 msgid "Electric"
 msgstr ""
 
@@ -61,6 +61,28 @@ msgstr ""
 msgid "API usage"
 msgstr ""
 
+#: ../qml/pages/FilterPage.qml:43 ../qml/pages/FuelPage.qml:82
+msgid "Filters"
+msgstr ""
+
+#: ../qml/pages/FilterPage.qml:48 ../qml/pages/FuelProviderSettingsPage.qml:34
+#: ../qml/pages/SettingsPage.qml:36 ../qml/pages/TrafficPage.qml:36
+#: ../qml/pages/TrafficProviderSettingsPage.qml:34
+msgid "Back"
+msgstr ""
+
+#: ../qml/pages/FilterPage.qml:100
+msgid "Search radius (as the crow flies)"
+msgstr ""
+
+#: ../qml/pages/FilterPage.qml:199
+msgid "Kilowatt Range"
+msgstr ""
+
+#: ../qml/pages/FilterPage.qml:454
+msgid "Connection Types:"
+msgstr ""
+
 #: ../qml/pages/FuelPage.qml:52
 msgid "Distance"
 msgstr ""
@@ -73,27 +95,34 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
-#: ../qml/pages/FuelPage.qml:112
+#: ../qml/pages/FuelPage.qml:118
 msgid "No nearby charging stations found"
 msgstr ""
 
-#: ../qml/pages/FuelPage.qml:112 ../qml/pages/FuelPage.qml:115
-msgid "Search for another location or expand the search radius in the settings"
+#: ../qml/pages/FuelPage.qml:118 ../qml/pages/FuelPage.qml:121
+msgid "Try another location or adjust your filters"
 msgstr ""
 
-#: ../qml/pages/FuelPage.qml:115
+#: ../qml/pages/FuelPage.qml:121
 msgid "No nearby fuel stations found"
 msgstr ""
 
 #: ../qml/pages/FuelProviderSettingsPage.qml:29
-#: ../qml/pages/SettingsPage.qml:141 ../qml/pages/SettingsPage.qml:280
+#: ../qml/pages/SettingsPage.qml:139 ../qml/pages/SettingsPage.qml:233
 msgid "Fuel"
 msgstr ""
 
-#: ../qml/pages/FuelProviderSettingsPage.qml:34
-#: ../qml/pages/SettingsPage.qml:36 ../qml/pages/TrafficPage.qml:36
-#: ../qml/pages/TrafficProviderSettingsPage.qml:34
-msgid "Back"
+#: ../qml/pages/GpsPage.qml:33 ../qml/pages/SearchPage.qml:176
+msgid "Current location"
+msgstr ""
+
+#: ../qml/pages/GpsPage.qml:41 ../qml/pages/GpsPage.qml:77
+#: ../qml/pages/GpsPage.qml:116
+msgid "Waiting for GPS signal..."
+msgstr ""
+
+#: ../qml/pages/GpsPage.qml:130
+msgid "This could take a while..."
 msgstr ""
 
 #: ../qml/pages/MainPage.qml:38 ../qml/pages/SettingsPage.qml:31
@@ -156,39 +185,39 @@ msgstr ""
 msgid "You are currently offline"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:479 ../qml/pages/MainPage.qml:575
+#: ../qml/pages/MainPage.qml:476 ../qml/pages/MainPage.qml:572
 msgid "Loading"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:482 ../qml/pages/MainPage.qml:488
+#: ../qml/pages/MainPage.qml:479 ../qml/pages/MainPage.qml:485
 msgid "traffic jams"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:485
+#: ../qml/pages/MainPage.qml:482
 msgid "traffic jam"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:580
+#: ../qml/pages/MainPage.qml:577
 msgid "charging station"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:583
+#: ../qml/pages/MainPage.qml:580
 msgid "charging stations"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:587
+#: ../qml/pages/MainPage.qml:584
 msgid "No fuel stations found"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:615
+#: ../qml/pages/MainPage.qml:612
 msgid "in a %1 km radius"
 msgstr ""
 
-#: ../qml/pages/ResultPage.qml:334
+#: ../qml/pages/ResultPage.qml:348
 msgid "Navigate"
 msgstr ""
 
-#: ../qml/pages/SearchPage.qml:45
+#: ../qml/pages/SearchPage.qml:46
 msgid "Search for a location"
 msgstr ""
 
@@ -196,27 +225,23 @@ msgstr ""
 msgid "No locations found"
 msgstr ""
 
-#: ../qml/pages/SettingsPage.qml:90
+#: ../qml/pages/SettingsPage.qml:88
 msgid "Theme"
 msgstr ""
 
-#: ../qml/pages/SettingsPage.qml:114
+#: ../qml/pages/SettingsPage.qml:112
 msgid "System"
 msgstr ""
 
-#: ../qml/pages/SettingsPage.qml:166
-msgid "Search radius in km (as the crow flies)"
-msgstr ""
-
-#: ../qml/pages/SettingsPage.qml:210
+#: ../qml/pages/SettingsPage.qml:163
 msgid "Fuel type"
 msgstr ""
 
-#: ../qml/pages/SettingsPage.qml:256
+#: ../qml/pages/SettingsPage.qml:209
 msgid "Providers"
 msgstr ""
 
-#: ../qml/pages/SettingsPage.qml:335
+#: ../qml/pages/SettingsPage.qml:288
 #: ../qml/pages/TrafficProviderSettingsPage.qml:29
 msgid "Traffic"
 msgstr ""
@@ -225,17 +250,15 @@ msgstr ""
 msgid "Traffic Conditions"
 msgstr ""
 
-#: ../qml/pages/TrafficPage.qml:253
+#: ../qml/pages/TrafficPage.qml:252
 msgid "Select options above to show reports"
 msgstr ""
 
-#: ../qml/pages/TrafficPage.qml:256
+#: ../qml/pages/TrafficPage.qml:255
 msgid "No reports found"
 msgstr ""
 
-#: ../qml/providers/fuel/AnwbOpenchargemap.qml:94
-#: ../qml/providers/fuel/AnwbOpenchargemap.qml:119
-#: ../qml/providers/fuel/TankplannerOpenchargemap.qml:66
-#: ../qml/providers/fuel/TankplannerOpenchargemap.qml:91
+#: ../qml/providers/fuel/AnwbOpenchargemap.qml:97
+#: ../qml/providers/fuel/AnwbOpenchargemap.qml:122
 msgid "Charging station"
 msgstr ""

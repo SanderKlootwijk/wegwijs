@@ -45,6 +45,7 @@ Page {
                 iconName: "back"
                 onTriggered: {
                     infoFlickable.expanded = false
+                    infoFlickable.contentY = 0
                     adaptivePageLayout.removePages(resultPage)
                 }
             }
@@ -77,7 +78,12 @@ Page {
         width: parent.width
         height: {
             if (expanded) {
-                contentHeight
+                if (contentHeight > units.gu(27)) {
+                    units.gu(29.25)
+                }
+                else {
+                    contentHeight
+                }
             }
             else {
                 if (contentHeight > units.gu(14)) {
@@ -194,13 +200,13 @@ Page {
     }
 
     Rectangle {
-        z: 1
+        z: 2
 
         width: parent.width
         height: units.dp(1)
 
         anchors {
-            bottom: infoFlickable.bottom
+            bottom: expandItem.top
             horizontalCenter: parent.horizontalCenter
         }
 
@@ -227,7 +233,15 @@ Page {
         MouseArea {
             anchors.fill: parent
 
-            onClicked: infoFlickable.expanded ? infoFlickable.expanded = false : infoFlickable.expanded = true
+            onClicked: {
+                if (infoFlickable.expanded) {
+                    infoFlickable.expanded = false
+                    infoFlickable.contentY = 0
+                }
+                else {
+                    infoFlickable.expanded = true
+                }
+            }
         }
 
         Icon {

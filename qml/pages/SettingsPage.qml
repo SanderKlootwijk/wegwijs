@@ -46,25 +46,23 @@ Page {
     
     Scrollbar {
         z: 1
-        id: scrollSettings
-
-        flickableItem: flickSettings
+        flickableItem: settingsFlickable
         align: Qt.AlignTrailing
     }
 
     Flickable {
-        id: flickSettings
+        id: settingsFlickable
 
         anchors {
             fill: parent
             topMargin: settingsPageHeader.height
         }
 
-        contentWidth: columnSettings.width
-        contentHeight: columnSettings.height
+        contentWidth: settingsColumn.width
+        contentHeight: settingsColumn.height
     
         Column {
-            id: columnSettings
+            id: settingsColumn
 
             width: settingsPage.width
 
@@ -143,51 +141,6 @@ Page {
                     color: theme.palette.normal.backgroundSecondaryText
                     font.bold: true
                     elide: Text.ElideRight
-                }
-            }
-
-            ListItem {
-                id: searchRadiusListItem
-
-                height: units.gu(10)
-
-                Label {
-                    id: searchRadiusLabel
-
-                    width: parent.width - units.gu(10)
-
-                    anchors {
-                        top: parent.top
-                        topMargin: units.gu(2)
-                        left: parent.left
-                        leftMargin: units.gu(2)
-                    }
-
-                    text: i18n.tr("Search radius in km (as the crow flies)")
-                    elide: Text.ElideRight
-                }
-
-                Slider {
-                    id: searchRadiusSlider
-
-                    anchors {
-                        top: searchRadiusLabel.bottom
-                        left: parent.left
-                        leftMargin: units.gu(2)
-                        right: parent.right
-                        rightMargin: units.gu(2)
-                    }
-
-                    live: false
-                    value: settings.searchRadius
-                    minimumValue: 2
-                    maximumValue: 10
-                }
-
-                Binding {
-                    target: settings
-                    property: "searchRadius"
-                    value: searchRadiusSlider.value
                 }
             }
 

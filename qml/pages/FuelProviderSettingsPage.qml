@@ -39,8 +39,6 @@ Page {
 
     Scrollbar {
         z: 1
-        id: scrollFuelProviderSettings
-
         flickableItem: flickFuelProviderSettings
         align: Qt.AlignTrailing
     }
@@ -53,11 +51,11 @@ Page {
             topMargin: fuelProviderSettingsPageHeader.height
         }
 
-        contentWidth: columnFuelProviderSettings.width
-        contentHeight: columnFuelProviderSettings.height
+        contentWidth: fuelProviderSettingsColumn.width
+        contentHeight: fuelProviderSettingsColumn.height
 
         Column {
-            id: columnFuelProviderSettings
+            id: fuelProviderSettingsColumn
 
             width: fuelProviderSettingsPage.width
 
