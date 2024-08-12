@@ -91,17 +91,12 @@ ListItem {
     } 
 
     onClicked: {
-        resultPage.qtObject.latitude = latitude
-        resultPage.qtObject.longitude = longitude
+        resultPage.qtObject.poiLatitude = latitude
+        resultPage.qtObject.poiLongitude = longitude
+        resultPage.qtObject.poiIndex = index
 
         resultPage.webEngineView.reload()
         
-        resultPage.infoFlickable.expanded = false
-        resultPage.infoFlickable.contentY = 0
-        resultPage.resultPageHeader.title = organization
-        resultPage.resultPageHeader.subtitle = town
-        resultPage.fuelpriceLabel.text = "€" + price
-        resultPage.adressLabel.text = address + ", " + town
         settings.fuelType == 4 ? resultPage.connectionsData = connections : resultPage.connectionsData = null
         
         fuelPage.pageStack.addPageToNextColumn(fuelPage, resultPage)

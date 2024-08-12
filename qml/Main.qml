@@ -101,7 +101,7 @@ MainView {
     
     property bool searchLoading: false
 
-    property string version: "1.3.0"
+    property string version: "1.4.0"
     property int firstRunSlide: 0
 
     Settings {

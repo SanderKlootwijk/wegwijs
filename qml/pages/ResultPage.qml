@@ -60,12 +60,59 @@ Page {
         id: qtObject
 
         signal onRefresh()
+        
+        property var poiIndex: 0
+        property var poiLatitude: 0.0
+        property var poiLongitude: 0.0
+        property var currentLatitude: settings.currentLatitude
+        property var currentLongitude: settings.currentLongitude
+        property var poiList: []
+        property var fuelType: settings.fuelType
 
-        property var latitude
-        property var longitude
+        onPoiIndexChanged: {
+            getMarkers()
+            onRefresh()
+        }
 
-        onLongitudeChanged: onRefresh()
-        onLatitudeChanged: onRefresh()
+        onCurrentLatitudeChanged: {
+            getMarkers()
+            onRefresh()
+        }
+
+        onCurrentLongitudeChanged: {
+            getMarkers()
+            onRefresh()
+        }
+
+        function getMarkers() {
+            poiList = [];
+            for (var i = 0; i < fuelListModel.count; i++) {
+                var item = fuelListModel.get(i);
+                settings.fuelType === 4 ? poiList.push({ latitude: item.latitude, longitude: item.longitude, text: item.highestpower, priceLevel: item.priceLevel }) : poiList.push({ latitude: item.latitude, longitude: item.longitude, text: item.price, priceLevel: item.priceLevel });
+            }
+        }
+
+        function selectPoiMarker(index) {
+            console.log("Selecting POI marker. Index: " + index);
+
+            infoFlickable.expanded = false;
+            infoFlickable.contentY = 0;
+
+            var item = fuelListModel.get(index);
+            if (item) {
+                qtObject.poiLatitude = item.latitude;
+                qtObject.poiLongitude = item.longitude;
+
+                resultPageHeader.title = item.organization;
+                resultPageHeader.subtitle = item.town;
+                fuelpriceLabel.text = "€" + item.price;
+                adressLabel.text = item.address + ", " + item.town;
+
+                settings.fuelType == 4 ? resultPage.connectionsData = item.connections : resultPage.connectionsData = null;
+            } else {
+                console.error("Item not found in fuelListModel at index: " + index);
+            }
+        }
     }
 
     Flickable {
@@ -314,6 +361,8 @@ Page {
 
     Item {
         id: adressItem
+        
+        z: 2
 
         width: parent.width - units.gu(4)
         height: units.gu(4)
@@ -349,8 +398,21 @@ Page {
             strokeColor: theme.palette.normal.baseText
 
             onClicked: {
-                Qt.openUrlExternally("geo:"+qtObject.latitude+","+qtObject.longitude)
+                Qt.openUrlExternally("geo:"+qtObject.poiLatitude+","+qtObject.poiLongitude)
             }
         }
+    }
+
+    Rectangle {
+        z: 1
+
+        anchors {
+            top: adressItem.top
+            left: parent.left
+            right: parent.right
+            bottom: parent.bottom
+        }
+
+        color: theme.palette.normal.background
     }
 }

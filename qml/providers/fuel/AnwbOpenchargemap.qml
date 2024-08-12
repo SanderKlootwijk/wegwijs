@@ -28,10 +28,10 @@ Item {
 
     property string fuelSource: {
         switch (settings.fuelType) {
-            case 0: return "https://api.anwb.nl/v2/pois?fuelTypes=euro95&types=fuel&details=full";
-            case 1: return "https://api.anwb.nl/v2/pois?fuelTypes=euro98&types=fuel&details=full";
-            case 2: return "https://api.anwb.nl/v2/pois?fuelTypes=diesel&types=fuel&details=full";
-            case 3: return "https://api.anwb.nl/v2/pois?fuelTypes=autogas&types=fuel&details=full";
+            case 0: return "https://api.anwb.nl/v2/pois?fuelTypes=euro95&types=fuel%2Cfuel-eu&details=full";
+            case 1: return "https://api.anwb.nl/v2/pois?fuelTypes=euro98&types=fuel%2Cfuel-eu&details=full";
+            case 2: return "https://api.anwb.nl/v2/pois?fuelTypes=diesel&types=fuel%2Cfuel-eu&details=full";
+            case 3: return "https://api.anwb.nl/v2/pois?fuelTypes=autogas&types=fuel%2Cfuel-eu&details=full";
             case 4: return "https://api.openchargemap.io/v3/poi?key=" + root.openchargemapKey;
             default: return "";
         }
@@ -127,6 +127,7 @@ Item {
                                 "latitude": latitude,
                                 "longitude": longitude,
                                 "price": price,
+                                "priceLevel": "",
                                 "distance": parseFloat(distance.toFixed(1))
                             });
                         }
@@ -150,6 +151,7 @@ Item {
                                     "latitude": list[k].geo.latitude,
                                     "longitude": list[k].geo.longitude,
                                     "price": currentFuelType ? (currentFuelType.price.value / Math.pow(10, currentFuelType.price.scale)).toString() : null,
+                                    "priceLevel": currentFuelType ? currentFuelType.priceLevel : "",
                                     "distance": Math.round(calcCrow(settings.currentLatitude, settings.currentLongitude, list[k].geo.latitude, list[k].geo.longitude) * 10) / 10
                                 });
                             }

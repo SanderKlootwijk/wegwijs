@@ -23,7 +23,10 @@
         <file>components/Location.qml</file>
         <file>components/TrafficItem.qml</file>
         <file>components/TrafficProviderItem.qml</file>
+        <file>webview/chargingstation.svg</file>
+        <file>webview/fuelstation.svg</file>
         <file>webview/index.html</file>
+        <file>webview/location.svg</file>
         <file>webview/style.css</file>
         <file>js/script.js</file>
         <file>img/0.svg</file>

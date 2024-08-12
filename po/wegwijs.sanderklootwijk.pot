@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wegwijs.sanderklootwijk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-12 15:30+0000\n"
+"POT-Creation-Date: 2024-08-12 18:19+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgid "charging points"
 msgstr ""
 
 #: ../qml/components/FuelShape.qml:54 ../qml/pages/FuelPage.qml:37
-#: ../qml/pages/MainPage.qml:175 ../qml/pages/ResultPage.qml:172
+#: ../qml/pages/MainPage.qml:175 ../qml/pages/ResultPage.qml:219
 #: ../qml/pages/SettingsPage.qml:179
 msgid "Electric"
 msgstr ""
@@ -213,7 +213,7 @@ msgstr ""
 msgid "in a %1 km radius"
 msgstr ""
 
-#: ../qml/pages/ResultPage.qml:348
+#: ../qml/pages/ResultPage.qml:397
 msgid "Navigate"
 msgstr ""
 
