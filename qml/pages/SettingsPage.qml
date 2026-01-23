@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2024  Sander Klootwijk
+* Copyright (C) 2026  Sander Klootwijk
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -180,7 +180,7 @@ Page {
 
                     onSelectedIndexChanged: {
                         settings.fuelType = selectedIndex
-                        root.fuelProvider.getFuelPrices()
+                        fetchFuelPrices()
                     }
 
                     Component.onCompleted: selectedIndex = settings.fuelType
@@ -188,7 +188,7 @@ Page {
             }
 
             ListItem {
-                id: providersTitle
+                id: aboutTitle
 
                 height: units.gu(6.25)
 
@@ -196,7 +196,8 @@ Page {
                 divider.colorTo: theme.palette.normal.background
 
                 Label {
-                    id: providersTitleLabel
+                    id: aboutTitleLabel
+
                     width: parent.width - units.gu(4)
 
                     anchors {
@@ -205,123 +206,30 @@ Page {
                         left: parent.left
                         leftMargin: units.gu(2)
                     }
-                    
-                    text: i18n.tr("Providers") + ":"
+
+                    text: i18n.tr("About") + ":"
 
                     color: theme.palette.normal.backgroundSecondaryText
+                    elide: Text.ElideRight
                     font.bold: true
-                    elide: Text.ElideRight
                 }
             }
 
             ListItem {
-                id: fuelProviderListItem
+                id: aboutListItem
 
                 height: units.gu(6)
 
-                onClicked: settingsPage.pageStack.addPageToCurrentColumn(settingsPage, fuelProviderSettingsPage)
+                ListItemLayout {
+                    id: layoutAbout
 
-                Label {
-                    width: parent.width - fuelProviderLabel.contentWidth - units.gu(8)
+                    anchors.verticalCenter: parent.verticalCenter
 
-                    anchors {
-                        verticalCenter: parent.verticalCenter
-                        left: parent.left
-                        leftMargin: units.gu(2)
-                    }
-                    
-                    text: i18n.tr("Fuel")
-
-                    elide: Text.ElideRight
+                    title.text : i18n.tr("About this app")
+                    ProgressionSlot { color: theme.palette.normal.baseText; }
                 }
 
-                Label {
-                    id: fuelProviderLabel
-
-                    anchors {
-                        verticalCenter: parent.verticalCenter
-                        right: fuelNextIcon.left
-                        rightMargin: units.gu(1)
-                    }
-                    
-                    text: {
-                        for(let i = 0; i < fuelProviders.length; i++) {
-                            if (fuelProviders[i].name === settings.fuelProvider) {
-                                return fuelProviders[i].country
-                            }
-                        }
-                    }
-                }
-
-                Icon {
-                    id: fuelNextIcon
-
-                    height: units.gu(2)
-                    width: units.gu(2)
-
-                    name: 'next'
-                    
-                    anchors {
-                        verticalCenter: fuelProviderLabel.verticalCenter
-                        right: parent.right
-                        rightMargin: units.gu(2)    
-                    }
-                }
-            }
-
-            ListItem {
-                id: trafficProviderListItem
-
-                height: units.gu(6)
-
-                onClicked: settingsPage.pageStack.addPageToCurrentColumn(settingsPage, trafficProviderSettingsPage)
-
-                Label {
-                    width: parent.width - trafficProviderLabel.contentWidth - units.gu(8)
-
-                    anchors {
-                        verticalCenter: parent.verticalCenter
-                        left: parent.left
-                        leftMargin: units.gu(2)
-                    }
-                    
-                    text: i18n.tr("Traffic")
-
-                    elide: Text.ElideRight
-                }
-
-                Label {
-                    id: trafficProviderLabel
-
-                    anchors {
-                        verticalCenter: parent.verticalCenter
-                        right: trafficNextIcon.left
-                        rightMargin: units.gu(1)
-                    }
-                    
-                    text: {
-                        for(let i = 0; i < trafficProviders.length; i++) {
-                            if (trafficProviders[i].name === settings.trafficProvider) {
-                                return trafficProviders[i].country
-                            }
-                        }
-                    }
-                }
-
-                Icon {
-                    id: trafficNextIcon
-
-                    height: units.gu(2)
-                    width: units.gu(2)
-
-                    name: 'next'
-                    
-                    anchors {
-                        verticalCenter: trafficProviderLabel.verticalCenter
-                        right: parent.right
-                        rightMargin: units.gu(2)    
-                    }
-                }
+                onClicked: settingsPage.pageStack.addPageToNextColumn(settingsPage, aboutPage)
             }
         }
     }

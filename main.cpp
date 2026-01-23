@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2024  Sander Klootwijk
+ * Copyright (C) 2026  Sander Klootwijk
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,6 @@
 
 int main(int argc, char *argv[])
 {
-    QGuiApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication *app = new QGuiApplication(argc, (char**)argv);
     app->setApplicationName("wegwijs.sanderklootwijk");
     

@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2024  Sander Klootwijk
+* Copyright (C) 2026  Sander Klootwijk
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -28,8 +28,7 @@ Page {
 
     header: PageHeader {
         id: trafficPageHeader
-        title: i18n.tr("Wegwijs")
-        subtitle: i18n.tr("Traffic Conditions")
+        title: i18n.tr("Traffic Conditions")
 
         leadingActionBar.actions: [
             Action {
@@ -63,8 +62,6 @@ Page {
                 width: units.gu(6)
                 height: units.gu(6)
 
-                visible: root.trafficProvider.hasJams
-
                 Image {
                     id: jamsImage
                     
@@ -90,50 +87,13 @@ Page {
 
                     settings.showJams ? settings.showJams = false : settings.showJams = true
                     
-                    root.trafficProvider.getTrafficData()
+                    fetchTrafficData()
                 }
             }
 
             MouseArea {
                 width: units.gu(6)
                 height: units.gu(6)
-
-                visible: root.trafficProvider.hasClosures
-                
-                Image {
-                    id: closuresImage
-                    
-                    height: units.gu(3)
-
-                    anchors.centerIn: parent
-
-                    source: "../img/closures.png"
-
-                    fillMode: Image.PreserveAspectFit
-                }
-
-                ColorOverlay {
-                    anchors.fill: closuresImage
-
-                    source: closuresImage
-
-                    color: settings.showClosures ? theme.palette.normal.foregroundText : theme.palette.normal.base
-                }
-                
-                onClicked: {
-                    trafficListView.expandedIndex = -1
-
-                    settings.showClosures ? settings.showClosures = false : settings.showClosures = true
-                    
-                    root.trafficProvider.getTrafficData()
-                }
-            }
-
-            MouseArea {
-                width: units.gu(6)
-                height: units.gu(6)
-
-                visible: root.trafficProvider.hasRoadworks
                 
                 Image {
                     id: roadworksImage
@@ -160,15 +120,13 @@ Page {
 
                     settings.showRoadworks ? settings.showRoadworks = false : settings.showRoadworks = true
                     
-                    root.trafficProvider.getTrafficData()
+                    fetchTrafficData()
                 }
             }
 
             MouseArea {
                 width: units.gu(6)
                 height: units.gu(6)
-
-                visible: root.trafficProvider.hasSpeedcameras
                 
                 Image {
                     id: speedcamerasImage
@@ -195,7 +153,7 @@ Page {
 
                     settings.showSpeedcameras ? settings.showSpeedcameras = false : settings.showSpeedcameras = true
                     
-                    root.trafficProvider.getTrafficData()
+                    fetchTrafficData()
                 }
             }
         }
@@ -229,7 +187,7 @@ Page {
 
         ActivityIndicator {
             id: loadingIndicator
-            running: root.trafficProvider.loading
+            running: root.trafficLoading
 
             anchors {
                 centerIn: parent
@@ -248,7 +206,7 @@ Page {
             }
 
             text: {
-                if (!settings.showRoadworks && !settings.showJams && !settings.showClosures && !settings.showSpeedcameras) {
+                if (!settings.showRoadworks && !settings.showJams && !settings.showSpeedcameras) {
                     i18n.tr("Select options above to show reports")
                 }
                 else if (trafficListModel.count == 0) {
@@ -278,5 +236,5 @@ Page {
         }
     }
 
-    Component.onCompleted: root.trafficProvider.getTrafficData()
+    Component.onCompleted: fetchTrafficData()
 }

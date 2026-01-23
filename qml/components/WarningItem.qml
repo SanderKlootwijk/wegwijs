@@ -19,61 +19,59 @@ import Lomiri.Components 1.3
 import QtQuick.Layouts 1.3
 
 ListItem {
-    id: locationItem
+    id: warningItem
     
     width: parent.width
-    height: locationName.implicitHeight + units.gu(5)
+    height: descriptionLabel.implicitHeight + units.gu(6)
 
     Icon {
-        id: locationIcon
+        id: warningIcon
 
         height: units.gu(2.5)
         width: units.gu(2.5)
 
-        name: 'location'
+        name: 'dialog-warning-symbolic'
         color: theme.palette.normal.foregroundText
         
         anchors {
-            verticalCenter: parent.verticalCenter
             left: parent.left
             leftMargin: units.gu(2)
+            top: parent.top
+            topMargin: units.gu(1)
         }
     }
 
     Label {
-        id: locationName
+        id: titleLabel
         
-        width: parent.width - locationIcon.width - units.gu(6)
+        width: parent.width - warningIcon.width - units.gu(6)
         
         anchors {
-            left: locationIcon.right
-            leftMargin: units.gu(2)
-            top: parent.top
-            topMargin: units.gu(2.5)
+            left: warningIcon.right
+            leftMargin: units.gu(1)
+            verticalCenter: warningIcon.verticalCenter
         }
         
-        text: name
+        text: i18n.tr("Traffic warning")
+        font.bold: true
 
         wrapMode: Text.WordWrap
-        elide: Text.ElideRight
-        maximumLineCount: 2
     }
 
-    onClicked: {
-        settings.currentLatitude = latitude
-        settings.currentLongitude = longitude
-
-        fetchFuelPrices()
-
-        adaptivePageLayout.removePages(searchPage)
+    Label {
+        id: descriptionLabel
         
-        searchField.text = null
-        searchField.searchExecuted = false
+        width: parent.width - units.gu(4)
         
-        if (settings.firstRun) {
-            root.firstRunSlide = 3
+        anchors {
+            left: parent.left
+            leftMargin: units.gu(2)
+            top: warningIcon.bottom
+            topMargin: units.gu(1)
         }
         
-        locationListModel.clear()
+        text: description
+
+        wrapMode: Text.WordWrap
     }
 }

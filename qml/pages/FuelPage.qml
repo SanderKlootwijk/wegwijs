@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2024  Sander Klootwijk
+* Copyright (C) 2026  Sander Klootwijk
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -27,14 +27,20 @@ Page {
 
     header: PageHeader {
         id: fuelPageHeader
-        title: i18n.tr("Wegwijs")
+        title: {
+            if (settings.fuelType == 4) {
+                i18n.tr("Charging Stations")
+            } else {
+                i18n.tr("Fuel Prices")
+            }
+        }
         subtitle: {
             switch (settings.fuelType) {
                 case 0: return "Euro 95 (E10)";
                 case 1: return "Euro 98 (E5)";
                 case 2: return "Diesel (B7)";
                 case 3: return "LPG";
-                case 4: return i18n.tr("Electric");
+                case 4: return "";
                 default: return "";
             }
         }
@@ -96,7 +102,7 @@ Page {
 
     ActivityIndicator {
         id: loadingIndicator
-        running: root.fuelProvider.loading
+        running: root.fuelLoading
 
         anchors.centerIn: parent
     }
@@ -133,7 +139,7 @@ Page {
     ListView {
         id: fuelListView
 
-        visible: !root.fuelProvider.loading
+        visible: !root.fuelLoading
 
         anchors {
             fill: parent
@@ -146,6 +152,6 @@ Page {
     }
 
     Component.onCompleted: {
-        root.fuelProvider.getFuelPrices()
+        fetchFuelPrices()
     }
 }

@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2024  Sander Klootwijk
+* Copyright (C) 2026  Sander Klootwijk
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -50,7 +50,7 @@ Page {
                     adaptivePageLayout.removePages(filterPage)
 
                     if (filtersChanged) {
-                        root.fuelProvider.getFuelPrices()
+                        fetchFuelPrices()
                         filtersChanged = false
                     }
                 }

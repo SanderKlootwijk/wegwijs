@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2024  Sander Klootwijk
+* Copyright (C) 2026  Sander Klootwijk
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -47,8 +47,7 @@ Page {
             hasClearButton: false
             
             onAccepted: {
-                locationSource = "https://geocode.maps.co/search?q=" + searchField.text + "&api_key=" + root.geocodeKey
-                getLocations()
+                fetchLocations(searchField.text)
                 searchExecuted = true
             }
         }
@@ -70,8 +69,7 @@ Page {
                 iconName: "find"
                 onTriggered: {
                     if (!root.searchLoading) {
-                        locationSource = "https://geocode.maps.co/search?q=" + searchField.text + "&api_key=" + root.geocodeKey
-                        getLocations()
+                        fetchLocations(searchField.text)
                         searchField.searchExecuted = true
                     }
                 }

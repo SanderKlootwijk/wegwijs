@@ -6,7 +6,7 @@ With Wegwijs, you're always informed about the current traffic conditions and ca
 
 ## License
 
-Copyright (C) 2024  Sander Klootwijk
+Copyright (C) 2026  Sander Klootwijk
 
 This program is free software: you can redistribute it and/or modify it under
 the terms of the GNU General Public License version 3, as published by the

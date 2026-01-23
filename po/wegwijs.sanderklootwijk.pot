@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wegwijs.sanderklootwijk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-12 18:19+0000\n"
+"POT-Creation-Date: 2026-01-23 21:17+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,8 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/Main.qml:58 ../qml/Main.qml:59 ../qml/Main.qml:75
-msgid "Netherlands"
+#: ../qml/Main.qml:336 ../qml/Main.qml:361
+msgid "Charging station"
 msgstr ""
 
 #: ../qml/components/ConnectionItem.qml:96
@@ -29,18 +29,20 @@ msgstr ""
 msgid "charging points"
 msgstr ""
 
-#: ../qml/components/FuelShape.qml:54 ../qml/pages/FuelPage.qml:37
-#: ../qml/pages/MainPage.qml:175 ../qml/pages/ResultPage.qml:219
-#: ../qml/pages/SettingsPage.qml:179
+#: ../qml/components/FuelShape.qml:54 ../qml/pages/MainPage.qml:166
+#: ../qml/pages/ResultPage.qml:219 ../qml/pages/SettingsPage.qml:179
 msgid "Electric"
 msgstr ""
 
-#: ../qml/pages/AboutPage.qml:26 ../qml/pages/MainPage.qml:45
+#: ../qml/components/WarningItem.qml:55
+msgid "Traffic warning"
+msgstr ""
+
+#: ../qml/pages/AboutPage.qml:26 ../qml/pages/SettingsPage.qml:210
 msgid "About"
 msgstr ""
 
-#: ../qml/pages/AboutPage.qml:81 ../qml/pages/FuelPage.qml:30
-#: ../qml/pages/MainPage.qml:29 ../qml/pages/TrafficPage.qml:31
+#: ../qml/pages/AboutPage.qml:81 ../qml/pages/MainPage.qml:29
 #: wegwijs.desktop.in.h:1
 msgid "Wegwijs"
 msgstr ""
@@ -61,13 +63,12 @@ msgstr ""
 msgid "API usage"
 msgstr ""
 
-#: ../qml/pages/FilterPage.qml:43 ../qml/pages/FuelPage.qml:82
+#: ../qml/pages/FilterPage.qml:43 ../qml/pages/FuelPage.qml:88
 msgid "Filters"
 msgstr ""
 
-#: ../qml/pages/FilterPage.qml:48 ../qml/pages/FuelProviderSettingsPage.qml:34
-#: ../qml/pages/SettingsPage.qml:36 ../qml/pages/TrafficPage.qml:36
-#: ../qml/pages/TrafficProviderSettingsPage.qml:34
+#: ../qml/pages/FilterPage.qml:48 ../qml/pages/SettingsPage.qml:36
+#: ../qml/pages/TrafficPage.qml:35
 msgid "Back"
 msgstr ""
 
@@ -83,36 +84,39 @@ msgstr ""
 msgid "Connection Types:"
 msgstr ""
 
-#: ../qml/pages/FuelPage.qml:52
+#: ../qml/pages/FuelPage.qml:32
+msgid "Charging Stations"
+msgstr ""
+
+#: ../qml/pages/FuelPage.qml:34
+msgid "Fuel Prices"
+msgstr ""
+
+#: ../qml/pages/FuelPage.qml:58
 msgid "Distance"
 msgstr ""
 
-#: ../qml/pages/FuelPage.qml:52
+#: ../qml/pages/FuelPage.qml:58
 msgid "Price"
 msgstr ""
 
-#: ../qml/pages/FuelPage.qml:75 ../qml/pages/MainPage.qml:230
+#: ../qml/pages/FuelPage.qml:81 ../qml/pages/MainPage.qml:221
 msgid "Search"
 msgstr ""
 
-#: ../qml/pages/FuelPage.qml:118
+#: ../qml/pages/FuelPage.qml:124
 msgid "No nearby charging stations found"
 msgstr ""
 
-#: ../qml/pages/FuelPage.qml:118 ../qml/pages/FuelPage.qml:121
+#: ../qml/pages/FuelPage.qml:124 ../qml/pages/FuelPage.qml:127
 msgid "Try another location or adjust your filters"
 msgstr ""
 
-#: ../qml/pages/FuelPage.qml:121
+#: ../qml/pages/FuelPage.qml:127
 msgid "No nearby fuel stations found"
 msgstr ""
 
-#: ../qml/pages/FuelProviderSettingsPage.qml:29
-#: ../qml/pages/SettingsPage.qml:139 ../qml/pages/SettingsPage.qml:233
-msgid "Fuel"
-msgstr ""
-
-#: ../qml/pages/GpsPage.qml:33 ../qml/pages/SearchPage.qml:176
+#: ../qml/pages/GpsPage.qml:33 ../qml/pages/SearchPage.qml:174
 msgid "Current location"
 msgstr ""
 
@@ -125,95 +129,98 @@ msgstr ""
 msgid "This could take a while..."
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:38 ../qml/pages/SettingsPage.qml:31
+#: ../qml/pages/MainPage.qml:36 ../qml/pages/SettingsPage.qml:31
 msgid "Settings"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:124
+#: ../qml/pages/MainPage.qml:115
 msgid "You're all set!"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:127
+#: ../qml/pages/MainPage.qml:118
 msgid "Welcome to Wegwijs!"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:142
-msgid "Please note: Wegwijs currently only supports the Netherlands"
+#: ../qml/pages/MainPage.qml:133
+msgid ""
+"Please note: Wegwijs can only retrieve traffic information for the "
+"Netherlands. However, it does provide support for fuel prices and charging "
+"stations in other European countries."
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:142
+#: ../qml/pages/MainPage.qml:133
 msgid ""
 "With Wegwijs, you're always informed about the current traffic conditions "
 "and can easily find nearby fuel prices"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:154
+#: ../qml/pages/MainPage.qml:145
 msgid "Select a type of fuel below to begin:"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:196
+#: ../qml/pages/MainPage.qml:187
 msgid "Now choose a location to find nearby fuel prices:"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:208
+#: ../qml/pages/MainPage.qml:199
 msgid ""
 "Wegwijs is ready for use, further settings can be found in the menu at the "
-"top right of the screen"
+"top right of the screen."
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:270
+#: ../qml/pages/MainPage.qml:261
 msgid "Previous"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:282
+#: ../qml/pages/MainPage.qml:273
 msgid "Next"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:304
+#: ../qml/pages/MainPage.qml:295
 msgid "Done"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:360
+#: ../qml/pages/MainPage.qml:351
 msgid "Connect to the internet to set up Wegwijs"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:360
+#: ../qml/pages/MainPage.qml:351
 msgid "Connect to the internet to use Wegwijs"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:360
+#: ../qml/pages/MainPage.qml:351
 msgid "You are currently offline"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:476 ../qml/pages/MainPage.qml:572
+#: ../qml/pages/MainPage.qml:473 ../qml/pages/MainPage.qml:569
 msgid "Loading"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:479 ../qml/pages/MainPage.qml:485
+#: ../qml/pages/MainPage.qml:476 ../qml/pages/MainPage.qml:482
 msgid "traffic jams"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:482
+#: ../qml/pages/MainPage.qml:479
 msgid "traffic jam"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:577
+#: ../qml/pages/MainPage.qml:574
 msgid "charging station"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:580
+#: ../qml/pages/MainPage.qml:577
 msgid "charging stations"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:584
+#: ../qml/pages/MainPage.qml:581
 msgid "No fuel stations found"
 msgstr ""
 
-#: ../qml/pages/MainPage.qml:612
+#: ../qml/pages/MainPage.qml:609
 msgid "in a %1 km radius"
 msgstr ""
 
-#: ../qml/pages/ResultPage.qml:397
+#: ../qml/pages/ResultPage.qml:398
 msgid "Navigate"
 msgstr ""
 
@@ -221,7 +228,7 @@ msgstr ""
 msgid "Search for a location"
 msgstr ""
 
-#: ../qml/pages/SearchPage.qml:110
+#: ../qml/pages/SearchPage.qml:108
 msgid "No locations found"
 msgstr ""
 
@@ -233,32 +240,26 @@ msgstr ""
 msgid "System"
 msgstr ""
 
+#: ../qml/pages/SettingsPage.qml:139
+msgid "Fuel"
+msgstr ""
+
 #: ../qml/pages/SettingsPage.qml:163
 msgid "Fuel type"
 msgstr ""
 
-#: ../qml/pages/SettingsPage.qml:209
-msgid "Providers"
+#: ../qml/pages/SettingsPage.qml:228
+msgid "About this app"
 msgstr ""
 
-#: ../qml/pages/SettingsPage.qml:288
-#: ../qml/pages/TrafficProviderSettingsPage.qml:29
-msgid "Traffic"
-msgstr ""
-
-#: ../qml/pages/TrafficPage.qml:32
+#: ../qml/pages/TrafficPage.qml:31
 msgid "Traffic Conditions"
 msgstr ""
 
-#: ../qml/pages/TrafficPage.qml:252
+#: ../qml/pages/TrafficPage.qml:210
 msgid "Select options above to show reports"
 msgstr ""
 
-#: ../qml/pages/TrafficPage.qml:255
+#: ../qml/pages/TrafficPage.qml:213
 msgid "No reports found"
-msgstr ""
-
-#: ../qml/providers/fuel/AnwbOpenchargemap.qml:97
-#: ../qml/providers/fuel/AnwbOpenchargemap.qml:122
-msgid "Charging station"
 msgstr ""

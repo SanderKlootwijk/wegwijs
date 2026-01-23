@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2024  Sander Klootwijk
+* Copyright (C) 2026  Sander Klootwijk
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -147,8 +147,7 @@ Page {
                     model: [
                         { name: "ANWB", url: "https://www.anwb.nl"},
                         { name: "Geocoding", url: "https://geocode.maps.co"},
-                        { name: "Open Charge Map", url: "https://openchargemap.org/"},
-                        { name: "Rijkswaterstaat", url: "https://www.rwsverkeersinfo.nl"}
+                        { name: "Open Charge Map", url: "https://openchargemap.org/"}
                     ]
 
                     delegate: ListItem {

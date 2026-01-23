@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2024  Sander Klootwijk
+* Copyright (C) 2026  Sander Klootwijk
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -73,7 +73,30 @@ ListItem {
                 topMargin: units.gu(1)
             }
 
-            backgroundColor: roadColor
+            backgroundColor: {
+                if (theme.name == "Lomiri.Components.Themes.SuruDark") {
+                    if (roadType == "a") {
+                        "#960505"
+                    }
+                    else if (roadType == "n") {
+                        "#997b00"
+                    }
+                    else {
+                        "#00316b"
+                    }
+                }
+                else {
+                    if (roadType == "a") {
+                        "#bb0606"
+                    }
+                    else if (roadType == "n") {
+                        "#ffcd00"
+                    }
+                    else {
+                        "#003d86"
+                    }
+                }
+            }
 
             aspect: LomiriShape.Flat
 
@@ -81,10 +104,18 @@ ListItem {
                 id: roadLabel
 
                 anchors.centerIn: parent
-                
-                font.bold: true
-                
+
                 text: roadNumber
+                
+                font.weight: Font.DemiBold
+                color: {
+                    if (theme.name == "Lomiri.Components.Themes.Ambiance" && roadType == "n") {
+                        "black"
+                    }
+                    else {
+                        "white"
+                    }
+                }
             }
         }
 
@@ -106,7 +137,7 @@ ListItem {
                 height: units.gu(3)
                 width: jamsImage.width + jamsLabel.contentWidth + units.gu(1)
 
-                visible: root.trafficProvider.hasJams ? jamsCount > 0 : false
+                visible: jamsCount > 0
 
                 Image {
                     id: jamsImage
@@ -131,7 +162,7 @@ ListItem {
                         verticalCenter: parent.verticalCenter
                     }
 
-                    text: root.trafficProvider.hasJams ? jamsCount : ""
+                    text: jamsCount
 
                     font.bold: true
                 }
@@ -146,57 +177,12 @@ ListItem {
             }
 
             Item {
-                id: closuresItem
-
-                height: units.gu(3)
-                width: closuresImage.width + closuresLabel.contentWidth + units.gu(1)
-
-                visible: root.trafficProvider.hasClosures ? closuresCount > 0 : false
-
-                Image {
-                    id: closuresImage
-                    
-                    height: units.gu(2.5)
-
-                    anchors {
-                        left: parent.left
-                        verticalCenter: parent.verticalCenter
-                    }
-
-                    source: "../img/closures.png"
-
-                    fillMode: Image.PreserveAspectFit
-                }
-
-                Label {
-                    id: closuresLabel
-
-                    anchors {
-                        right: parent.right
-                        verticalCenter: parent.verticalCenter
-                    }
-
-                    text: root.trafficProvider.hasClosures ? closuresCount : ""
-
-                    font.bold: true
-                }
-
-                ColorOverlay {
-                    anchors.fill: closuresImage
-
-                    source: closuresImage
-
-                    color: theme.palette.normal.foregroundText
-                }
-            }
-
-            Item {
                 id: roadworksItem
 
                 height: units.gu(3)
                 width: roadworksImage.width + roadworksLabel.contentWidth + units.gu(0.75)
 
-                visible: root.trafficProvider.hasRoadworks ? roadworksCount > 0 : false
+                visible: roadworksCount > 0
 
                 Image {
                     id: roadworksImage
@@ -221,7 +207,7 @@ ListItem {
                         verticalCenter: parent.verticalCenter
                     }
 
-                    text: root.trafficProvider.hasRoadworks ? roadworksCount : ""
+                    text: roadworksCount
 
                     font.bold: true
                 }
@@ -241,7 +227,7 @@ ListItem {
                 height: units.gu(3)
                 width: speedcamerasImage.width + speedcamerasLabel.contentWidth + units.gu(0.75)
 
-                visible: root.trafficProvider.hasSpeedcameras ? speedcamerasCount > 0 : false
+                visible: speedcamerasCount > 0
 
                 Image {
                     id: speedcamerasImage
@@ -266,7 +252,7 @@ ListItem {
                         verticalCenter: parent.verticalCenter
                     }
 
-                    text: root.trafficProvider.hasSpeedcameras ? speedcamerasCount : ""
+                    text: speedcamerasCount
 
                     font.bold: true
                 }

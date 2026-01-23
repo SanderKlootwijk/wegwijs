@@ -1,5 +1,5 @@
 /*
-* Copyright (C) 2024  Sander Klootwijk
+* Copyright (C) 2026  Sander Klootwijk
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -31,21 +31,12 @@ Page {
         trailingActionBar {
             visible: !settings.firstRun
 
-            numberOfSlots: 1
-
             actions: [
                 Action {
                     text: i18n.tr("Settings")
                     iconName: "settings"
                     onTriggered: {
                         mainPage.pageStack.addPageToCurrentColumn(mainPage, settingsPage)
-                    }
-                },
-                Action {
-                    text: i18n.tr("About")
-                    iconName: "info"
-                    onTriggered: {
-                        mainPage.pageStack.addPageToCurrentColumn(mainPage, aboutPage)
                     }
                 }
             ]
@@ -139,7 +130,7 @@ Page {
                     
                     visible: root.firstRunSlide == 0
 
-                    text: i18n.tr("With Wegwijs, you're always informed about the current traffic conditions and can easily find nearby fuel prices") + "\n\n" + i18n.tr("Please note: Wegwijs currently only supports the Netherlands")
+                    text: i18n.tr("With Wegwijs, you're always informed about the current traffic conditions and can easily find nearby fuel prices") + "\n\n" + i18n.tr("Please note: Wegwijs can only retrieve traffic information for the Netherlands. However, it does provide support for fuel prices and charging stations in other European countries.")
                     horizontalAlignment: Text.AlignHCenter
                     wrapMode: Text.WordWrap
                 }
@@ -205,7 +196,7 @@ Page {
 
                     anchors.horizontalCenter: parent.horizontalCenter
 
-                    text: i18n.tr("Wegwijs is ready for use, further settings can be found in the menu at the top right of the screen")
+                    text: i18n.tr("Wegwijs is ready for use, further settings can be found in the menu at the top right of the screen.")
                     horizontalAlignment: Text.AlignHCenter
                     wrapMode: Text.WordWrap
                 }
@@ -308,8 +299,8 @@ Page {
                     onClicked: {
                         settings.firstRun = false
                         settings.fuelType == 4 ? fuelPage.fuelSections.selectedIndex = 1 : fuelPage.fuelSections.selectedIndex = 0
-                        root.trafficProvider.getTrafficData()
-                        root.fuelProvider.getFuelPrices()
+                        fetchTrafficData()
+                        fetchFuelPrices()
                     }
                 }
 
@@ -400,6 +391,12 @@ Page {
 
             width: mainPage.width
 
+            Repeater {
+                model: warningsListModel
+
+                delegate: WarningItem {}
+            }
+
             ListItem {
                 id: trafficListItem
                 
@@ -408,7 +405,7 @@ Page {
                 height: units.gu(9)
 
                 onClicked: {
-                    root.trafficProvider.getTrafficData()
+                    fetchTrafficData()
                     mainPage.pageStack.addPageToCurrentColumn(mainPage, trafficPage)
                 }
 
@@ -472,17 +469,17 @@ Page {
                         }
 
                         text: {
-                            if (root.trafficProvider.numberOfJams == -1 || root.trafficProvider.loading == true) {
+                            if (root.numberOfJams == -1 || root.trafficLoading == true) {
                                 i18n.tr("Loading") + "..."
                             }
-                            else if (root.trafficProvider.numberOfJams == 0) {
-                                root.trafficProvider.numberOfJams + " " + i18n.tr("traffic jams")
+                            else if (root.numberOfJams == 0) {
+                                root.numberOfJams + " " + i18n.tr("traffic jams")
                             }
-                            else if (root.trafficProvider.numberOfJams == 1) {
-                                root.trafficProvider.numberOfJams + " " + i18n.tr("traffic jam")
+                            else if (root.numberOfJams == 1) {
+                                root.numberOfJams + " " + i18n.tr("traffic jam")
                             }
                             else {
-                                root.trafficProvider.numberOfJams + " " + i18n.tr("traffic jams")
+                                root.numberOfJams + " " + i18n.tr("traffic jams")
                             }
                         }
 
@@ -500,7 +497,7 @@ Page {
                             bottom: parent.bottom
                         }
 
-                        text: root.trafficProvider.totalLengthOfJams == -1 || root.trafficProvider.loading == true ? "" : root.trafficProvider.totalLengthOfJams + " " + "km"
+                        text: root.totalLengthOfJams == -1 || root.trafficLoading == true ? "" : root.totalLengthOfJams + " " + "km"
 
                         elide: Text.ElideRight
                     }
@@ -528,7 +525,7 @@ Page {
                 height: units.gu(9)
 
                 onClicked: {
-                    root.fuelProvider.getFuelPrices()
+                    fetchFuelPrices()
                     mainPage.pageStack.addPageToCurrentColumn(mainPage, fuelPage)
                     settings.fuelType == 4 ? fuelPage.fuelSections.selectedIndex = 1 : fuelPage.fuelSections.selectedIndex = 0
                 }
@@ -568,7 +565,7 @@ Page {
                         }
 
                         text: {
-                            if (root.fuelProvider.loading == true) {
+                            if (root.fuelLoading == true) {
                                 i18n.tr("Loading") + "..."
                             }
                             else {
@@ -580,11 +577,11 @@ Page {
                                         fuelListModel.count + " " + i18n.tr("charging stations")
                                     }
                                 }
-                                else if (root.fuelProvider.lowestPriceStation == -1 ) {
+                                else if (root.lowestPriceStation == -1 ) {
                                     i18n.tr("No fuel stations found")
                                 }
                                 else {
-                                    root.fuelProvider.lowestPriceStation
+                                    root.lowestPriceStation
                                 }
                             }
                         }
@@ -604,7 +601,7 @@ Page {
                         }
 
                         text: {
-                            if (root.fuelProvider.lowestPriceStation == -1 || root.fuelProvider.loading == true) {
+                            if (root.lowestPriceStation == -1 || root.fuelLoading == true) {
                                 ""
                             }
                             else {
@@ -612,7 +609,7 @@ Page {
                                     i18n.tr("in a %1 km radius").arg(settings.searchRadius)
                                 }
                                 else {
-                                    "€" + root.fuelProvider.lowestPrice
+                                    "€" + root.lowestPrice
                                 }
                             }
                         }
