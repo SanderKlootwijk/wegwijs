@@ -8,15 +8,17 @@ msgstr ""
 "Project-Id-Version: wegwijs.sanderklootwijk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-23 21:17+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2026-04-10 20:09+0000\n"
+"Last-Translator: Serhii Horichenko <serhii@horichenko.com>\n"
+"Language-Team: Ukrainian <https://hosted.weblate.org/projects/ubports/"
+"wegwijs/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"X-Generator: Weblate 5.17-dev\n"
 
 #: ../qml/Main.qml:336 ../qml/Main.qml:361
 msgid "Charging station"
@@ -71,7 +73,7 @@ msgstr ""
 #: ../qml/pages/FilterPage.qml:48 ../qml/pages/SettingsPage.qml:36
 #: ../qml/pages/TrafficPage.qml:35
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: ../qml/pages/FilterPage.qml:100
 msgid "Search radius (as the crow flies)"
@@ -103,7 +105,7 @@ msgstr ""
 
 #: ../qml/pages/FuelPage.qml:81 ../qml/pages/MainPage.qml:221
 msgid "Search"
-msgstr ""
+msgstr "Пошук"
 
 #: ../qml/pages/FuelPage.qml:124
 msgid "No nearby charging stations found"
@@ -132,7 +134,7 @@ msgstr ""
 
 #: ../qml/pages/MainPage.qml:36 ../qml/pages/SettingsPage.qml:31
 msgid "Settings"
-msgstr ""
+msgstr "Налаштування"
 
 #: ../qml/pages/MainPage.qml:115
 msgid "You're all set!"
