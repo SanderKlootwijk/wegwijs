@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: wegwijs.sanderklootwijk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-23 21:17+0000\n"
-"PO-Revision-Date: 2026-04-10 20:09+0000\n"
+"PO-Revision-Date: 2026-04-16 16:53+0000\n"
 "Last-Translator: Serhii Horichenko <serhii@horichenko.com>\n"
 "Language-Team: Ukrainian <https://hosted.weblate.org/projects/ubports/"
 "wegwijs/uk/>\n"
@@ -18,57 +18,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Weblate 5.17-dev\n"
+"X-Generator: Weblate 5.17.1-dev\n"
 
 #: ../qml/Main.qml:336 ../qml/Main.qml:361
 msgid "Charging station"
-msgstr ""
+msgstr "Зарядна станція"
 
 #: ../qml/components/ConnectionItem.qml:96
 msgid "charging point"
-msgstr ""
+msgstr "точка зарядки"
 
 #: ../qml/components/ConnectionItem.qml:96
 msgid "charging points"
-msgstr ""
+msgstr "точки зарядки"
 
 #: ../qml/components/FuelShape.qml:54 ../qml/pages/MainPage.qml:166
 #: ../qml/pages/ResultPage.qml:219 ../qml/pages/SettingsPage.qml:179
 msgid "Electric"
-msgstr ""
+msgstr "Електрика"
 
 #: ../qml/components/WarningItem.qml:55
 msgid "Traffic warning"
-msgstr ""
+msgstr "Дорожнє попередження"
 
 #: ../qml/pages/AboutPage.qml:26 ../qml/pages/SettingsPage.qml:210
 msgid "About"
-msgstr ""
+msgstr "Інфо"
 
 #: ../qml/pages/AboutPage.qml:81 ../qml/pages/MainPage.qml:29
 #: wegwijs.desktop.in.h:1
 msgid "Wegwijs"
-msgstr ""
+msgstr "Wegwijs"
 
 #: ../qml/pages/AboutPage.qml:86
 msgid "Version"
-msgstr ""
+msgstr "Версія"
 
 #: ../qml/pages/AboutPage.qml:105
 msgid "Source code"
-msgstr ""
+msgstr "Початковий код"
 
 #: ../qml/pages/AboutPage.qml:106
 msgid "Report issues"
-msgstr ""
+msgstr "Повідомити про проблему"
 
 #: ../qml/pages/AboutPage.qml:134
 msgid "API usage"
-msgstr ""
+msgstr "Використання API"
 
 #: ../qml/pages/FilterPage.qml:43 ../qml/pages/FuelPage.qml:88
 msgid "Filters"
-msgstr ""
+msgstr "Фільтри"
 
 #: ../qml/pages/FilterPage.qml:48 ../qml/pages/SettingsPage.qml:36
 #: ../qml/pages/TrafficPage.qml:35
@@ -77,31 +77,31 @@ msgstr "Назад"
 
 #: ../qml/pages/FilterPage.qml:100
 msgid "Search radius (as the crow flies)"
-msgstr ""
+msgstr "Радіус пошуку (повітрям)"
 
 #: ../qml/pages/FilterPage.qml:199
 msgid "Kilowatt Range"
-msgstr ""
+msgstr "Діапазон кВт"
 
 #: ../qml/pages/FilterPage.qml:454
 msgid "Connection Types:"
-msgstr ""
+msgstr "Типи підключення:"
 
 #: ../qml/pages/FuelPage.qml:32
 msgid "Charging Stations"
-msgstr ""
+msgstr "Зарядні станції"
 
 #: ../qml/pages/FuelPage.qml:34
 msgid "Fuel Prices"
-msgstr ""
+msgstr "Ціни на пальне"
 
 #: ../qml/pages/FuelPage.qml:58
 msgid "Distance"
-msgstr ""
+msgstr "Відстань"
 
 #: ../qml/pages/FuelPage.qml:58
 msgid "Price"
-msgstr ""
+msgstr "Ціна"
 
 #: ../qml/pages/FuelPage.qml:81 ../qml/pages/MainPage.qml:221
 msgid "Search"
@@ -109,28 +109,28 @@ msgstr "Пошук"
 
 #: ../qml/pages/FuelPage.qml:124
 msgid "No nearby charging stations found"
-msgstr ""
+msgstr "Зарядні станції поблизу не знайдено"
 
 #: ../qml/pages/FuelPage.qml:124 ../qml/pages/FuelPage.qml:127
 msgid "Try another location or adjust your filters"
-msgstr ""
+msgstr "Спробуйте інше розташування або змініть фільтри"
 
 #: ../qml/pages/FuelPage.qml:127
 msgid "No nearby fuel stations found"
-msgstr ""
+msgstr "Заправні станції поблизу не знайдено"
 
 #: ../qml/pages/GpsPage.qml:33 ../qml/pages/SearchPage.qml:174
 msgid "Current location"
-msgstr ""
+msgstr "Поточне розташування"
 
 #: ../qml/pages/GpsPage.qml:41 ../qml/pages/GpsPage.qml:77
 #: ../qml/pages/GpsPage.qml:116
 msgid "Waiting for GPS signal..."
-msgstr ""
+msgstr "Очікування сигналу GPS..."
 
 #: ../qml/pages/GpsPage.qml:130
 msgid "This could take a while..."
-msgstr ""
+msgstr "Це може трохи тривати..."
 
 #: ../qml/pages/MainPage.qml:36 ../qml/pages/SettingsPage.qml:31
 msgid "Settings"
@@ -138,11 +138,11 @@ msgstr "Налаштування"
 
 #: ../qml/pages/MainPage.qml:115
 msgid "You're all set!"
-msgstr ""
+msgstr "Все готово!"
 
 #: ../qml/pages/MainPage.qml:118
 msgid "Welcome to Wegwijs!"
-msgstr ""
+msgstr "Ласкаво просимо до Wegwijs!"
 
 #: ../qml/pages/MainPage.qml:133
 msgid ""
@@ -150,119 +150,126 @@ msgid ""
 "Netherlands. However, it does provide support for fuel prices and charging "
 "stations in other European countries."
 msgstr ""
+"Зверніть увагу: Wegwijs може отримувати дорожню інформацію лише для "
+"Нідерландів. Однак, ціни на пальне та зарядні станції підтримуються й в "
+"інших країнах Європи."
 
 #: ../qml/pages/MainPage.qml:133
 msgid ""
 "With Wegwijs, you're always informed about the current traffic conditions "
 "and can easily find nearby fuel prices"
 msgstr ""
+"Завдяки Wegwijs можна отримувати інформацію про дорожню ситуацію та про ціни "
+"на пальне поблизу"
 
 #: ../qml/pages/MainPage.qml:145
 msgid "Select a type of fuel below to begin:"
-msgstr ""
+msgstr "Для початку оберіть тип пального:"
 
 #: ../qml/pages/MainPage.qml:187
 msgid "Now choose a location to find nearby fuel prices:"
-msgstr ""
+msgstr "Тепер виберіть розташування, де поблизу шукати ціни на пальне:"
 
 #: ../qml/pages/MainPage.qml:199
 msgid ""
 "Wegwijs is ready for use, further settings can be found in the menu at the "
 "top right of the screen."
 msgstr ""
+"Тепер Wegwijs можна користуватися. Інші налаштування знайдете в меню зверху "
+"праворуч."
 
 #: ../qml/pages/MainPage.qml:261
 msgid "Previous"
-msgstr ""
+msgstr "Назад"
 
 #: ../qml/pages/MainPage.qml:273
 msgid "Next"
-msgstr ""
+msgstr "Далі"
 
 #: ../qml/pages/MainPage.qml:295
 msgid "Done"
-msgstr ""
+msgstr "Виконано"
 
 #: ../qml/pages/MainPage.qml:351
 msgid "Connect to the internet to set up Wegwijs"
-msgstr ""
+msgstr "Для налаштування Wegwijs потрібен інтернет"
 
 #: ../qml/pages/MainPage.qml:351
 msgid "Connect to the internet to use Wegwijs"
-msgstr ""
+msgstr "Для використання Wegwijs потрібен інтернет"
 
 #: ../qml/pages/MainPage.qml:351
 msgid "You are currently offline"
-msgstr ""
+msgstr "Зараз Ви в режимі офлайн"
 
 #: ../qml/pages/MainPage.qml:473 ../qml/pages/MainPage.qml:569
 msgid "Loading"
-msgstr ""
+msgstr "Завантаження"
 
 #: ../qml/pages/MainPage.qml:476 ../qml/pages/MainPage.qml:482
 msgid "traffic jams"
-msgstr ""
+msgstr "затори"
 
 #: ../qml/pages/MainPage.qml:479
 msgid "traffic jam"
-msgstr ""
+msgstr "затор"
 
 #: ../qml/pages/MainPage.qml:574
 msgid "charging station"
-msgstr ""
+msgstr "зарядна станція"
 
 #: ../qml/pages/MainPage.qml:577
 msgid "charging stations"
-msgstr ""
+msgstr "зарядні станції"
 
 #: ../qml/pages/MainPage.qml:581
 msgid "No fuel stations found"
-msgstr ""
+msgstr "Заправні станції не знайдено"
 
 #: ../qml/pages/MainPage.qml:609
 msgid "in a %1 km radius"
-msgstr ""
+msgstr "в радіусі %1 км"
 
 #: ../qml/pages/ResultPage.qml:398
 msgid "Navigate"
-msgstr ""
+msgstr "Скерувати"
 
 #: ../qml/pages/SearchPage.qml:46
 msgid "Search for a location"
-msgstr ""
+msgstr "Пошук розташування"
 
 #: ../qml/pages/SearchPage.qml:108
 msgid "No locations found"
-msgstr ""
+msgstr "Розташування не знайдено"
 
 #: ../qml/pages/SettingsPage.qml:88
 msgid "Theme"
-msgstr ""
+msgstr "Тема"
 
 #: ../qml/pages/SettingsPage.qml:112
 msgid "System"
-msgstr ""
+msgstr "Система"
 
 #: ../qml/pages/SettingsPage.qml:139
 msgid "Fuel"
-msgstr ""
+msgstr "Паливо"
 
 #: ../qml/pages/SettingsPage.qml:163
 msgid "Fuel type"
-msgstr ""
+msgstr "Тип палива"
 
 #: ../qml/pages/SettingsPage.qml:228
 msgid "About this app"
-msgstr ""
+msgstr "Про цю програму"
 
 #: ../qml/pages/TrafficPage.qml:31
 msgid "Traffic Conditions"
-msgstr ""
+msgstr "Дорожня інформація"
 
 #: ../qml/pages/TrafficPage.qml:210
 msgid "Select options above to show reports"
-msgstr ""
+msgstr "Оберіть вище налаштування для звітів"
 
 #: ../qml/pages/TrafficPage.qml:213
 msgid "No reports found"
-msgstr ""
+msgstr "Звіти не знайдено"
