@@ -8,138 +8,140 @@ msgstr ""
 "Project-Id-Version: wegwijs.sanderklootwijk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-23 21:17+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2026-05-08 14:24+0000\n"
+"Last-Translator: Walter Garcia-Fontes <walter.garcia@upf.edu>\n"
+"Language-Team: Catalan <https://hosted.weblate.org/projects/ubports/wegwijs/"
+"ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 2026.5-dev\n"
 
 #: ../qml/Main.qml:336 ../qml/Main.qml:361
 msgid "Charging station"
-msgstr ""
+msgstr "Estació de càrrega"
 
 #: ../qml/components/ConnectionItem.qml:96
 msgid "charging point"
-msgstr ""
+msgstr "punt de càrrega"
 
 #: ../qml/components/ConnectionItem.qml:96
 msgid "charging points"
-msgstr ""
+msgstr "punts de càrrega"
 
 #: ../qml/components/FuelShape.qml:54 ../qml/pages/MainPage.qml:166
 #: ../qml/pages/ResultPage.qml:219 ../qml/pages/SettingsPage.qml:179
 msgid "Electric"
-msgstr ""
+msgstr "Elèctric"
 
 #: ../qml/components/WarningItem.qml:55
 msgid "Traffic warning"
-msgstr ""
+msgstr "Avís de trànsit"
 
 #: ../qml/pages/AboutPage.qml:26 ../qml/pages/SettingsPage.qml:210
 msgid "About"
-msgstr ""
+msgstr "Quant a"
 
 #: ../qml/pages/AboutPage.qml:81 ../qml/pages/MainPage.qml:29
 #: wegwijs.desktop.in.h:1
 msgid "Wegwijs"
-msgstr ""
+msgstr "Wegwijs"
 
 #: ../qml/pages/AboutPage.qml:86
 msgid "Version"
-msgstr ""
+msgstr "Versió"
 
 #: ../qml/pages/AboutPage.qml:105
 msgid "Source code"
-msgstr ""
+msgstr "Codi font"
 
 #: ../qml/pages/AboutPage.qml:106
 msgid "Report issues"
-msgstr ""
+msgstr "Informeu de problemes"
 
 #: ../qml/pages/AboutPage.qml:134
 msgid "API usage"
-msgstr ""
+msgstr "Ús de l'API"
 
 #: ../qml/pages/FilterPage.qml:43 ../qml/pages/FuelPage.qml:88
 msgid "Filters"
-msgstr ""
+msgstr "Filtres"
 
 #: ../qml/pages/FilterPage.qml:48 ../qml/pages/SettingsPage.qml:36
 #: ../qml/pages/TrafficPage.qml:35
 msgid "Back"
-msgstr ""
+msgstr "Enrere"
 
 #: ../qml/pages/FilterPage.qml:100
 msgid "Search radius (as the crow flies)"
-msgstr ""
+msgstr "Radi de cerca (com les mosques del corb)"
 
 #: ../qml/pages/FilterPage.qml:199
 msgid "Kilowatt Range"
-msgstr ""
+msgstr "Interval de Kilowatt"
 
 #: ../qml/pages/FilterPage.qml:454
 msgid "Connection Types:"
-msgstr ""
+msgstr "Tipus de connexió:"
 
 #: ../qml/pages/FuelPage.qml:32
 msgid "Charging Stations"
-msgstr ""
+msgstr "Estacions de càrrega"
 
 #: ../qml/pages/FuelPage.qml:34
 msgid "Fuel Prices"
-msgstr ""
+msgstr "Preus del combustible"
 
 #: ../qml/pages/FuelPage.qml:58
 msgid "Distance"
-msgstr ""
+msgstr "Distància"
 
 #: ../qml/pages/FuelPage.qml:58
 msgid "Price"
-msgstr ""
+msgstr "Preu"
 
 #: ../qml/pages/FuelPage.qml:81 ../qml/pages/MainPage.qml:221
 msgid "Search"
-msgstr ""
+msgstr "Cerca"
 
 #: ../qml/pages/FuelPage.qml:124
 msgid "No nearby charging stations found"
-msgstr ""
+msgstr "No s'ha trobat cap estació de càrrega propera"
 
 #: ../qml/pages/FuelPage.qml:124 ../qml/pages/FuelPage.qml:127
 msgid "Try another location or adjust your filters"
-msgstr ""
+msgstr "Proveu amb una altra ubicació o ajusteu els filtres"
 
 #: ../qml/pages/FuelPage.qml:127
 msgid "No nearby fuel stations found"
-msgstr ""
+msgstr "No s'ha trobat cap estació de combustible propera"
 
 #: ../qml/pages/GpsPage.qml:33 ../qml/pages/SearchPage.qml:174
 msgid "Current location"
-msgstr ""
+msgstr "Ubicació actual"
 
 #: ../qml/pages/GpsPage.qml:41 ../qml/pages/GpsPage.qml:77
 #: ../qml/pages/GpsPage.qml:116
 msgid "Waiting for GPS signal..."
-msgstr ""
+msgstr "S'està esperant el senyal GPS..."
 
 #: ../qml/pages/GpsPage.qml:130
 msgid "This could take a while..."
-msgstr ""
+msgstr "Això pot trigar una estona..."
 
 #: ../qml/pages/MainPage.qml:36 ../qml/pages/SettingsPage.qml:31
 msgid "Settings"
-msgstr ""
+msgstr "Configuració"
 
 #: ../qml/pages/MainPage.qml:115
 msgid "You're all set!"
-msgstr ""
+msgstr "La preparació ha acabat!"
 
 #: ../qml/pages/MainPage.qml:118
 msgid "Welcome to Wegwijs!"
-msgstr ""
+msgstr "Benvinguts a Wegwijs!"
 
 #: ../qml/pages/MainPage.qml:133
 msgid ""
@@ -147,119 +149,126 @@ msgid ""
 "Netherlands. However, it does provide support for fuel prices and charging "
 "stations in other European countries."
 msgstr ""
+"Tingueu en compte que Wegwijs només pot recuperar informació de trànsit per "
+"als Països Baixos. No obstant això, proporciona suport als preus dels "
+"carburants i les estacions de càrrega en altres països europeus."
 
 #: ../qml/pages/MainPage.qml:133
 msgid ""
 "With Wegwijs, you're always informed about the current traffic conditions "
 "and can easily find nearby fuel prices"
 msgstr ""
+"Amb Wegwijs, sempre teniu informació sobre les condicions actuals del "
+"trànsit i podeu trobar fàcilment els preus del combustible a prop"
 
 #: ../qml/pages/MainPage.qml:145
 msgid "Select a type of fuel below to begin:"
-msgstr ""
+msgstr "Seleccioneu un tipus de combustible a continuació per començar:"
 
 #: ../qml/pages/MainPage.qml:187
 msgid "Now choose a location to find nearby fuel prices:"
-msgstr ""
+msgstr "Ara trieu una ubicació per trobar preus propers del combustible:"
 
 #: ../qml/pages/MainPage.qml:199
 msgid ""
 "Wegwijs is ready for use, further settings can be found in the menu at the "
 "top right of the screen."
 msgstr ""
+"Wegwijs està llest per al seu ús, es poden trobar més opcions de "
+"configuració al menú de la part superior dreta de la pantalla."
 
 #: ../qml/pages/MainPage.qml:261
 msgid "Previous"
-msgstr ""
+msgstr "Anterior"
 
 #: ../qml/pages/MainPage.qml:273
 msgid "Next"
-msgstr ""
+msgstr "Següent"
 
 #: ../qml/pages/MainPage.qml:295
 msgid "Done"
-msgstr ""
+msgstr "Fet"
 
 #: ../qml/pages/MainPage.qml:351
 msgid "Connect to the internet to set up Wegwijs"
-msgstr ""
+msgstr "Connecteu-vos a Internet per configurar Wegwijs"
 
 #: ../qml/pages/MainPage.qml:351
 msgid "Connect to the internet to use Wegwijs"
-msgstr ""
+msgstr "Connecteu-vos a Internet per utilitzar Wegwijs"
 
 #: ../qml/pages/MainPage.qml:351
 msgid "You are currently offline"
-msgstr ""
+msgstr "Esteu fora de línia"
 
 #: ../qml/pages/MainPage.qml:473 ../qml/pages/MainPage.qml:569
 msgid "Loading"
-msgstr ""
+msgstr "S'està carregant"
 
 #: ../qml/pages/MainPage.qml:476 ../qml/pages/MainPage.qml:482
 msgid "traffic jams"
-msgstr ""
+msgstr "embussos de trànsit"
 
 #: ../qml/pages/MainPage.qml:479
 msgid "traffic jam"
-msgstr ""
+msgstr "embús de trànsit"
 
 #: ../qml/pages/MainPage.qml:574
 msgid "charging station"
-msgstr ""
+msgstr "estació de càrrega"
 
 #: ../qml/pages/MainPage.qml:577
 msgid "charging stations"
-msgstr ""
+msgstr "estacions de càrrega"
 
 #: ../qml/pages/MainPage.qml:581
 msgid "No fuel stations found"
-msgstr ""
+msgstr "No s'ha trobat cap estació de combustible"
 
 #: ../qml/pages/MainPage.qml:609
 msgid "in a %1 km radius"
-msgstr ""
+msgstr "en un radi de %1 km"
 
 #: ../qml/pages/ResultPage.qml:398
 msgid "Navigate"
-msgstr ""
+msgstr "Navega"
 
 #: ../qml/pages/SearchPage.qml:46
 msgid "Search for a location"
-msgstr ""
+msgstr "Cerca una ubicació"
 
 #: ../qml/pages/SearchPage.qml:108
 msgid "No locations found"
-msgstr ""
+msgstr "No s'ha trobat cap ubicació"
 
 #: ../qml/pages/SettingsPage.qml:88
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 #: ../qml/pages/SettingsPage.qml:112
 msgid "System"
-msgstr ""
+msgstr "Sistema"
 
 #: ../qml/pages/SettingsPage.qml:139
 msgid "Fuel"
-msgstr ""
+msgstr "combustible"
 
 #: ../qml/pages/SettingsPage.qml:163
 msgid "Fuel type"
-msgstr ""
+msgstr "Tipus de combustible"
 
 #: ../qml/pages/SettingsPage.qml:228
 msgid "About this app"
-msgstr ""
+msgstr "Quant a aquesta aplicació"
 
 #: ../qml/pages/TrafficPage.qml:31
 msgid "Traffic Conditions"
-msgstr ""
+msgstr "Condicions de trànsit"
 
 #: ../qml/pages/TrafficPage.qml:210
 msgid "Select options above to show reports"
-msgstr ""
+msgstr "Seleccioneu les opcions de dalt per mostrar els informes"
 
 #: ../qml/pages/TrafficPage.qml:213
 msgid "No reports found"
-msgstr ""
+msgstr "No s'ha trobat cap informe"
