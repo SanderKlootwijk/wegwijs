@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: wegwijs.sanderklootwijk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-23 21:17+0000\n"
-"PO-Revision-Date: 2026-08-28 18:45+0000\n"
+"PO-Revision-Date: 2026-08-31 09:53+0000\n"
 "Last-Translator: Alagirisamy Rengaraj <radhaalagirisamy@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/ubports/wegwijs/"
 "ta/>\n"
@@ -133,7 +133,7 @@ msgstr ""
 
 #: ../qml/pages/MainPage.qml:36 ../qml/pages/SettingsPage.qml:31
 msgid "Settings"
-msgstr ""
+msgstr "அமைப்புக்கள்"
 
 #: ../qml/pages/MainPage.qml:115
 msgid "You're all set!"
