@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: wegwijs.sanderklootwijk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-23 21:17+0000\n"
-"PO-Revision-Date: 2026-09-17 22:01+0000\n"
+"PO-Revision-Date: 2026-09-18 22:51+0000\n"
 "Last-Translator: Arif Budiman <arifpedia@gmail.com>\n"
 "Language-Team: Indonesian <https://hosted.weblate.org/projects/ubports/"
 "wegwijs/id/>\n"
@@ -21,24 +21,24 @@ msgstr ""
 
 #: ../qml/Main.qml:336 ../qml/Main.qml:361
 msgid "Charging station"
-msgstr ""
+msgstr "Stasiun pengisian daya"
 
 #: ../qml/components/ConnectionItem.qml:96
 msgid "charging point"
-msgstr ""
+msgstr "titik pengisian daya"
 
 #: ../qml/components/ConnectionItem.qml:96
 msgid "charging points"
-msgstr ""
+msgstr "titik pengisian daya"
 
 #: ../qml/components/FuelShape.qml:54 ../qml/pages/MainPage.qml:166
 #: ../qml/pages/ResultPage.qml:219 ../qml/pages/SettingsPage.qml:179
 msgid "Electric"
-msgstr ""
+msgstr "Listrik"
 
 #: ../qml/components/WarningItem.qml:55
 msgid "Traffic warning"
-msgstr ""
+msgstr "Peringatan lalu lintas"
 
 #: ../qml/pages/AboutPage.qml:26 ../qml/pages/SettingsPage.qml:210
 msgid "About"
@@ -47,27 +47,27 @@ msgstr "Tentang"
 #: ../qml/pages/AboutPage.qml:81 ../qml/pages/MainPage.qml:29
 #: wegwijs.desktop.in.h:1
 msgid "Wegwijs"
-msgstr ""
+msgstr "Wegwijs"
 
 #: ../qml/pages/AboutPage.qml:86
 msgid "Version"
-msgstr ""
+msgstr "Versi"
 
 #: ../qml/pages/AboutPage.qml:105
 msgid "Source code"
-msgstr ""
+msgstr "Kode sumber"
 
 #: ../qml/pages/AboutPage.qml:106
 msgid "Report issues"
-msgstr ""
+msgstr "Laporkan masalah"
 
 #: ../qml/pages/AboutPage.qml:134
 msgid "API usage"
-msgstr ""
+msgstr "Penggunaan API"
 
 #: ../qml/pages/FilterPage.qml:43 ../qml/pages/FuelPage.qml:88
 msgid "Filters"
-msgstr ""
+msgstr "Filter"
 
 #: ../qml/pages/FilterPage.qml:48 ../qml/pages/SettingsPage.qml:36
 #: ../qml/pages/TrafficPage.qml:35
@@ -76,31 +76,31 @@ msgstr "Kembali"
 
 #: ../qml/pages/FilterPage.qml:100
 msgid "Search radius (as the crow flies)"
-msgstr ""
+msgstr "Radius pencarian (jarak garis lurus)"
 
 #: ../qml/pages/FilterPage.qml:199
 msgid "Kilowatt Range"
-msgstr ""
+msgstr "Rentang kilowatt"
 
 #: ../qml/pages/FilterPage.qml:454
 msgid "Connection Types:"
-msgstr ""
+msgstr "Jenis konektor:"
 
 #: ../qml/pages/FuelPage.qml:32
 msgid "Charging Stations"
-msgstr ""
+msgstr "Stasiun pengisian daya"
 
 #: ../qml/pages/FuelPage.qml:34
 msgid "Fuel Prices"
-msgstr ""
+msgstr "Harga bahan bakar"
 
 #: ../qml/pages/FuelPage.qml:58
 msgid "Distance"
-msgstr ""
+msgstr "Jarak"
 
 #: ../qml/pages/FuelPage.qml:58
 msgid "Price"
-msgstr ""
+msgstr "Harga"
 
 #: ../qml/pages/FuelPage.qml:81 ../qml/pages/MainPage.qml:221
 msgid "Search"
@@ -108,28 +108,28 @@ msgstr "Cari"
 
 #: ../qml/pages/FuelPage.qml:124
 msgid "No nearby charging stations found"
-msgstr ""
+msgstr "Tidak ditemukan stasiun pengisian daya di sekitar"
 
 #: ../qml/pages/FuelPage.qml:124 ../qml/pages/FuelPage.qml:127
 msgid "Try another location or adjust your filters"
-msgstr ""
+msgstr "Coba lokasi lain atau sesuaikan filter Anda"
 
 #: ../qml/pages/FuelPage.qml:127
 msgid "No nearby fuel stations found"
-msgstr ""
+msgstr "Tidak ditemukan stasiun bahan bakar di sekitar"
 
 #: ../qml/pages/GpsPage.qml:33 ../qml/pages/SearchPage.qml:174
 msgid "Current location"
-msgstr ""
+msgstr "Lokasi saat ini"
 
 #: ../qml/pages/GpsPage.qml:41 ../qml/pages/GpsPage.qml:77
 #: ../qml/pages/GpsPage.qml:116
 msgid "Waiting for GPS signal..."
-msgstr ""
+msgstr "Menunggu sinyal GPS..."
 
 #: ../qml/pages/GpsPage.qml:130
 msgid "This could take a while..."
-msgstr ""
+msgstr "Ini mungkin memerlukan waktu..."
 
 #: ../qml/pages/MainPage.qml:36 ../qml/pages/SettingsPage.qml:31
 msgid "Settings"
@@ -137,11 +137,11 @@ msgstr "Pengaturan"
 
 #: ../qml/pages/MainPage.qml:115
 msgid "You're all set!"
-msgstr ""
+msgstr "Semuanya sudah siap!"
 
 #: ../qml/pages/MainPage.qml:118
 msgid "Welcome to Wegwijs!"
-msgstr ""
+msgstr "Selamat datang di Wegwijs!"
 
 #: ../qml/pages/MainPage.qml:133
 msgid ""
@@ -149,86 +149,94 @@ msgid ""
 "Netherlands. However, it does provide support for fuel prices and charging "
 "stations in other European countries."
 msgstr ""
+"Harap diperhatikan: Wegwijs hanya dapat mengambil informasi lalu lintas "
+"untuk Belanda. Namun, Wegwijs tetap mendukung informasi harga bahan bakar "
+"dan stasiun pengisian daya di negara-negara Eropa lainnya."
 
 #: ../qml/pages/MainPage.qml:133
 msgid ""
 "With Wegwijs, you're always informed about the current traffic conditions "
 "and can easily find nearby fuel prices"
 msgstr ""
+"Dengan Wegwijs, Anda selalu mendapatkan informasi tentang kondisi lalu "
+"lintas terkini dan dapat dengan mudah menemukan harga bahan bakar di sekitar "
+"Anda"
 
 #: ../qml/pages/MainPage.qml:145
 msgid "Select a type of fuel below to begin:"
-msgstr ""
+msgstr "Pilih jenis bahan bakar di bawah ini untuk memulai:"
 
 #: ../qml/pages/MainPage.qml:187
 msgid "Now choose a location to find nearby fuel prices:"
-msgstr ""
+msgstr "Sekarang, pilih lokasi untuk menemukan harga bahan bakar di sekitar:"
 
 #: ../qml/pages/MainPage.qml:199
 msgid ""
 "Wegwijs is ready for use, further settings can be found in the menu at the "
 "top right of the screen."
 msgstr ""
+"Wegwijs siap digunakan. Pengaturan lainnya dapat ditemukan di menu pada "
+"bagian kanan atas layar."
 
 #: ../qml/pages/MainPage.qml:261
 msgid "Previous"
-msgstr ""
+msgstr "Sebelumnya"
 
 #: ../qml/pages/MainPage.qml:273
 msgid "Next"
-msgstr ""
+msgstr "Berikutnya"
 
 #: ../qml/pages/MainPage.qml:295
 msgid "Done"
-msgstr ""
+msgstr "Selesai"
 
 #: ../qml/pages/MainPage.qml:351
 msgid "Connect to the internet to set up Wegwijs"
-msgstr ""
+msgstr "Sambungkan ke internet untuk menyiapkan Wegwijs"
 
 #: ../qml/pages/MainPage.qml:351
 msgid "Connect to the internet to use Wegwijs"
-msgstr ""
+msgstr "Sambungkan ke internet untuk menggunakan Wegwijs"
 
 #: ../qml/pages/MainPage.qml:351
 msgid "You are currently offline"
-msgstr ""
+msgstr "Anda sedang offline"
 
 #: ../qml/pages/MainPage.qml:473 ../qml/pages/MainPage.qml:569
 msgid "Loading"
-msgstr ""
+msgstr "Memuat"
 
 #: ../qml/pages/MainPage.qml:476 ../qml/pages/MainPage.qml:482
 msgid "traffic jams"
-msgstr ""
+msgstr "kemacetan lalu lintas"
 
 #: ../qml/pages/MainPage.qml:479
 msgid "traffic jam"
-msgstr ""
+msgstr "kemacetan lalu lintas"
 
 #: ../qml/pages/MainPage.qml:574
 msgid "charging station"
-msgstr ""
+msgstr "stasiun pengisian daya"
 
 #: ../qml/pages/MainPage.qml:577
 msgid "charging stations"
-msgstr ""
+msgstr "stasiun pengisian daya"
 
 #: ../qml/pages/MainPage.qml:581
 msgid "No fuel stations found"
-msgstr ""
+msgstr "Tidak ditemukan stasiun bahan bakar"
 
 #: ../qml/pages/MainPage.qml:609
 msgid "in a %1 km radius"
-msgstr ""
+msgstr "dalam radius %1 km"
 
 #: ../qml/pages/ResultPage.qml:398
 msgid "Navigate"
-msgstr ""
+msgstr "Navigasi"
 
 #: ../qml/pages/SearchPage.qml:46
 msgid "Search for a location"
-msgstr ""
+msgstr "Cari lokasi"
 
 #: ../qml/pages/SearchPage.qml:108
 msgid "No locations found"
@@ -244,24 +252,24 @@ msgstr "Sistem"
 
 #: ../qml/pages/SettingsPage.qml:139
 msgid "Fuel"
-msgstr ""
+msgstr "Bahan bakar"
 
 #: ../qml/pages/SettingsPage.qml:163
 msgid "Fuel type"
-msgstr ""
+msgstr "Jenis bahan bakar"
 
 #: ../qml/pages/SettingsPage.qml:228
 msgid "About this app"
-msgstr ""
+msgstr "Tentang aplikasi ini"
 
 #: ../qml/pages/TrafficPage.qml:31
 msgid "Traffic Conditions"
-msgstr ""
+msgstr "Kondisi lalu lintas"
 
 #: ../qml/pages/TrafficPage.qml:210
 msgid "Select options above to show reports"
-msgstr ""
+msgstr "Pilih opsi di atas untuk menampilkan laporan"
 
 #: ../qml/pages/TrafficPage.qml:213
 msgid "No reports found"
-msgstr ""
+msgstr "Tidak ditemukan laporan"
