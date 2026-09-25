@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: wegwijs.sanderklootwijk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-23 21:17+0000\n"
-"PO-Revision-Date: 2026-09-04 05:51+0000\n"
+"PO-Revision-Date: 2026-09-26 10:51+0000\n"
 "Last-Translator: Alagirisamy Rengaraj <radhaalagirisamy@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/ubports/wegwijs/"
 "ta/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.9\n"
+"X-Generator: Weblate 2026.10.dev0\n"
 
 #: ../qml/Main.qml:336 ../qml/Main.qml:361
 msgid "Charging station"
@@ -42,7 +42,7 @@ msgstr ""
 
 #: ../qml/pages/AboutPage.qml:26 ../qml/pages/SettingsPage.qml:210
 msgid "About"
-msgstr "பொருளடக்கம்"
+msgstr "பற்றி"
 
 #: ../qml/pages/AboutPage.qml:81 ../qml/pages/MainPage.qml:29
 #: wegwijs.desktop.in.h:1
@@ -51,15 +51,15 @@ msgstr ""
 
 #: ../qml/pages/AboutPage.qml:86
 msgid "Version"
-msgstr ""
+msgstr "பதிப்பு"
 
 #: ../qml/pages/AboutPage.qml:105
 msgid "Source code"
-msgstr ""
+msgstr "மூலக் குறியீடு"
 
 #: ../qml/pages/AboutPage.qml:106
 msgid "Report issues"
-msgstr ""
+msgstr "சிக்கல்களைப் புகாரளிக்கவும்"
 
 #: ../qml/pages/AboutPage.qml:134
 msgid "API usage"
@@ -104,7 +104,7 @@ msgstr ""
 
 #: ../qml/pages/FuelPage.qml:81 ../qml/pages/MainPage.qml:221
 msgid "Search"
-msgstr "தேடுதல்"
+msgstr "தேடல்"
 
 #: ../qml/pages/FuelPage.qml:124
 msgid "No nearby charging stations found"
@@ -133,7 +133,7 @@ msgstr ""
 
 #: ../qml/pages/MainPage.qml:36 ../qml/pages/SettingsPage.qml:31
 msgid "Settings"
-msgstr "அமைப்புக்கள்"
+msgstr "அமைப்புகள்"
 
 #: ../qml/pages/MainPage.qml:115
 msgid "You're all set!"
@@ -240,7 +240,7 @@ msgstr "கருப்பொருள்"
 
 #: ../qml/pages/SettingsPage.qml:112
 msgid "System"
-msgstr "கணினி"
+msgstr "கணினி அமைப்பு"
 
 #: ../qml/pages/SettingsPage.qml:139
 msgid "Fuel"
