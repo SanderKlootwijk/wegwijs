@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: wegwijs.sanderklootwijk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-23 21:17+0000\n"
-"PO-Revision-Date: 2026-09-28 13:51+0000\n"
+"PO-Revision-Date: 2026-10-09 02:14+0000\n"
 "Last-Translator: Alagirisamy Rengaraj <radhaalagirisamy@gmail.com>\n"
 "Language-Team: Tamil <https://hosted.weblate.org/projects/ubports/wegwijs/"
 "ta/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.10.dev0\n"
+"X-Generator: Weblate 2026.10.1.dev0\n"
 
 #: ../qml/Main.qml:336 ../qml/Main.qml:361
 msgid "Charging station"
@@ -63,7 +63,7 @@ msgstr "சிக்கல்களைப் புகாரளிக்கவ�
 
 #: ../qml/pages/AboutPage.qml:134
 msgid "API usage"
-msgstr ""
+msgstr "செ.நி.இ(செயலி நிரலாக்க இடைமுகம்)(API )பயன்பாடு"
 
 #: ../qml/pages/FilterPage.qml:43 ../qml/pages/FuelPage.qml:88
 msgid "Filters"
@@ -120,16 +120,17 @@ msgstr ""
 
 #: ../qml/pages/GpsPage.qml:33 ../qml/pages/SearchPage.qml:174
 msgid "Current location"
-msgstr ""
+msgstr "நடப்பு இருப்பிடம்"
 
 #: ../qml/pages/GpsPage.qml:41 ../qml/pages/GpsPage.qml:77
 #: ../qml/pages/GpsPage.qml:116
 msgid "Waiting for GPS signal..."
 msgstr ""
+"உ.பு.அ (உலகளாவிய புவிநிலைகாட்டி அமைப்பு)(GPS)சமிக்ஞைக்காக காத்திருப்பு..."
 
 #: ../qml/pages/GpsPage.qml:130
 msgid "This could take a while..."
-msgstr ""
+msgstr "இது சிறிது நேரம் எடுக்கலாம்..."
 
 #: ../qml/pages/MainPage.qml:36 ../qml/pages/SettingsPage.qml:31
 msgid "Settings"
@@ -228,11 +229,11 @@ msgstr ""
 
 #: ../qml/pages/SearchPage.qml:46
 msgid "Search for a location"
-msgstr ""
+msgstr "ஒரு இருப்பிடத்தை தேடவும்"
 
 #: ../qml/pages/SearchPage.qml:108
 msgid "No locations found"
-msgstr ""
+msgstr "இருப்பிடம் எதுவும் காணப்படவில்லை"
 
 #: ../qml/pages/SettingsPage.qml:88
 msgid "Theme"
@@ -252,7 +253,7 @@ msgstr ""
 
 #: ../qml/pages/SettingsPage.qml:228
 msgid "About this app"
-msgstr ""
+msgstr "இந்த செயலி குறித்து"
 
 #: ../qml/pages/TrafficPage.qml:31
 msgid "Traffic Conditions"
