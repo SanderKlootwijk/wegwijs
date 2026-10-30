@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: wegwijs.sanderklootwijk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-23 21:17+0000\n"
-"PO-Revision-Date: 2026-10-19 21:51+0000\n"
+"PO-Revision-Date: 2026-10-30 11:54+0000\n"
 "Last-Translator: Kristoffer Grundström "
 "<umeaboy@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/ubports/wegwijs/"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: ../qml/Main.qml:336 ../qml/Main.qml:361
 msgid "Charging station"
-msgstr ""
+msgstr "Laddstation"
 
 #: ../qml/components/ConnectionItem.qml:96
 msgid "charging point"
@@ -97,7 +97,7 @@ msgstr ""
 
 #: ../qml/pages/FuelPage.qml:58
 msgid "Distance"
-msgstr ""
+msgstr "Avstånd"
 
 #: ../qml/pages/FuelPage.qml:58
 msgid "Price"
@@ -177,7 +177,7 @@ msgstr ""
 
 #: ../qml/pages/MainPage.qml:273
 msgid "Next"
-msgstr ""
+msgstr "Nästa"
 
 #: ../qml/pages/MainPage.qml:295
 msgid "Done"
@@ -197,7 +197,7 @@ msgstr ""
 
 #: ../qml/pages/MainPage.qml:473 ../qml/pages/MainPage.qml:569
 msgid "Loading"
-msgstr ""
+msgstr "Laddar"
 
 #: ../qml/pages/MainPage.qml:476 ../qml/pages/MainPage.qml:482
 msgid "traffic jams"
@@ -225,7 +225,7 @@ msgstr ""
 
 #: ../qml/pages/ResultPage.qml:398
 msgid "Navigate"
-msgstr ""
+msgstr "Navigera"
 
 #: ../qml/pages/SearchPage.qml:46
 msgid "Search for a location"
@@ -241,11 +241,11 @@ msgstr ""
 
 #: ../qml/pages/SettingsPage.qml:112
 msgid "System"
-msgstr ""
+msgstr "System"
 
 #: ../qml/pages/SettingsPage.qml:139
 msgid "Fuel"
-msgstr ""
+msgstr "Bränsle"
 
 #: ../qml/pages/SettingsPage.qml:163
 msgid "Fuel type"
