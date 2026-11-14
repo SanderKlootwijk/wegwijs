@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: wegwijs.sanderklootwijk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-23 21:17+0000\n"
-"PO-Revision-Date: 2026-11-03 21:51+0000\n"
+"PO-Revision-Date: 2026-11-15 03:18+0000\n"
 "Last-Translator: Kristoffer Grundström "
 "<umeaboy@users.noreply.hosted.weblate.org>\n"
 "Language-Team: Swedish <https://hosted.weblate.org/projects/ubports/wegwijs/"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 2026.11.1.dev0\n"
+"X-Generator: Weblate 2026.12.dev0\n"
 
 #: ../qml/Main.qml:336 ../qml/Main.qml:361
 msgid "Charging station"
@@ -233,7 +233,7 @@ msgstr ""
 
 #: ../qml/pages/SearchPage.qml:108
 msgid "No locations found"
-msgstr ""
+msgstr "Inga platser hittades"
 
 #: ../qml/pages/SettingsPage.qml:88
 msgid "Theme"
