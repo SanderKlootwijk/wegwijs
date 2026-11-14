@@ -290,8 +290,6 @@ MainView {
 
     // Fetch current fuel prices and information
     function fetchFuelPrices() {
-        var xhr = new XMLHttpRequest();
-
         var lat = settings.currentLatitude;
         var lon = settings.currentLongitude;
         var radius = settings.searchRadius;
@@ -302,31 +300,238 @@ MainView {
         var maximumKw = settings.maximumKw;
         var connectionTypes = settings.connectionTypes;
 
-        var url;
+        fuelLoading = true;
+        fuelListModel.clear();
+
+        // Check if we're likely in Germany (latitude > 50 usually indicates Germany/central Europe)
+        // Also check if we're in Netherlands (latitude between 50.5 and 54, longitude between 3 and 7.5)
+        var isGermany = lat > 50 && !(lat > 50.5 && lat < 54 && lon > 3 && lon < 7.5);
 
         if (fuelType === "electric") {
-            url = "https://api.openchargemap.io/v3/poi?key=" + root.openchargemapKey + `&latitude=${lat}&longitude=${lon}&distance=${radius}&distanceunit=km&minpowerkw=${minimumKw}&maxpowerkw=${maximumKw}&connectiontypeid=${connectionTypes}`;
+            // For charging stations, use Open Charge Map
+            fetchOpenChargeMapData(lat, lon, radius, minimumKw, maximumKw, connectionTypes);
+        } else if (isGermany) {
+            // For Germany, use German data sources
+            fetchGermanFuelData(lat, lon, radius);
         } else {
-            url = "https://api.anwb.nl/routing/points-of-interest/v3/all?type-filter=FUEL_STATION&show-all-pois-along-route-filter=true&bounding-box-filter=" + bounds.replace(":", ",");
+            // For Netherlands and other countries, use ANWB
+            fetchANWBFuelData(bounds);
         }
+    }
 
-        fuelLoading = true;
+    // Fetch fuel data from ANWB (Netherlands)
+    function fetchANWBFuelData(bounds) {
+        var xhr = new XMLHttpRequest();
+        var url = "https://api.anwb.nl/routing/points-of-interest/v3/all?type-filter=FUEL_STATION&show-all-pois-along-route-filter=true&bounding-box-filter=" + bounds.replace(":", ",");
 
         xhr.open("GET", url, true);
-
         xhr.onreadystatechange = function() {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    if (xhr.status === 200) {
-                        var list;
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    processANWBStations(data.value);
+                } else {
+                    console.log("ANWB API failed:", xhr.status, xhr.statusText);
+                }
+                fuelLoading = false;
+                findLowestPrice();
+            }
+        };
+        xhr.send();
+    }
 
-                        if (fuelType === "electric") {
-                            list = JSON.parse(xhr.responseText);
-                        } else {
-                            var data = JSON.parse(xhr.responseText);
-                            list = data.value;
-                        }
+    // Fetch fuel data from German sources
+    function fetchGermanFuelData(lat, lon, radius) {
+        // Use Tankerkoenig API (free German fuel price API)
+        // Note: Tankerkoenig requires an API key which can be obtained for free at https://creativecommons.tankerkoenig.de/
+        var apiKey = ""; // Add your Tankerkoenig API key here
+        
+        if (!apiKey) {
+            console.log("Tankerkoenig API key not set. Please add your API key in Main.qml");
+            fuelLoading = false;
+            return;
+        }
 
-                        fuelListModel.clear();
+        var xhr = new XMLHttpRequest();
+        var url = `https://creativecommons.tankerkoenig.de/json/list.php?lat=${lat}&lng=${lon}&rad=${radius}&sort=dist&type=all&apikey=${apiKey}`;
+
+        xhr.open("GET", url, true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var data = JSON.parse(xhr.responseText);
+                    if (data && data.stations) {
+                        processTankerkoenigStations(data.stations, lat, lon);
+                    }
+                } else {
+                    console.log("Tankerkoenig API failed:", xhr.status, xhr.statusText);
+                }
+                fuelLoading = false;
+                findLowestPrice();
+            }
+        };
+        xhr.send();
+    }
+
+    // Process ANWB stations (Netherlands)
+    function processANWBStations(stations) {
+        var lat = settings.currentLatitude;
+        var lon = settings.currentLongitude;
+
+        for (var j = 0; j < stations.length; j++) {
+            var station = stations[j];
+
+            // find requested fuel price
+            var priceObj = station.prices.find(p => p.fuelType === fuelType);
+            if (!priceObj)
+                continue;
+            
+            var priceLevel = priceObj.priceTier
+            ? (priceObj.priceTier.value === 1 ? "LOW" :
+            priceObj.priceTier.value === 2 ? "AVG" :
+            priceObj.priceTier.value === 3 ? "HIGH" : "")
+            : "";
+
+            var sLat = station.coordinates.latitude;
+            var sLon = station.coordinates.longitude;
+            var distance = calcCrow(lat, lon, sLat, sLon);
+
+            if (distance > settings.searchRadius)
+                continue;
+
+            fuelListModel.append({
+                "address": station.address.streetAddress,
+                "organization": station.title,
+                "points": 0,
+                "connections": [],
+                "highestpower": 0,
+                "town": station.address.city,
+                "latitude": sLat,
+                "longitude": sLon,
+                "price": priceObj.value,
+                "priceLevel": priceLevel,
+                "distance": Math.round(distance * 10) / 10
+            });
+        }
+
+        fuelListModel.quick_sort();
+        fuelPage.fuelListView.positionViewAtBeginning();
+        fuelLoading = false;
+        findLowestPrice();
+    }
+
+    // Process Tankerkoenig stations (Germany)
+    function processTankerkoenigStations(stations, lat, lon) {
+        for (var i = 0; i < stations.length; i++) {
+            var station = stations[i];
+            
+            // Map Tankerkoenig fuel types to our fuel types
+            var priceValue = null;
+            var fuelTypeMapping = {
+                "EURO95": "e5",
+                "EURO98": "e10", 
+                "DIESEL": "diesel",
+                "AUTOGAS": "lpg"
+            };
+            
+            var tankerkoenigFuelType = fuelTypeMapping[fuelType];
+            
+            if (tankerkoenigFuelType && station[tankerkoenigFuelType]) {
+                priceValue = parseFloat(station[tankerkoenigFuelType]);
+            }
+            
+            if (priceValue === null || isNaN(priceValue)) continue;
+
+            var distance = calcCrow(lat, lon, station.lat, station.lng);
+            var priceLevel = priceValue < 1.5 ? "LOW" : priceValue < 1.7 ? "AVG" : "HIGH";
+
+            fuelListModel.append({
+                "address": station.street + " " + station.houseNumber,
+                "organization": station.name,
+                "points": 0,
+                "connections": [],
+                "highestpower": 0,
+                "town": station.place,
+                "latitude": parseFloat(station.lat),
+                "longitude": parseFloat(station.lng),
+                "price": priceValue,
+                "priceLevel": priceLevel,
+                "distance": Math.round(distance * 10) / 10
+            });
+        }
+
+        fuelListModel.quick_sort();
+        fuelPage.fuelListView.positionViewAtBeginning();
+    }
+
+    // Fetch Open Charge Map data
+    function fetchOpenChargeMapData(lat, lon, radius, minimumKw, maximumKw, connectionTypes) {
+        var xhr = new XMLHttpRequest();
+        var url = "https://api.openchargemap.io/v3/poi?key=" + root.openchargemapKey + `&latitude=${lat}&longitude=${lon}&distance=${radius}&distanceunit=km&minpowerkw=${minimumKw}&maxpowerkw=${maximumKw}&connectiontypeid=${connectionTypes}`;
+
+        xhr.open("GET", url, true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                    var list = JSON.parse(xhr.responseText);
+                    processOpenChargeMapStations(list, lat, lon);
+                } else {
+                    console.log("Open Charge Map API failed:", xhr.status, xhr.statusText);
+                }
+                fuelLoading = false;
+                findLowestPrice();
+            }
+        };
+        xhr.send();
+    }
+
+    // Process Open Charge Map stations
+    function processOpenChargeMapStations(stations, lat, lon) {
+        for (var i = 0; i < stations.length; i++) {
+            var chargingStation = stations[i];
+
+            var address = chargingStation.AddressInfo.Title;
+            var organization = chargingStation.OperatorInfo ? chargingStation.OperatorInfo.Title : i18n.tr("Charging station");
+            var points = chargingStation.NumberOfPoints;
+            var highestpower = getHighestPowerKW(chargingStation.Connections);
+            var town = chargingStation.AddressInfo.Town;
+            var latitude = chargingStation.AddressInfo.Latitude;
+            var longitude = chargingStation.AddressInfo.Longitude;
+            var price = 0.0;
+            var distance = chargingStation.AddressInfo.Distance;
+            var connections = [];
+
+            for (var j = 0; j < chargingStation.Connections.length; j++) {
+                var connection = chargingStation.Connections[j];
+
+                var data = {
+                    "connectiontypeid": connection.ConnectionTypeID,
+                    "connectiontypetitle": connection.ConnectionType.Title,
+                    "power": connection.PowerKW !== null ? connection.PowerKW : 0,
+                    "quantity": connection.Quantity !== null ? connection.Quantity : 1
+                };
+
+                connections.push(data);
+            }
+
+            fuelListModel.append({
+                "address": address,
+                "organization": organization.replace(/\\(Unknown Operator\\)/g, i18n.tr("Charging station")),
+                "points": points,
+                "connections": connections,
+                "highestpower": highestpower,
+                "town": town,
+                "latitude": latitude,
+                "longitude": longitude,
+                "price": price,
+                "priceLevel": "",
+                "distance": parseFloat(distance.toFixed(1))
+            });
+        }
+
+        fuelListModel.quick_sort();
+        fuelPage.fuelListView.positionViewAtBeginning();
+
 
                         if (fuelType === "electric") {
                             for (var i = 0; i < list.length; i++) {
@@ -368,42 +573,6 @@ MainView {
                                     "price": price,
                                     "priceLevel": "",
                                     "distance": parseFloat(distance.toFixed(1))
-                                });
-                            }
-                        } else {
-                            for (var j = 0; j < list.length; j++) {
-                                var station = list[j];
-
-                                // find requested fuel price
-                                var priceObj = station.prices.find(p => p.fuelType === fuelType);
-                                if (!priceObj)
-                                    continue;
-                                
-                                var priceLevel = priceObj.priceTier
-                                ? (priceObj.priceTier.value === 1 ? "LOW" :
-                                priceObj.priceTier.value === 2 ? "AVG" :
-                                priceObj.priceTier.value === 3 ? "HIGH" : "")
-                                : "";
-
-                                var sLat = station.coordinates.latitude;
-                                var sLon = station.coordinates.longitude;
-                                var distance = calcCrow(lat, lon, sLat, sLon);
-
-                                if (distance > radius)
-                                    continue;
-
-                                fuelListModel.append({
-                                    "address": station.address.streetAddress,
-                                    "organization": station.title,
-                                    "points": 0,
-                                    "connections": [],
-                                    "highestpower": 0,
-                                    "town": station.address.city,
-                                    "latitude": sLat,
-                                    "longitude": sLon,
-                                    "price": priceObj.value,
-                                    "priceLevel": priceLevel,
-                                    "distance": Math.round(distance * 10) / 10
                                 });
                             }
                         }
