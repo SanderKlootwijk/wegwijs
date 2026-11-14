@@ -1,99 +1,54 @@
-# Germany Support for Wegwijs
+# Germany and France Support for Wegwijs
 
-This fork adds support for German fuel stations using the Tankerkoenig API.
+This fork adds fuel prices for German stations via the Tankerkönig API
+(data from the Markttransparenzstelle für Kraftstoffe, MTS-K, CC BY 4.0)
+and for French stations via the official open data feed
+"Prix des carburants en France – Flux instantané – v2" (data.economie.gouv.fr,
+Licence Ouverte 2.0, no API key needed).
 
-## Features Added
+## How it works
 
-- **German Fuel Station Support**: Automatically detects when the user is in Germany and uses German data sources
-- **Tankerkoenig API Integration**: Uses the free Tankerkoenig API to fetch fuel prices for German stations
-- **Automatic Country Detection**: Based on GPS coordinates, the app automatically switches between:
-  - **Netherlands**: Uses ANWB API (original functionality)
-  - **Germany**: Uses Tankerkoenig API
-  - **Other countries**: Uses ANWB API (fallback)
+Based on the current location the app picks the data source:
 
-## Setup Instructions
+- **Netherlands** → ANWB API (original behaviour)
+- **Germany** → Tankerkönig API (own key required)
+- **France** → data.economie.gouv.fr (no key)
+- **German–French border** (e.g. Strasbourg/Kehl) → both, merged into one list
+- **Other countries** → ANWB API (fallback)
+- **Electric** → Open Charge Map (unchanged)
 
-### 1. Get a Tankerkoenig API Key
+## API key (entered in the app)
 
-The Tankerkoenig API requires an API key, which can be obtained for free:
+Tankerkönig issues free API keys per person, so no key is shipped with the app.
 
-1. Go to https://creativecommons.tankerkoenig.de/
-2. Register for a free API key
-3. Add the API key to the `fetchGermanFuelData` function in `qml/Main.qml`:
+1. Request a free key at https://onboarding.tankerkoenig.de
+2. In Wegwijs open **Settings → Fuel prices Germany** and paste the key
+3. The fuel list reloads automatically
 
-```javascript
-function fetchGermanFuelData(lat, lon, radius) {
-    // Use Tankerkoenig API (free German fuel price API)
-    var apiKey = "YOUR_API_KEY_HERE"; // Add your Tankerkoenig API key here
-    
-    if (!apiKey) {
-        console.log("Tankerkoenig API key not set. Please add your API key in Main.qml");
-        fuelLoading = false;
-        return;
-    }
-    
-    var xhr = new XMLHttpRequest();
-    var url = `https://creativecommons.tankerkoenig.de/json/list.php?lat=${lat}&lng=${lon}&rad=${radius}&sort=dist&type=all&apikey=${apiKey}`;
-    // ... rest of the function
-}
-```
+Without a key, the fuel list stays empty for locations in Germany.
 
-### 2. Fuel Type Mapping
+## Fuel type mapping
 
-The app automatically maps between Wegwijs fuel types and Tankerkoenig fuel types:
+| Wegwijs         | Tankerkönig (DE) | France        |
+|-----------------|------------------|---------------|
+| Euro 95 (E10)   | `e10`            | `e10_prix`    |
+| Euro 98 (E5)    | `e5`             | `sp98_prix`   |
+| Diesel (B7)     | `diesel`         | `gazole_prix` |
+| LPG             | not available    | `gplc_prix`   |
 
-- **EURO95** → e5 (Super E5)
-- **EURO98** → e10 (Super E10)
-- **DIESEL** → diesel
-- **AUTOGAS** → lpg (Autogas/LPG)
+Notes:
+- The Tankerkönig search radius is limited to 25 km.
+- The French feed contains no station names; stations are shown as "Fuel station" with address and town.
+- Neither source provides price tiers, so LOW/AVG/HIGH are computed relative to the stations found.
 
-### 3. Testing
+## Testing
 
-To test the German functionality:
-
-1. Set your location to a German city (e.g., Laichingen, Westerheim, Merklingen)
-2. Open the Fuel Prices page
-3. The app should automatically fetch data from Tankerkoenig API
-4. You should see German fuel stations with current prices
-
-## API Information
-
-### Tankerkoenig API
-
-- **Website**: https://creativecommons.tankerkoenig.de/
-- **API Documentation**: https://creativecommons.tankerkoenig.de/api.php
-- **Rate Limits**: Free tier allows 1000 requests per day
-- **Coverage**: Germany-wide fuel station data
-
-### ANWB API (Netherlands)
-
-- **Website**: https://www.anwb.nl
-- **Coverage**: Netherlands-only fuel station data
-- **Status**: Still used for Dutch locations
-
-## Future Enhancements
-
-Possible future improvements:
-
-1. **Additional German APIs**: Integrate with other German fuel price APIs like:
-   - https://www.benzinpreis-blitz.de (requires API key)
-   - https://ich-tanke.de (requires API key)
-   
-2. **Fallback Mechanism**: If one API fails, try another
-
-3. **Caching**: Cache fuel price data to reduce API calls
-
-4. **More Countries**: Add support for other European countries
-
-## Contributing
-
-If you want to contribute:
-
-1. Fork this repository
-2. Make your changes
-3. Test thoroughly
-4. Submit a pull request to the original repository
+1. Enter your Tankerkönig key in Settings
+2. Set the location to a German town (e.g. Laichingen, Westerheim, Merklingen)
+3. Open the fuel page – German stations with current prices should appear
+4. For France, set the location to e.g. Strasbourg – no key needed
 
 ## License
 
-This modification maintains the original GPLv3 license of the Wegwijs project.
+This modification keeps the original GPLv3 license of Wegwijs.
+Fuel price data: MTS-K via Tankerkönig, CC BY 4.0; France: data.economie.gouv.fr, Licence Ouverte 2.0.

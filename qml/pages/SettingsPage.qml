@@ -37,6 +37,7 @@ Page {
                 onTriggered: {
                     themeOptionSelector.currentlyExpanded = false
                     fuelTypeOptionSelector.currentlyExpanded = false
+                    tankerkoenigKeyField.save()
                     settings.fuelType == 4 ? fuelPage.fuelSections.selectedIndex = 1 : fuelPage.fuelSections.selectedIndex = 0
                     adaptivePageLayout.removePages(settingsPage)
                 }
@@ -185,6 +186,99 @@ Page {
 
                     Component.onCompleted: selectedIndex = settings.fuelType
                 }   
+            }
+
+            ListItem {
+                id: tankerkoenigTitle
+
+                height: units.gu(6.25)
+
+                divider.colorFrom: theme.palette.normal.background
+                divider.colorTo: theme.palette.normal.background
+
+                Label {
+                    width: parent.width - units.gu(4)
+
+                    anchors {
+                        bottom: parent.bottom
+                        bottomMargin: units.gu(1.25)
+                        left: parent.left
+                        leftMargin: units.gu(2)
+                    }
+
+                    text: i18n.tr("Fuel prices Germany") + ":"
+
+                    color: theme.palette.normal.backgroundSecondaryText
+                    font.bold: true
+                    elide: Text.ElideRight
+                }
+            }
+
+            ListItem {
+                id: tankerkoenigListItem
+
+                height: tankerkoenigLabel.height + tankerkoenigKeyField.height + tankerkoenigHint.height + units.gu(7)
+
+                Label {
+                    id: tankerkoenigLabel
+                    width: parent.width - units.gu(4)
+
+                    anchors {
+                        top: parent.top
+                        topMargin: units.gu(2)
+                        left: parent.left
+                        leftMargin: units.gu(2)
+                    }
+
+                    text: i18n.tr("Tankerkönig API key")
+                    elide: Text.ElideRight
+                }
+
+                TextField {
+                    id: tankerkoenigKeyField
+
+                    width: parent.width - units.gu(4)
+
+                    anchors {
+                        horizontalCenter: parent.horizontalCenter
+                        top: tankerkoenigLabel.bottom
+                        topMargin: units.gu(1.5)
+                    }
+
+                    placeholderText: "00000000-0000-0000-0000-000000000000"
+                    inputMethodHints: Qt.ImhNoPredictiveText | Qt.ImhNoAutoUppercase | Qt.ImhSensitiveData
+                    text: settings.tankerkoenigKey
+
+                    function save() {
+                        var key = text.trim()
+                        if (key !== settings.tankerkoenigKey) {
+                            settings.tankerkoenigKey = key
+                            fetchFuelPrices()
+                        }
+                    }
+
+                    onAccepted: save()
+                    onActiveFocusChanged: if (!activeFocus) save()
+                }
+
+                Label {
+                    id: tankerkoenigHint
+                    width: parent.width - units.gu(4)
+
+                    anchors {
+                        top: tankerkoenigKeyField.bottom
+                        topMargin: units.gu(1)
+                        left: parent.left
+                        leftMargin: units.gu(2)
+                    }
+
+                    text: i18n.tr("Required for fuel prices in Germany. Request a free personal key at <a href=\"https://onboarding.tankerkoenig.de\">onboarding.tankerkoenig.de</a>. Data: MTS-K via Tankerkönig (CC BY 4.0).")
+                    textSize: Label.Small
+                    color: theme.palette.normal.backgroundSecondaryText
+                    wrapMode: Text.WordWrap
+                    linkColor: theme.palette.normal.activity
+                    onLinkActivated: Qt.openUrlExternally(link)
+                }
             }
 
             ListItem {
