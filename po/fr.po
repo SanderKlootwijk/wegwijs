@@ -263,3 +263,6 @@ msgstr ""
 #: ../qml/pages/TrafficPage.qml:213
 msgid "No reports found"
 msgstr ""
+
+msgid "Fuel station"
+msgstr "Station-service"

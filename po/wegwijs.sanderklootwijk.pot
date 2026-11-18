@@ -8,16 +8,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: wegwijs.sanderklootwijk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-23 21:17+0000\n"
+"POT-Creation-Date: 2026-11-14 21:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../qml/Main.qml:336 ../qml/Main.qml:361
+#: ../qml/Main.qml:562
+msgid "Fuel station"
+msgstr ""
+
+#: ../qml/Main.qml:605 ../qml/Main.qml:630
 msgid "Charging station"
 msgstr ""
 
@@ -30,7 +34,7 @@ msgid "charging points"
 msgstr ""
 
 #: ../qml/components/FuelShape.qml:54 ../qml/pages/MainPage.qml:166
-#: ../qml/pages/ResultPage.qml:219 ../qml/pages/SettingsPage.qml:179
+#: ../qml/pages/ResultPage.qml:219 ../qml/pages/SettingsPage.qml:180
 msgid "Electric"
 msgstr ""
 
@@ -38,7 +42,7 @@ msgstr ""
 msgid "Traffic warning"
 msgstr ""
 
-#: ../qml/pages/AboutPage.qml:26 ../qml/pages/SettingsPage.qml:210
+#: ../qml/pages/AboutPage.qml:26 ../qml/pages/SettingsPage.qml:304
 msgid "About"
 msgstr ""
 
@@ -232,23 +236,38 @@ msgstr ""
 msgid "No locations found"
 msgstr ""
 
-#: ../qml/pages/SettingsPage.qml:88
+#: ../qml/pages/SettingsPage.qml:89
 msgid "Theme"
 msgstr ""
 
-#: ../qml/pages/SettingsPage.qml:112
+#: ../qml/pages/SettingsPage.qml:113
 msgid "System"
 msgstr ""
 
-#: ../qml/pages/SettingsPage.qml:139
+#: ../qml/pages/SettingsPage.qml:140
 msgid "Fuel"
 msgstr ""
 
-#: ../qml/pages/SettingsPage.qml:163
+#: ../qml/pages/SettingsPage.qml:164
 msgid "Fuel type"
 msgstr ""
 
-#: ../qml/pages/SettingsPage.qml:228
+#: ../qml/pages/SettingsPage.qml:209
+msgid "Fuel prices Germany"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:233
+msgid "Tankerkönig API key"
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:275
+msgid ""
+"Required for fuel prices in Germany. Request a free personal key at <a href="
+"\"https://onboarding.tankerkoenig.de\">onboarding.tankerkoenig.de</a>. Data: "
+"MTS-K via Tankerkönig (CC BY 4.0)."
+msgstr ""
+
+#: ../qml/pages/SettingsPage.qml:322
 msgid "About this app"
 msgstr ""
 

@@ -265,3 +265,21 @@ msgstr ""
 #: ../qml/pages/TrafficPage.qml:213
 msgid "No reports found"
 msgstr "Keine Berichte gefunden"
+
+msgid "Fuel prices Germany"
+msgstr "Spritpreise Deutschland"
+
+msgid "Tankerkönig API key"
+msgstr "Tankerkönig-API-Schlüssel"
+
+msgid ""
+"Required for fuel prices in Germany. Request a free personal key at <a "
+"href=\"https://onboarding.tankerkoenig.de\">onboarding.tankerkoenig.de</a>. "
+"Data: MTS-K via Tankerkönig (CC BY 4.0)."
+msgstr ""
+"Für Spritpreise in Deutschland erforderlich. Einen kostenlosen persönlichen "
+"Schlüssel gibt es unter <a href=\"https://onboarding.tankerkoenig.de\">"
+"onboarding.tankerkoenig.de</a>. Daten: MTS-K über Tankerkönig (CC BY 4.0)."
+
+msgid "Fuel station"
+msgstr "Tankstelle"

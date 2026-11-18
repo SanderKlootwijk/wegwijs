@@ -147,6 +147,9 @@ Page {
                     model: [
                         { name: "ANWB", url: "https://www.anwb.nl"},
                         { name: "Geocoding", url: "https://geocode.maps.co"},
+                        { name: "Photon (komoot, © OpenStreetMap)", url: "https://photon.komoot.io"},
+                        { name: "Tankerkönig (MTS-K, CC BY 4.0)", url: "https://creativecommons.tankerkoenig.de"},
+                        { name: "Prix des carburants (Licence Ouverte 2.0)", url: "https://data.economie.gouv.fr/explore/dataset/prix-des-carburants-en-france-flux-instantane-v2/"},
                         { name: "Open Charge Map", url: "https://openchargemap.org/"}
                     ]
 
